@@ -1,4 +1,4 @@
-#!/usr/bin/env micropython
+#!/usr/bin/env python3
 # interstate75-wrapper
 # Copyright (C) 2023 Andrew Wilkinson
 #
@@ -15,7 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-__version__ = "0.0.0"
+import sys
 
-from .display_type import DisplayType
-from .interstate75wrapper import Interstate75Wrapper
+sys.path.insert(0, ".")
+
+example = sys.argv[1]
+
+module = __import__(f"examples.{example}.{example}")
+getattr(getattr(module, example), example).main()

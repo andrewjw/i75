@@ -15,7 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-__version__ = "0.0.0"
+import time
 
-from .display_type import DisplayType
-from .interstate75wrapper import Interstate75Wrapper
+from interstate75wrapper import Interstate75Wrapper, display_type
+
+
+def main() -> None:
+    i75 = Interstate75Wrapper(
+        display_type=display_type.DISPLAY_INTERSTATE75_64X64)
+
+    time.sleep(5)
+
+
+if __name__ == "__main__":
+    main()

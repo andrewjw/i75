@@ -2,8 +2,8 @@
 
 set -e
 
-${PYCODESTYLE:-pycodestyle} interstate75-wrapper/ tests/
+${PYCODESTYLE:-pycodestyle} interstate75wrapper/ examples/
 
-MYPYPATH=./stubs:$MYPYPATH mypy -m interstate75-wrapper
+MYPYPATH=./stubs:$MYPYPATH mypy -m interstate75wrapper
 
-MYPYPATH=./stubs:$MYPYPATH mypy -m tests
+MYPYPATH=./stubs:$MYPYPATH mypy -m examples

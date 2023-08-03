@@ -15,7 +15,23 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-__version__ = "0.0.0"
+try:
+    import interstate75  # type: ignore
+    MOCK = False
+except ImportError:
+    MOCK = True
 
+from .console_graphics import ConsoleGraphics
 from .display_type import DisplayType
-from .interstate75wrapper import Interstate75Wrapper
+
+
+class Interstate75Wrapper:
+    def __init__(self, display_type: DisplayType) -> None:
+        self.display_type = display_type
+        if MOCK:
+            self.graphics = ConsoleGraphics(self.display_type.width,
+                                            self.display_type.height)
+        else:
+            self.i75 = interstate75.Interstate75(
+                display=self.display_type.i75type)
+            self.graphics = self.i75.display

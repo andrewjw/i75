@@ -15,7 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-__version__ = "0.0.0"
+from typing import Any, Optional
 
-from .display_type import DisplayType
-from .interstate75wrapper import Interstate75Wrapper
+
+class DisplayType:
+    def __init__(self,
+                 width: int,
+                 height: int,
+                 i75type: Optional[Any] = None) -> None:
+        self.width = width
+        self.height = height
+        self.i75type = i75type
+
+
+DISPLAY_INTERSTATE75_64X64 = DisplayType(64, 64)
