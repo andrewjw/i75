@@ -5,7 +5,7 @@ import sys, os
 sys.path.insert(0, os.path.abspath('extensions'))
 
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.todo',
-              'sphinx.ext.coverage', 'sphinx.ext.ifconfig']
+              'sphinx.ext.coverage', 'sphinx.ext.ifconfig', 'sphinx_rtd_theme']
 
 todo_include_todos = True
 templates_path = ['_templates']
@@ -25,7 +25,7 @@ release = ''
 
 # -- Options for HTML output ---------------------------------------------------
 
-html_theme = 'book'
+html_theme = 'sphinx_rtd_theme'
 html_theme_path = ['themes']
 html_title = "interstate75-wrapper"
 html_static_path = ['_static']
