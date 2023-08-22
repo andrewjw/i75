@@ -1,4 +1,3 @@
-#!/usr/bin/env micropython
 # interstate75-wrapper
 # Copyright (C) 2023 Andrew Wilkinson
 #
@@ -15,24 +14,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-try:
-    import picographics as pg  # type: ignore
-    DISPLAY_INTERSTATE75_64X64 = pg.DISPLAY_INTERSTATE75_64X64
-except ImportError:
-    from typing import Any, Optional
-    DISPLAY_INTERSTATE75_64X64 = None
+def ticks_ms() -> int:
+    ...
 
+def ticks_diff(t1: int, t2: int) -> int:
+    ...
 
-class DisplayType:
-    def __init__(self,
-                 width: int,
-                 height: int,
-                 i75type: Optional[Any] = None) -> None:
-        self.width = width
-        self.height = height
-        self.i75type = i75type
+def sleep(delay: float) -> None:
+    ...
 
-
-DISPLAY_INTERSTATE75_64X64 = DisplayType(64,
-                                         64,
-                                         DISPLAY_INTERSTATE75_64X64)
+def sleep_ms(delay: float) -> None:
+    ...

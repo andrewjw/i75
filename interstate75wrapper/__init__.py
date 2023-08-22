@@ -17,5 +17,15 @@
 
 __version__ = "0.0.0"
 
+from .datetime import DateTime
 from .display_type import DisplayType
-from .interstate75wrapper import Interstate75Wrapper
+from .pen import Pen
+
+try:
+    import picographics  # type: ignore
+except ImportError:
+    from .mockinterstate75 import MockInterstate75
+    Interstate75Wrapper = MockInterstate75  # type: ignore
+else:
+    from .nativeinterstate75 import NativeInterstate75
+    Interstate75Wrapper = NativeInterstate75  # type: ignore
