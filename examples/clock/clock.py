@@ -107,7 +107,13 @@ def main() -> None:
 
     while True:
         subsecond = i75.ticks_diff(i75.ticks_ms(), base_ticks) % 1000
-        display_time = render_clock(i75, white, red, black, display_time, subsecond, old_subsecond)
+        display_time = render_clock(i75,
+                                    white,
+                                    red,
+                                    black,
+                                    display_time,
+                                    subsecond,
+                                    old_subsecond)
         old_subsecond = subsecond
         print(display_time, subsecond)
 

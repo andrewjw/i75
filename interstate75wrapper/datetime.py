@@ -24,7 +24,6 @@ except AttributeError:
     def ticks_ms():
         return time.time_ns() / 1000000
 
-
     def ticks_diff(t1, t2):
         # TODO: Probably need to handle wrap around here.
         return t1 - t2
@@ -52,4 +51,5 @@ class DateTime:
 
     def __str__(self):
         return f"{self.year}-{self.month:02n}-{self.day:02n} " \
-             + f"{self.hour:02n}:{self.minute:02n}:{self.second:02n}.{self.microsecond}"
+             + f"{self.hour:02n}:{self.minute:02n}:{self.second:02n}" \
+             + f".{self.microsecond}"

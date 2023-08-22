@@ -17,6 +17,9 @@
 def ticks_ms() -> int:
     ...
 
+def time_ns() -> int:
+    ...
+
 def ticks_diff(t1: int, t2: int) -> int:
     ...
 
