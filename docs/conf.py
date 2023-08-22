@@ -3,6 +3,7 @@
 import sys, os
 
 sys.path.insert(0, os.path.abspath('extensions'))
+sys.path.insert(0, ".")
 
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.todo',
               'sphinx.ext.coverage', 'sphinx.ext.ifconfig', 'sphinx_rtd_theme']
