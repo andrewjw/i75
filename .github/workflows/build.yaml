@@ -61,6 +61,5 @@ jobs:
           export VERSION=$(semantic-release print-version)
           if [ ! -z "$VERSION" ]; then
              GH_TOKEN=${{ secrets.GITHUB_TOKEN }} PYPI_TOKEN=${{ secrets.PYPI_TOKEN }} semantic-release publish
-             DOCKER_TOKEN=${{ secrets.DOCKER_TOKEN }} TAG=$VERSION ./docker_push.sh
           fi
  
