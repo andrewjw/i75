@@ -25,6 +25,10 @@ from .display_type import DisplayType
 
 
 class BaseInterstate75:
+    """This is the base class for the Interstate75 wrapper library. All
+       functions are overridden by either a mock version, which emulates the
+       functionality, or a native version if we're running on real
+       Interstate75 hardware."""
     def __init__(self,
                  display_type: DisplayType,
                  stb_invert=False,
@@ -32,10 +36,19 @@ class BaseInterstate75:
         self.display_type = display_type
 
     def update(self) -> None:
+        """Applies any changes to the display buffer to this screen."""
         raise NotImplementedError()
 
     def enable_wifi(self,
                     callback: Optional[Callable[[int], None]] = None) -> bool:
+        """Enables wifi.
+
+           To run on real Interstate75 hardware you must have a secrets files
+           (see :doc:`secrets`)
+
+           :param callback: A function which is called every 200ms with the
+               current connection status.
+        """
         raise NotImplementedError()
 
     def disable_wifi(self) -> None:
