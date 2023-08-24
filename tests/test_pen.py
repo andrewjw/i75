@@ -19,6 +19,7 @@ import unittest
 
 from interstate75wrapper.pen import RGB332Pen, RGB888Pen
 
+
 class TestPen(unittest.TestCase):
     def test_rgb888_as_tuple(self):
         self.assertEquals(RGB888Pen(128, 128, 128).as_tuple(), (128, 128, 128))
