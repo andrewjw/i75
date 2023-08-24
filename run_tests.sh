@@ -1,3 +1,11 @@
 #!/bin/bash
 
-exit 0
+${COVERAGE:-coverage} run test.py
+
+let R=$?
+
+${COVERAGE:-coverage} report
+
+${COVERAGE:-coverage} html
+
+exit $R
