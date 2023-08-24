@@ -29,10 +29,12 @@ SECOND_LENGTH = 30
 def render_clock_face(i75: Interstate75Wrapper) -> None:
     for tick in range(12):
         tick_len = 3 if tick in (0, 3, 6, 9) else 2
-        x1 = round((32 - tick_len) * math.cos(2 * math.pi * tick / 12.0) + 32)
-        y1 = round((32 - tick_len) * math.sin(2 * math.pi * tick / 12.0) + 32)
-        x2 = round(32 * math.cos(2 * math.pi * tick / 12.0) + 32)
-        y2 = round(32 * math.sin(2 * math.pi * tick / 12.0) + 32)
+        x1 = math.floor((31 - tick_len) *
+                        math.cos(2 * math.pi * tick / 12.0) + 31.5)
+        y1 = math.floor((31 - tick_len) *
+                        math.sin(2 * math.pi * tick / 12.0) + 31.5)
+        x2 = math.floor(31 * math.cos(2 * math.pi * tick / 12.0) + 31.5)
+        y2 = math.floor(31 * math.sin(2 * math.pi * tick / 12.0) + 31.5)
 
         i75.display.line(x1, y1, x2, y2)
 
@@ -40,39 +42,24 @@ def render_clock_face(i75: Interstate75Wrapper) -> None:
 def render_hand(i75: Interstate75Wrapper, length: int, percent: float) -> None:
     i75.display.line(32,
                      32,
-                     round(length * math.sin(2 * math.pi * percent) + 32),
-                     round(length * -math.cos(2 * math.pi * percent) + 32))
+                     math.floor(length * math.sin(2 * math.pi * percent) + 32),
+                     math.floor(length *
+                                -math.cos(2 * math.pi * percent) + 32))
 
 
 def render_clock(i75: Interstate75Wrapper,
                  white: Pen,
                  red: Pen,
-                 black: Pen,
-                 old_time: DateTime,
+                 now: DateTime,
                  subsecond: int,
-                 old_subsecond: int) -> DateTime:
-    now = i75.now()
-
-    i75.display.set_pen(black)
-
-    part_second = old_subsecond / 1000
-    second_percent = (old_time.second + part_second) / 60.0
-    minute_percent = (old_time.minute * 60
-                      + old_time.second
-                      + part_second) / (60.0 * 60)
-    hour_percent = (((now.hour + 1) % 12) * (60 * 60)
-                    + old_time.minute * 60
-                    + old_time.second + part_second) / (60.0 * 60 * 12)
-    render_hand(i75, SECOND_LENGTH, second_percent)
-    render_hand(i75, MINUTE_LENGTH, minute_percent)
-    render_hand(i75, HOUR_LENGTH, hour_percent)
-
-    i75.display.set_pen(white)
-    render_clock_face(i75)
+                 display_ticks: bool = True) -> None:
+    if display_ticks:
+        i75.display.set_pen(white)
+        render_clock_face(i75)
 
     i75.display.set_pen(red)
 
-    part_second = subsecond / 1000
+    part_second = subsecond / 1000.0
     render_hand(i75, SECOND_LENGTH, (now.second + part_second) / 60.0)
 
     i75.display.set_pen(white)
@@ -102,20 +89,32 @@ def main() -> None:
     red = i75.display.create_pen(255, 0, 0)
     black = i75.display.create_pen(0, 0, 0)
 
-    display_time = i75.now()
+    old_time = i75.now()
     old_subsecond = 0
 
     while True:
+        now = i75.now()
         subsecond = i75.ticks_diff(i75.ticks_ms(), base_ticks) % 1000
-        display_time = render_clock(i75,
-                                    white,
-                                    red,
-                                    black,
-                                    display_time,
-                                    subsecond,
-                                    old_subsecond)
+
+        if now != old_time and subsecond > old_subsecond and subsecond < 9975:
+            base_ticks -= 25
+        elif now == old_time and subsecond < old_subsecond:
+            base_ticks += 25
+            subsecond = 999
+
+        render_clock(i75,
+                     black,
+                     black,
+                     old_time,
+                     old_subsecond,
+                     False)
+        render_clock(i75,
+                     white,
+                     red,
+                     now,
+                     subsecond)
+        old_time = now
         old_subsecond = subsecond
-        print(display_time, subsecond)
 
         i75.update()
 

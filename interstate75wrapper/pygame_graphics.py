@@ -53,16 +53,16 @@ class PyGameGraphics:
         y: float = y1
         last_coord = (x1, y1)
         self.pixel(x1, y1)
-        while last_coord != (x2, y2):
+        for _ in range(math.floor(llen)):
             x, y = x + dx, y + dy
-            px, py = round(x), round(y)
+            px, py = math.floor(x), math.floor(y)
             if last_coord != (px, py):
                 last_coord = (px, py)
                 self.pixel(px, py)
 
     def pixel(self, x: int, y: int) -> None:
-        centre = self._rotate_point(round(x * LED_SIZE + LED_SIZE/2),
-                                    round(y * LED_SIZE + LED_SIZE/2))
+        centre = self._rotate_point(math.floor(x * LED_SIZE + LED_SIZE/2),
+                                    math.floor(y * LED_SIZE + LED_SIZE/2))
         pygame.draw.circle(self.screen,
                            self.pen.as_tuple(),
                            centre,

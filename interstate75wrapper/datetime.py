@@ -47,9 +47,17 @@ class DateTime:
         self.hour = hour
         self.minute = minute
         self.second = second
-        self.microsecond = microsecond
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, DateTime):
+            return False
+        return self.year == other.year \
+            and self.month == other.month \
+            and self.day == other.day \
+            and self.hour == other.hour \
+            and self.minute == other.minute \
+            and self.second == other.second
 
     def __str__(self):
         return f"{self.year}-{self.month:02n}-{self.day:02n} " \
-             + f"{self.hour:02n}:{self.minute:02n}:{self.second:02n}" \
-             + f".{self.microsecond}"
+             + f"{self.hour:02n}:{self.minute:02n}:{self.second:02n}"
