@@ -17,7 +17,7 @@
 
 try:
     from typing import Callable, Optional
-except ImportError:
+except ImportError:  # pragma: no cover
     pass
 
 from .datetime import DateTime
@@ -35,12 +35,13 @@ class BaseInterstate75:
                  rotate: int = 0) -> None:
         self.display_type = display_type
 
-    def update(self) -> None:
+    def update(self) -> None:  # pragma: no cover
         """Applies any changes to the display buffer to this screen."""
         raise NotImplementedError()
 
     def enable_wifi(self,
-                    callback: Optional[Callable[[int], None]] = None) -> bool:
+                    callback: Optional[Callable[[int], None]] = None
+                    ) -> bool:  # pragma: no cover
         """Enables wifi.
 
            To run on real Interstate75 hardware you must have a secrets files
@@ -51,24 +52,24 @@ class BaseInterstate75:
         """
         raise NotImplementedError()
 
-    def disable_wifi(self) -> None:
+    def disable_wifi(self) -> None:  # pragma: no cover
         raise NotImplementedError()
 
-    def set_time(self) -> bool:
+    def set_time(self) -> bool:  # pragma: no cover
         raise NotImplementedError()
 
-    def now(self) -> DateTime:
+    def now(self) -> DateTime:  # pragma: no cover
         raise NotImplementedError()
 
-    def sleep_ms(self, delay: int) -> None:
+    def sleep_ms(self, delay: int) -> None:  # pragma: no cover
         raise NotImplementedError()
 
-    def ticks_ms(self) -> int:
+    def ticks_ms(self) -> int:  # pragma: no cover
         raise NotImplementedError()
 
-    def ticks_diff(self, t1: int, t2: int) -> int:
+    def ticks_diff(self, t1: int, t2: int) -> int:  # pragma: no cover
         raise NotImplementedError()
 
     @staticmethod
-    def is_mock() -> bool:
+    def is_mock() -> bool:  # pragma: no cover
         raise NotImplementedError()

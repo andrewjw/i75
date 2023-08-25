@@ -1,4 +1,4 @@
-#!/usr/bin/env micropython
+#!/usr/bin/env python3
 # interstate75-wrapper
 # Copyright (C) 2023 Andrew Wilkinson
 #
@@ -15,29 +15,25 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-try:
-    from typing import Tuple
-except ImportError:  # pragma: no cover
-    pass
+import unittest
+import unittest.mock
+
+from interstate75wrapper.display_type import DISPLAY_INTERSTATE75_64X64
+from interstate75wrapper.mockinterstate75 import MockInterstate75
 
 
-class Pen:
-    def __init__(self, r: int, g: int, b: int) -> None:
-        self.r = r
-        self.g = g
-        self.b = b
+class TestMockInterstate75(unittest.TestCase):
+    @unittest.mock.patch("interstate75wrapper.mockinterstate75.pygame")
+    @unittest.mock.patch("interstate75wrapper.pygame_graphics.pygame")
+    def test_wifi(self, _, _2):
+        mock = MockInterstate75(DISPLAY_INTERSTATE75_64X64)
 
-    def as_tuple(self) -> Tuple[int, int, int]:
-        return (self.r, self.g, self.b)
+        self.assertFalse(mock._wifi_enabled)
 
+        mock.enable_wifi()
 
-class RGB332Pen(Pen):
-    def __init__(self, r: int, g: int, b: int) -> None:
-        super().__init__((1 << 3) * round(float(r) / (1 << 3)),
-                         (1 << 3) * round(float(g) / (1 << 3)),
-                         (1 << 2) * round(float(b) / (1 << 2)))
+        self.assertTrue(mock._wifi_enabled)
 
+        mock.disable_wifi()
 
-class RGB888Pen(Pen):
-    def __init__(self, r: int, g: int, b: int) -> None:
-        super().__init__(r, g, b)
+        self.assertFalse(mock._wifi_enabled)

@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-try:
+try:  # pragma: no cover
     import picographics as pg  # type: ignore
     DISPLAY_INTERSTATE75_64X64 = pg.DISPLAY_INTERSTATE75_64X64
 except ImportError:
