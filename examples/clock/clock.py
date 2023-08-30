@@ -18,7 +18,7 @@
 import math
 import time
 
-from interstate75wrapper import DateTime, Interstate75Wrapper, \
+from i75 import DateTime, I75, \
                                 Pen, display_type
 
 HOUR_LENGTH = 25
@@ -26,7 +26,7 @@ MINUTE_LENGTH = 30
 SECOND_LENGTH = 30
 
 
-def render_clock_face(i75: Interstate75Wrapper) -> None:
+def render_clock_face(i75: I75) -> None:
     for tick in range(12):
         tick_len = 3 if tick in (0, 3, 6, 9) else 2
         x1 = math.floor((31 - tick_len) *
@@ -39,7 +39,7 @@ def render_clock_face(i75: Interstate75Wrapper) -> None:
         i75.display.line(x1, y1, x2, y2)
 
 
-def render_hand(i75: Interstate75Wrapper, length: int, percent: float) -> None:
+def render_hand(i75: I75, length: int, percent: float) -> None:
     i75.display.line(32,
                      32,
                      math.floor(length * math.sin(2 * math.pi * percent) + 32),
@@ -47,7 +47,7 @@ def render_hand(i75: Interstate75Wrapper, length: int, percent: float) -> None:
                                 -math.cos(2 * math.pi * percent) + 32))
 
 
-def render_clock(i75: Interstate75Wrapper,
+def render_clock(i75: I75,
                  white: Pen,
                  red: Pen,
                  now: DateTime,
@@ -77,9 +77,9 @@ def render_clock(i75: Interstate75Wrapper,
 
 
 def main() -> None:
-    i75 = Interstate75Wrapper(
+    i75 = I75(
         display_type=display_type.DISPLAY_INTERSTATE75_64X64,
-        rotate=0 if Interstate75Wrapper.is_mock() else 90)
+        rotate=0 if I75.is_emulated() else 90)
 
     i75.enable_wifi()
     i75.set_time()
