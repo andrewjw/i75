@@ -2,6 +2,15 @@
 
 
 
+## v0.4.1 (2023-08-30)
+
+### Fix
+
+* fix: Update example for renamed module. ([`44a82b5`](https://github.com/andrewjw/i75/commit/44a82b5532c1b633f81cdc26bae063579f6324ab))
+
+* fix: Rename is_mock to is_emulated to match other renames. ([`d7ea1f2`](https://github.com/andrewjw/i75/commit/d7ea1f219be1d397a5fe999fc656bec48b3fcc11))
+
+
 ## v0.4.0 (2023-08-30)
 
 ### Feature
