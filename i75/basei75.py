@@ -71,5 +71,8 @@ class BaseI75:
         raise NotImplementedError()
 
     @staticmethod
-    def is_mock() -> bool:  # pragma: no cover
+    def is_emulated() -> bool:  # pragma: no cover
+        """
+        Returns true if we are not running on real Interstate75 hardware.
+        """
         raise NotImplementedError()

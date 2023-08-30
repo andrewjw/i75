@@ -108,7 +108,7 @@ class NativeI75(BaseI75):
         self.rtc: Optional[machine.RTC] = None
 
     @staticmethod
-    def is_mock() -> bool:
+    def is_emulated() -> bool:
         return False
 
     def update(self, buffer=None):

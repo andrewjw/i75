@@ -48,7 +48,7 @@ class EmulatedI75(BaseI75):
         self._wifi_enabled = False
 
     @staticmethod
-    def is_mock() -> bool:
+    def is_emulated() -> bool:
         return True
 
     def update(self):
