@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     concurrency: release
     environment: Production
-    if: github.repository == 'andrewjw/interstate75-wrapper' && github.ref == 'refs/heads/main'
+    if: github.repository == 'andrewjw/i75' && github.ref == 'refs/heads/main'
     needs: build
     permissions:
       contents: write

@@ -1,5 +1,5 @@
 #!/usr/bin/env micropython
-# interstate75-wrapper
+# i75
 # Copyright (C) 2023 Andrew Wilkinson
 #
 # This program is free software: you can redistribute it and/or modify
@@ -24,11 +24,11 @@ from .datetime import DateTime
 from .display_type import DisplayType
 
 
-class BaseInterstate75:
-    """This is the base class for the Interstate75 wrapper library. All
-       functions are overridden by either a mock version, which emulates the
-       functionality, or a native version if we're running on real
-       Interstate75 hardware."""
+class BaseI75:
+    """This is the base class for the Interstate75 library. All
+       functions are overridden by either an emulated version, which
+       replicates the functionality, or a native version if we're
+       running on real Interstate75 hardware."""
     def __init__(self,
                  display_type: DisplayType,
                  stb_invert=False,

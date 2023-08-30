@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# interstate75-wrapper
+# i75
 # Copyright (C) 2023 Andrew Wilkinson
 #
 # This program is free software: you can redistribute it and/or modify
@@ -15,5 +15,5 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .test_emulatedinterstate75 import TestEmulatedInterstate75
+from .test_emulatedi75 import TestEmulatedI75
 from .test_pen import TestPen

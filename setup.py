@@ -1,4 +1,4 @@
-# interstate75-wrapper
+# i75
 # Copyright (C) 2023 Andrew Wilkinson
 #
 # This program is free software: you can redistribute it and/or modify
@@ -25,14 +25,14 @@ with open('requirements.txt') as f:
     requirements = f.read().splitlines()
 
 setuptools.setup(
-    name="interstate75-wrapper",
+    name="i75",
     version=__version__,
     author="Andrew Wilkinson",
     author_email="andrewjwilkinson@gmail.com",
     description="A wrapper around Pimoroni's `interstate75` library which allows for running locally and easier testing.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/andrewjw/interstate75-wrapper",
+    url="https://github.com/andrewjw/i75",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3.8",

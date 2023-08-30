@@ -6,7 +6,7 @@ logging_use_named_masks = false
 major_on_zero = true
 tag_format = "v{version}"
 version_variables = [
-    "interstate75wrapper/__init__.py:__version__"
+    "i75/__init__.py:__version__"
 ]
 build_command = "python3 setup.py sdist bdist_wheel"
 

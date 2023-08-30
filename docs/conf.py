@@ -18,7 +18,7 @@ add_function_parentheses = True
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
 
-project = u'interstate75-wrapper'
+project = u'i75'
 copyright = u'2023, Andrew Wilkinson'
 
 version = ''
@@ -28,10 +28,10 @@ release = ''
 
 html_theme = 'sphinx_rtd_theme'
 html_theme_path = ['themes']
-html_title = "interstate75-wrapper"
+html_title = "i75"
 html_static_path = ['_static']
 html_domain_indices = False
 html_use_index = False
 html_show_sphinx = False
-htmlhelp_basename = 'interstate75-wrapper'
+htmlhelp_basename = 'i75'
 html_show_sourcelink = False

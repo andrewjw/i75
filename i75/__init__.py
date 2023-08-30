@@ -1,5 +1,5 @@
 #!/usr/bin/env micropython
-# interstate75-wrapper
+# i75
 # Copyright (C) 2023 Andrew Wilkinson
 #
 # This program is free software: you can redistribute it and/or modify
@@ -15,24 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-try:  # pragma: no cover
-    import picographics as pg  # type: ignore
-    DISPLAY_INTERSTATE75_64X64 = pg.DISPLAY_INTERSTATE75_64X64
+__version__ = "0.3.0"
+
+from .datetime import DateTime
+from .display_type import DisplayType
+from .pen import Pen
+
+try:
+    import picographics  # type: ignore
 except ImportError:
-    from typing import Any, Optional
-    DISPLAY_INTERSTATE75_64X64 = None
-
-
-class DisplayType:
-    def __init__(self,
-                 width: int,
-                 height: int,
-                 i75type: Optional[Any] = None) -> None:
-        self.width = width
-        self.height = height
-        self.i75type = i75type
-
-
-DISPLAY_INTERSTATE75_64X64 = DisplayType(64,
-                                         64,
-                                         DISPLAY_INTERSTATE75_64X64)
+    from .emulatedi75 import EmulatedI75
+    I75 = EmulatedI75  # type: ignore
+else:
+    from .nativei75 import NativeI75
+    I75 = NativeI75  # type: ignore

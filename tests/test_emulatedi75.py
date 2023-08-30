@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# interstate75-wrapper
+# i75
 # Copyright (C) 2023 Andrew Wilkinson
 #
 # This program is free software: you can redistribute it and/or modify
@@ -18,15 +18,15 @@
 import unittest
 import unittest.mock
 
-from interstate75wrapper.display_type import DISPLAY_INTERSTATE75_64X64
-from interstate75wrapper.emulatedinterstate75 import EmulatedInterstate75
+from i75.display_type import DISPLAY_INTERSTATE75_64X64
+from i75.emulatedi75 import EmulatedI75
 
 
-class TestEmulatedInterstate75(unittest.TestCase):
-    @unittest.mock.patch("interstate75wrapper.emulatedinterstate75.pygame")
-    @unittest.mock.patch("interstate75wrapper.pygame_graphics.pygame")
+class TestEmulatedI75(unittest.TestCase):
+    @unittest.mock.patch("i75.emulatedi75.pygame")
+    @unittest.mock.patch("i75.pygame_graphics.pygame")
     def test_wifi(self, _, _2):
-        mock = EmulatedInterstate75(DISPLAY_INTERSTATE75_64X64)
+        mock = EmulatedI75(DISPLAY_INTERSTATE75_64X64)
 
         self.assertFalse(mock._wifi_enabled)
 

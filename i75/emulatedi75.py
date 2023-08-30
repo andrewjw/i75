@@ -1,5 +1,5 @@
 #!/usr/bin/env micropython
-# interstate75-wrapper
+# i75
 # Copyright (C) 2023 Andrew Wilkinson
 #
 # This program is free software: you can redistribute it and/or modify
@@ -23,12 +23,12 @@ from typing import Callable, Optional
 import pygame
 from .pygame_graphics import PyGameGraphics
 
-from .baseinterstate75 import BaseInterstate75
+from .basei75 import BaseI75
 from .datetime import DateTime
 from .display_type import DisplayType
 
 
-class EmulatedInterstate75(BaseInterstate75):
+class EmulatedI75(BaseI75):
     """
     This class aims to emulates all the features of the Interstate75, using
     PyGame to render the display. See :ref baseinterstate75: for a description

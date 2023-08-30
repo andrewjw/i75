@@ -1,0 +1,6 @@
+====================
+Module documentation
+====================
+
+.. automodule:: i75.basei75
+   :members:

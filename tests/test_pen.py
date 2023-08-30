@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# interstate75-wrapper
+# i75
 # Copyright (C) 2023 Andrew Wilkinson
 #
 # This program is free software: you can redistribute it and/or modify
@@ -17,7 +17,7 @@
 
 import unittest
 
-from interstate75wrapper.pen import RGB332Pen, RGB888Pen
+from i75.pen import RGB332Pen, RGB888Pen
 
 
 class TestPen(unittest.TestCase):

@@ -1,5 +1,5 @@
 #!/usr/bin/env micropython
-# interstate75-wrapper
+# i75
 # Copyright (C) 2023 Andrew Wilkinson
 #
 # This program is free software: you can redistribute it and/or modify
@@ -41,7 +41,7 @@ except ImportError:
     print("Create secrets.py with your WiFi credentials to get time from NTP")
     WIFI_AVAILABLE = False
 
-from .baseinterstate75 import BaseInterstate75
+from .basei75 import BaseI75
 from .datetime import DateTime
 from .display_type import DisplayType
 
@@ -52,7 +52,7 @@ SWITCH_B = 1
 SWITCH_BOOT = 1
 
 
-class NativeInterstate75(BaseInterstate75):
+class NativeI75(BaseI75):
     """
     This class is used when running on real Interstate75 hardware.
     See :ref baseinterstate75: for a description of the
@@ -97,9 +97,9 @@ class NativeInterstate75(BaseInterstate75):
         for i in range(self.NUM_SWITCHES):
             self.__switches.append(Button(self._switch_pins[i]))
 
-        self.__rgb = RGBLED(NativeInterstate75.LED_R_PIN,
-                            NativeInterstate75.LED_G_PIN,
-                            NativeInterstate75.LED_B_PIN,
+        self.__rgb = RGBLED(NativeI75.LED_R_PIN,
+                            NativeI75.LED_G_PIN,
+                            NativeI75.LED_B_PIN,
                             invert=True)
 
         # Set up the i2c for Qw/st and Breakout Garden
