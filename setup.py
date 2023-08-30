@@ -16,7 +16,7 @@
 
 import setuptools
 
-from interstate75wrapper import __version__
+from i75 import __version__
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
