@@ -28,7 +28,12 @@ from .datetime import DateTime
 from .display_type import DisplayType
 
 
-class MockInterstate75(BaseInterstate75):
+class EmulatedInterstate75(BaseInterstate75):
+    """
+    This class aims to emulates all the features of the Interstate75, using
+    PyGame to render the display. See :ref baseinterstate75: for a description
+    of the available methods.
+    """
     def __init__(self,
                  display_type: DisplayType,
                  stb_invert=False,

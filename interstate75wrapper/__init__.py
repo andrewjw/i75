@@ -24,8 +24,8 @@ from .pen import Pen
 try:
     import picographics  # type: ignore
 except ImportError:
-    from .mockinterstate75 import MockInterstate75
-    Interstate75Wrapper = MockInterstate75  # type: ignore
+    from .emulatedinterstate75 import EmulatedInterstate75
+    Interstate75Wrapper = EmulatedInterstate75  # type: ignore
 else:
     from .nativeinterstate75 import NativeInterstate75
     Interstate75Wrapper = NativeInterstate75  # type: ignore

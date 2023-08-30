@@ -19,14 +19,14 @@ import unittest
 import unittest.mock
 
 from interstate75wrapper.display_type import DISPLAY_INTERSTATE75_64X64
-from interstate75wrapper.mockinterstate75 import MockInterstate75
+from interstate75wrapper.emulatedinterstate75 import EmulatedInterstate75
 
 
-class TestMockInterstate75(unittest.TestCase):
-    @unittest.mock.patch("interstate75wrapper.mockinterstate75.pygame")
+class TestEmulatedInterstate75(unittest.TestCase):
+    @unittest.mock.patch("interstate75wrapper.emulatedinterstate75.pygame")
     @unittest.mock.patch("interstate75wrapper.pygame_graphics.pygame")
     def test_wifi(self, _, _2):
-        mock = MockInterstate75(DISPLAY_INTERSTATE75_64X64)
+        mock = EmulatedInterstate75(DISPLAY_INTERSTATE75_64X64)
 
         self.assertFalse(mock._wifi_enabled)
 

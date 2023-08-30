@@ -53,6 +53,11 @@ SWITCH_BOOT = 1
 
 
 class NativeInterstate75(BaseInterstate75):
+    """
+    This class is used when running on real Interstate75 hardware.
+    See :ref baseinterstate75: for a description of the
+    available methods.
+    """
     I2C_SDA_PIN = 20
     I2C_SCL_PIN = 21
     SWITCH_PINS = (14, 23)
