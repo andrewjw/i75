@@ -2,6 +2,23 @@
 
 
 
+## v0.5.0 (2023-08-31)
+
+### Chore
+
+* chore: Fix setup.py import error. ([`0520839`](https://github.com/andrewjw/i75/commit/05208398074d29373337b92a518d1c8eb450acb0))
+
+* chore: Turn on dependency caching in the build action. ([`65eb011`](https://github.com/andrewjw/i75/commit/65eb0113b37f2db2de85a0bfa671cac67765609c))
+
+* chore: Fix style. ([`672db95`](https://github.com/andrewjw/i75/commit/672db95ae78973597e272eaafb7ecd893592d257))
+
+* chore: Improve readme and documentation, and add a contributions guide. ([`f45c1f1`](https://github.com/andrewjw/i75/commit/f45c1f125339eff1cafbce4d196e9c38703f0fb3))
+
+### Feature
+
+* feat: Emulate the built-in network module more accurately. ([`528f5ee`](https://github.com/andrewjw/i75/commit/528f5ee5394cb4ce27a705c8ccfaac0dd5105a5a))
+
+
 ## v0.4.1 (2023-08-30)
 
 ### Fix
