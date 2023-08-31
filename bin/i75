@@ -15,25 +15,22 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import unittest
-import unittest.mock
+import argparse
+import os
+import subprocess
+import sys
 
-from i75.display_type import DISPLAY_INTERSTATE75_64X64
-from i75.emulatedi75 import EmulatedI75
+parser = argparse.ArgumentParser(
+    description='Runs a script in an emulated i75 environment')
+parser.add_argument('scriptname', help='the script to run')
 
+def main():
+    args = parser.parse_args(sys.argv[1:])
 
-class TestEmulatedI75(unittest.TestCase):
-    @unittest.mock.patch("i75.emulatedi75.pygame")
-    @unittest.mock.patch("i75.pygame_graphics.pygame")
-    def test_wifi(self, _, _2):
-        i75 = EmulatedI75(DISPLAY_INTERSTATE75_64X64)
+    os.environ["PYTHONPATH"] = "./i75/emulated:" + \
+        os.environ.get("PYTHONPATH", "")
 
-        self.assertFalse(i75.wlan is not None and i75.wlan.isconnected())
+    subprocess.call([sys.executable, args.scriptname])
 
-        i75.enable_wifi()
-
-        self.assertTrue(i75.wlan is not None and i75.wlan.isconnected())
-
-        i75.disable_wifi()
-
-        self.assertFalse(i75.wlan is not None and i75.wlan.isconnected())
+if __name__ == "__main__":
+    main()

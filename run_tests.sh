@@ -1,6 +1,6 @@
 #!/bin/bash
 
-${COVERAGE:-coverage} run test.py
+PYTHONPATH=./i75/emulated:$PYTHONPATH ${COVERAGE:-coverage} run test.py
 
 let R=$?
 

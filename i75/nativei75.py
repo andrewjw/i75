@@ -36,10 +36,12 @@ import machine
 
 try:
     from secrets import WIFI_SSID, WIFI_PASSWORD   # type: ignore
-    WIFI_AVAILABLE = True
+    WIFI_AVAILABLE: bool = True
 except ImportError:
     print("Create secrets.py with your WiFi credentials to get time from NTP")
     WIFI_AVAILABLE = False
+    WIFI_SSID = None
+    WIFI_PASSWORD = None
 
 from .basei75 import BaseI75
 from .datetime import DateTime
@@ -72,7 +74,9 @@ class NativeI75(BaseI75):
                  display_type: DisplayType,
                  stb_invert=False,
                  rotate: int = 0) -> None:
-        self.display_type = display_type
+        super().__init__(display_type,
+                         wifi_ssid=WIFI_SSID,
+                         wifi_password=WIFI_PASSWORD)
         self.interstate75w = "Pico W" in sys.implementation._machine
 
         self.display = PicoGraphics(display=display_type.i75type,
@@ -107,6 +111,11 @@ class NativeI75(BaseI75):
 
         self.rtc: Optional[machine.RTC] = None
 
+        self.wifi_available = WIFI_AVAILABLE
+        if self.wifi_available:
+            self.wifi_ssid = WIFI_SSID
+            self.wifi_password = WIFI_PASSWORD
+
     @staticmethod
     def is_emulated() -> bool:
         return False
@@ -115,36 +124,6 @@ class NativeI75(BaseI75):
         if buffer is None:
             buffer = self.display
         self.hub75.update(buffer)
-
-    def enable_wifi(self,
-                    callback: Optional[Callable[[int], None]] = None) -> bool:
-        if not WIFI_AVAILABLE:
-            return False
-
-        # Start connection
-        self.wlan = network.WLAN(network.STA_IF)
-        self.wlan.active(True)
-        # Turn WiFi power saving off for some slow APs
-        self.wlan.config(pm=0xa11140)
-        self.wlan.connect(WIFI_SSID, WIFI_PASSWORD)
-
-        # Wait for connect success or failure
-        max_wait = 100
-        while max_wait > 0:
-            if self.wlan.status() < 0 or self.wlan.status() >= 3:
-                break
-            max_wait -= 1
-            if callback is not None:
-                callback(self.wlan.status())
-            time.sleep_ms(200)
-
-        return self.wlan.isconnected()
-
-    def disable_wifi(self) -> None:
-        if not WIFI_AVAILABLE or not hasattr(self, "wlan"):
-            return
-        self.wlan.disconnect()
-        self.wlan.active(False)
 
     def set_time(self) -> bool:
         try:

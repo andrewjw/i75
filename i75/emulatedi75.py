@@ -38,14 +38,18 @@ class EmulatedI75(BaseI75):
                  display_type: DisplayType,
                  stb_invert=False,
                  rotate: int = 0) -> None:
-        super().__init__(display_type)
+        super().__init__(display_type,
+                         wifi_ssid="native",
+                         wifi_password="native")
 
         self.display = PyGameGraphics(self.display_type.width,
                                       self.display_type.height,
                                       rotate=rotate)
         self.width, self.height = self.display.get_bounds()
 
-        self._wifi_enabled = False
+        self.wifi_available = True
+        self.wifi_ssid = "native_wifi"
+        self.wifi_password = "native_wifi_password"
 
     @staticmethod
     def is_emulated() -> bool:
@@ -54,16 +58,8 @@ class EmulatedI75(BaseI75):
     def update(self):
         pygame.display.flip()
 
-    def enable_wifi(self,
-                    callback: Optional[Callable[[int], None]] = None) -> bool:
-        self._wifi_enabled = True
-        return True
-
-    def disable_wifi(self) -> None:
-        self._wifi_enabled = False
-
     def set_time(self) -> bool:
-        return self._wifi_enabled
+        return self.wlan is not None and self.wlan.isconnected()
 
     def ticks_ms(self) -> int:
         return math.floor(time.time_ns() / 1000000)
