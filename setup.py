@@ -14,7 +14,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import os
 import setuptools
+import sys
+
+sys.path.insert(0, os.path.join("i75", "emulated"))
 
 from i75 import __version__
 
