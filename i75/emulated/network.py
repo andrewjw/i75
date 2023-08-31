@@ -31,8 +31,8 @@ STAT_GOT_IP = 3
 
 class WLAN:
     """
-    This is an emulation of the built-in WLAN class. As we can't actually control the wifi, it just pretends
-    to configure it when called.
+    This is an emulation of the built-in WLAN class. As we can't actually
+    control the wifi, it just pretends to configure it when called.
     """
     def __init__(self, network_type: NetworkType) -> None:
         assert network_type is STA_IF, \
