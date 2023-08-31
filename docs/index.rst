@@ -10,6 +10,13 @@ and doesn't need constant deploying to physical hardware for testing.
 .. toctree::
    :maxdepth: 2
 
+   about
+   installing
+   running
    i75
    emulatedi75
+   emulated/network
+
    secrets
+
+   contributing
