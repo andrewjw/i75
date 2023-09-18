@@ -15,10 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-try:
-    from typing import Tuple
-except ImportError:  # pragma: no cover
-    pass
+from typing import Tuple
 
 
 class Pen:

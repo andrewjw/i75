@@ -25,11 +25,11 @@ except ImportError:
     pass
 import sys
 
-from pimoroni import RGBLED, Button  # type: ignore
-from picographics import PicoGraphics  # type: ignore
+from pimoroni import RGBLED, Button
 from pimoroni_i2c import PimoroniI2C  # type: ignore
 import hub75   # type: ignore
 
+import picographics
 import network   # type: ignore
 import ntptime   # type: ignore
 import machine
@@ -45,13 +45,6 @@ except ImportError:
 
 from .basei75 import BaseI75
 from .datetime import DateTime
-from .display_type import DisplayType
-
-
-# Index Constants
-SWITCH_A = 0
-SWITCH_B = 1
-SWITCH_BOOT = 1
 
 
 class NativeI75(BaseI75):
@@ -60,70 +53,18 @@ class NativeI75(BaseI75):
     See :ref baseinterstate75: for a description of the
     available methods.
     """
-    I2C_SDA_PIN = 20
-    I2C_SCL_PIN = 21
-    SWITCH_PINS = (14, 23)
-    SWITCH_PINS_W = (14, 15)
-    LED_R_PIN = 16
-    LED_G_PIN = 17
-    LED_B_PIN = 18
-
-    NUM_SWITCHES = 2
-
     def __init__(self,
-                 display_type: DisplayType,
+                 display_type: picographics.DisplayType,
                  stb_invert=False,
                  rotate: int = 0) -> None:
         super().__init__(display_type,
+                         rotate=rotate,
                          wifi_ssid=WIFI_SSID,
                          wifi_password=WIFI_PASSWORD)
-        self.interstate75w = "Pico W" in sys.implementation._machine
-
-        self.display = PicoGraphics(display=display_type.i75type,
-                                    rotate=rotate)
-        self.width, self.height = self.display.get_bounds()
-
-        panel_type = hub75.PANEL_GENERIC
-        color_order = hub75.COLOR_ORDER_RGB
-        self.hub75 = hub75.Hub75(self.width,
-                                 self.height,
-                                 panel_type=panel_type,
-                                 stb_invert=stb_invert,
-                                 color_order=color_order)
-        self.hub75.start()
-        if self.interstate75w:
-            self._switch_pins = self.SWITCH_PINS_W
-        else:
-            self._switch_pins = self.SWITCH_PINS
-
-        # Set up the user switches
-        self.__switches = []
-        for i in range(self.NUM_SWITCHES):
-            self.__switches.append(Button(self._switch_pins[i]))
-
-        self.__rgb = RGBLED(NativeI75.LED_R_PIN,
-                            NativeI75.LED_G_PIN,
-                            NativeI75.LED_B_PIN,
-                            invert=True)
-
-        # Set up the i2c for Qw/st and Breakout Garden
-        self.i2c = PimoroniI2C(self.I2C_SDA_PIN, self.I2C_SCL_PIN, 100000)
-
-        self.rtc: Optional[machine.RTC] = None
-
-        self.wifi_available = WIFI_AVAILABLE
-        if self.wifi_available:
-            self.wifi_ssid = WIFI_SSID
-            self.wifi_password = WIFI_PASSWORD
 
     @staticmethod
     def is_emulated() -> bool:
         return False
-
-    def update(self, buffer=None):
-        if buffer is None:
-            buffer = self.display
-        self.hub75.update(buffer)
 
     def set_time(self) -> bool:
         try:

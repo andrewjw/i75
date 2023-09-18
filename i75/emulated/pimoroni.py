@@ -15,6 +15,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .emulated import *
+from typing import Optional
 
-from .test_emulatedi75 import TestEmulatedI75
+
+class Button:
+    def __init__(self, switch: int) -> None:
+        pass
+
+
+class RGBLED:
+    def __init__(self,
+                 r: int,
+                 g: int,
+                 b: int,
+                 invert: Optional[bool] = False) -> None:
+        pass

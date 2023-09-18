@@ -18,14 +18,12 @@
 __version__ = "0.5.0"
 
 from .datetime import DateTime
-from .display_type import DisplayType
-from .pen import Pen
 
-try:
-    import picographics  # type: ignore
-except ImportError:
+import picographics
+if hasattr(picographics, "DisplayType"):
     from .emulatedi75 import EmulatedI75
     I75 = EmulatedI75  # type: ignore
 else:
     from .nativei75 import NativeI75
     I75 = NativeI75  # type: ignore
+del picographics

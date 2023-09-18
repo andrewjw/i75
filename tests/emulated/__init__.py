@@ -15,14 +15,4 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import unittest
-
-from i75.pen import RGB332Pen, RGB888Pen
-
-
-class TestPen(unittest.TestCase):
-    def test_rgb888_as_tuple(self):
-        self.assertEquals(RGB888Pen(100, 100, 100).as_tuple(), (100, 100, 100))
-
-    def test_rgb332_as_tuple(self):
-        self.assertEquals(RGB332Pen(100, 100, 100).as_tuple(), (96, 96, 100))
+from .test_pen import TestPen

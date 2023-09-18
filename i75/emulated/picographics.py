@@ -16,33 +16,36 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import math
-from typing import Tuple
+from typing import List, Optional, Tuple
 
 import pygame
 
-from .pen import Pen, RGB888Pen
-
-LED_SIZE = 10
+from pen import Pen, RGB888Pen
 
 
-class PyGameGraphics:
-    def __init__(self, width: int, height: int, rotate: int = 0):
-        pygame.init()
+class DisplayType:
+    def __init__(self, width: int, height: int,) -> None:
         self.width = width
         self.height = height
-        self.rotate = rotate
-        self.screen = \
-            pygame.display.set_mode((width * LED_SIZE, height * LED_SIZE))
-        self.pen: Pen = RGB888Pen(0, 0, 0)
+
+
+DISPLAY_INTERSTATE75_64X64 = DisplayType(64, 64)
+
+
+class PicoGraphics:
+    def __init__(self, display_type: DisplayType):
+        self.display_type = display_type
+        self.pen = self.create_pen(0, 0, 0)
+
+        self._buffer: List[List[Optional[Tuple[int, int, int]]]] = []
+        for _ in range(self.display_type.height):
+            self._buffer.append([None] * self.display_type.width)
 
     def create_pen(self, r: int, g: int, b: int) -> Pen:
         return RGB888Pen(r, g, b)
 
     def set_pen(self, pen: Pen) -> None:
         self.pen = pen
-
-    def get_bounds(self) -> Tuple[int, int]:
-        return (self.width, self.height)
 
     def line(self, x1: int, y1: int, x2: int, y2: int) -> None:
         llen = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
@@ -61,19 +64,7 @@ class PyGameGraphics:
                 self.pixel(px, py)
 
     def pixel(self, x: int, y: int) -> None:
-        centre = self._rotate_point(math.floor(x * LED_SIZE + LED_SIZE/2),
-                                    math.floor(y * LED_SIZE + LED_SIZE/2))
-        pygame.draw.circle(self.screen,
-                           self.pen.as_tuple(),
-                           centre,
-                           LED_SIZE/2)
+        self._buffer[y][x] = self.pen.as_tuple()
 
-    def _rotate_point(self, x: int, y: int) -> Tuple[int, int]:
-        if self.rotate == 0:
-            return (x, y)
-        elif self.rotate == 90:
-            return (y, self.width - x)
-        elif self.rotate == 180:
-            return (self.width - x, self.height - y)
-        else:
-            return (self.height - y, x)
+    def get_bounds(self) -> Tuple[int, int]:
+        return (self.display_type.width, self.display_type.height)

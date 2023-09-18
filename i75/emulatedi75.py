@@ -20,12 +20,10 @@ import math
 import time
 from typing import Callable, Optional
 
-import pygame
-from .pygame_graphics import PyGameGraphics
+import picographics
 
 from .basei75 import BaseI75
 from .datetime import DateTime
-from .display_type import DisplayType
 
 
 class EmulatedI75(BaseI75):
@@ -35,28 +33,17 @@ class EmulatedI75(BaseI75):
     of the available methods.
     """
     def __init__(self,
-                 display_type: DisplayType,
+                 display_type: picographics.DisplayType,
                  stb_invert=False,
                  rotate: int = 0) -> None:
         super().__init__(display_type,
+                         rotate=rotate,
                          wifi_ssid="native",
                          wifi_password="native")
-
-        self.display = PyGameGraphics(self.display_type.width,
-                                      self.display_type.height,
-                                      rotate=rotate)
-        self.width, self.height = self.display.get_bounds()
-
-        self.wifi_available = True
-        self.wifi_ssid = "native_wifi"
-        self.wifi_password = "native_wifi_password"
 
     @staticmethod
     def is_emulated() -> bool:
         return True
-
-    def update(self):
-        pygame.display.flip()
 
     def set_time(self) -> bool:
         return self.wlan is not None and self.wlan.isconnected()

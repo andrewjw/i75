@@ -18,15 +18,15 @@
 import unittest
 import unittest.mock
 
-from i75.display_type import DISPLAY_INTERSTATE75_64X64
+import picographics
+
 from i75.emulatedi75 import EmulatedI75
 
 
 class TestEmulatedI75(unittest.TestCase):
-    @unittest.mock.patch("i75.emulatedi75.pygame")
-    @unittest.mock.patch("i75.pygame_graphics.pygame")
-    def test_wifi(self, _, _2):
-        i75 = EmulatedI75(DISPLAY_INTERSTATE75_64X64)
+    @unittest.mock.patch("picographics.pygame")
+    def test_wifi(self, _):
+        i75 = EmulatedI75(picographics.DISPLAY_INTERSTATE75_64X64)
 
         self.assertFalse(i75.wlan is not None and i75.wlan.isconnected())
 

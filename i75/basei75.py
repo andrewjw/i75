@@ -20,33 +20,81 @@ try:
 except ImportError:  # pragma: no cover
     pass
 
+import hub75
+import picographics
+from pimoroni import RGBLED, Button
+from pimoroni_i2c import PimoroniI2C
 import network
+import ntptime
+import machine
 import time
+import sys
+
 
 from .datetime import DateTime
-from .display_type import DisplayType
+from .graphics import Graphics
+
+
+# Index Constants
+SWITCH_A = 0
+SWITCH_B = 1
+SWITCH_BOOT = 1
 
 
 class BaseI75:
+    I2C_SDA_PIN = 20
+    I2C_SCL_PIN = 21
+    SWITCH_PINS = (14, 23)
+    SWITCH_PINS_W = (14, 15)
+    LED_R_PIN = 16
+    LED_G_PIN = 17
+    LED_B_PIN = 18
+
+    NUM_SWITCHES = 2
+
     """This is the base class for the Interstate75 library. All
        functions are overridden by either an emulated version, which
        replicates the functionality, or a native version if we're
        running on real Interstate75 hardware."""
     def __init__(self,
-                 display_type: DisplayType,
+                 display_type: picographics.DisplayType,
                  stb_invert=False,
                  rotate: int = 0,
                  wifi_ssid: Optional[str] = None,
                  wifi_password: Optional[str] = None) -> None:
-        self.display_type = display_type
         self.wifi_ssid = wifi_ssid
         self.wifi_password = wifi_password
 
         self.wlan: Optional[network.WLAN] = None
 
-    def update(self) -> None:  # pragma: no cover
-        """Applies any changes to the display buffer to this screen."""
-        raise NotImplementedError()
+        self.interstate75w = not hasattr(sys.implementation, "_machine") \
+            or "Pico W" in sys.implementation._machine
+
+        self.display = Graphics(display_type,
+                                rotate,
+                                hub75.PANEL_GENERIC,
+                                stb_invert,
+                                hub75.COLOR_ORDER_RGB)
+
+        if self.interstate75w:
+            self._switch_pins = self.SWITCH_PINS_W
+        else:
+            self._switch_pins = self.SWITCH_PINS
+
+        # Set up the user switches
+        self.__switches = []
+        for i in range(self.NUM_SWITCHES):
+            self.__switches.append(Button(self._switch_pins[i]))
+
+        self.__rgb = RGBLED(BaseI75.LED_R_PIN,
+                            BaseI75.LED_G_PIN,
+                            BaseI75.LED_B_PIN,
+                            invert=True)
+
+        # Set up the i2c for Qw/st and Breakout Garden
+        self.i2c = PimoroniI2C(self.I2C_SDA_PIN, self.I2C_SCL_PIN, 100000)
+
+        self.rtc: Optional[machine.RTC] = None
 
     def enable_wifi(self,
                     callback: Optional[Callable[[int], None]] = None

@@ -16,10 +16,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import math
-import time
 
-from i75 import DateTime, I75, \
-                                Pen, display_type
+import picographics
+
+from i75 import DateTime, I75
 
 HOUR_LENGTH = 25
 MINUTE_LENGTH = 30
@@ -48,8 +48,8 @@ def render_hand(i75: I75, length: int, percent: float) -> None:
 
 
 def render_clock(i75: I75,
-                 white: Pen,
-                 red: Pen,
+                 white: picographics.Pen,
+                 red: picographics.Pen,
                  now: DateTime,
                  subsecond: int,
                  display_ticks: bool = True) -> None:
@@ -78,7 +78,7 @@ def render_clock(i75: I75,
 
 def main() -> None:
     i75 = I75(
-        display_type=display_type.DISPLAY_INTERSTATE75_64X64,
+        display_type=picographics.DISPLAY_INTERSTATE75_64X64,
         rotate=0 if I75.is_emulated() else 90)
 
     i75.enable_wifi()
@@ -116,7 +116,7 @@ def main() -> None:
         old_time = now
         old_subsecond = subsecond
 
-        i75.update()
+        i75.display.update()
 
         i75.sleep_ms(100)
 

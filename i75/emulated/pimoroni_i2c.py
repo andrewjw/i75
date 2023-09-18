@@ -15,6 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .emulated import *
+from typing import Optional
 
-from .test_emulatedi75 import TestEmulatedI75
+
+class PimoroniI2C:
+    def __init__(self, _: int, _2: int, _3: int) -> None:
+        pass

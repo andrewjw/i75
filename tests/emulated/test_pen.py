@@ -1,4 +1,4 @@
-#!/usr/bin/env micropython
+#!/usr/bin/env python3
 # i75
 # Copyright (C) 2023 Andrew Wilkinson
 #
@@ -15,24 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-try:  # pragma: no cover
-    import picographics as pg  # type: ignore
-    DISPLAY_INTERSTATE75_64X64 = pg.DISPLAY_INTERSTATE75_64X64
-except ImportError:
-    from typing import Any, Optional
-    DISPLAY_INTERSTATE75_64X64 = None
+import unittest
+
+from pen import RGB332Pen, RGB888Pen
 
 
-class DisplayType:
-    def __init__(self,
-                 width: int,
-                 height: int,
-                 i75type: Optional[Any] = None) -> None:
-        self.width = width
-        self.height = height
-        self.i75type = i75type
+class TestPen(unittest.TestCase):
+    def test_rgb888_as_tuple(self):
+        self.assertEquals(RGB888Pen(100, 100, 100).as_tuple(), (100, 100, 100))
 
-
-DISPLAY_INTERSTATE75_64X64 = DisplayType(64,
-                                         64,
-                                         DISPLAY_INTERSTATE75_64X64)
+    def test_rgb332_as_tuple(self):
+        self.assertEquals(RGB332Pen(100, 100, 100).as_tuple(), (96, 96, 100))
