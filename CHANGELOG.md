@@ -2,6 +2,17 @@
 
 
 
+## v0.6.0 (2023-09-18)
+
+### Chore
+
+* chore(deps): update dependency pygame to v2.5.2 ([`3e43062`](https://github.com/andrewjw/i75/commit/3e4306284aae277f12e2008b01d9805954a3769f))
+
+### Feature
+
+* feat: Move much more logic into the emulated standard libraries and less in the library. ([`9b44ec0`](https://github.com/andrewjw/i75/commit/9b44ec0b378821091fe26ef0e491ffe77a3fa175))
+
+
 ## v0.5.0 (2023-08-31)
 
 ### Chore
