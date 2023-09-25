@@ -18,3 +18,4 @@
 from .emulated import *
 
 from .test_emulatedi75 import TestEmulatedI75
+from .test_linedrawing import TestLineDrawing

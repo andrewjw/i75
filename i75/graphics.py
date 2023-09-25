@@ -51,7 +51,42 @@ class Graphics:
         self._driver.set_pen(pen)
 
     def line(self, x1: int, y1: int, x2: int, y2: int) -> None:
-        self._driver.line(x1, y1, x2, y2)
+        # While picographics has a line function, it doesn't include
+        # the second point when drawing.
+
+        if x1 == x2:
+            for y in range(y1 if y1 < y2 else y2, (y2 if y1 < y2 else y1)+1):
+                self.pixel(x1, y)
+            return
+        if y1 == y2:
+            for x in range(x1 if x1 < x2 else x2, (x2 if x1 < x2 else x1)+1):
+                self.pixel(x, y1)
+            return
+
+        # This is Bresenham's Algorithm
+        x, y = x1, y1
+        dx = abs(x2 - x1)
+        dy = abs(y2 - y1)
+
+        if (dy / float(dx)) > 1:
+            dx, dy = dy, dx
+            x, y = y, x
+            x1, y1, x2, y2 = y1, x1, y2, x2
+
+        p = 2*dy - dx
+
+        self.pixel(x, y)
+
+        for _ in range(2, dx + 2):
+            if p > 0:
+                y = y + 1 if y < y2 else y - 1
+                p = p + 2 * (dy - dx)
+            else:
+                p = p + 2 * dy
+
+            x = x + 1 if x < x2 else x - 1
+
+            self.pixel(x, y)
 
     def pixel(self, x: int, y: int) -> None:
         self._driver.pixel(x, y)

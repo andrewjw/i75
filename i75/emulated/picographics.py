@@ -48,6 +48,9 @@ class PicoGraphics:
         self.pen = pen
 
     def line(self, x1: int, y1: int, x2: int, y2: int) -> None:
+        # This doesn't properly replicate picographs.
+        # It seems to sort the two points, and then doesn't
+        # include the second point when drawing the line.
         llen = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
         dx = (x2 - x1) / llen
         dy = (y2 - y1) / llen
@@ -56,7 +59,7 @@ class PicoGraphics:
         y: float = y1
         last_coord = (x1, y1)
         self.pixel(x1, y1)
-        for _ in range(math.floor(llen)):
+        for _ in range(math.floor(llen) - 1):
             x, y = x + dx, y + dy
             px, py = math.floor(x), math.floor(y)
             if last_coord != (px, py):
@@ -64,6 +67,7 @@ class PicoGraphics:
                 self.pixel(px, py)
 
     def pixel(self, x: int, y: int) -> None:
+        print(x, y, self.pen.as_tuple())
         self._buffer[y][x] = self.pen.as_tuple()
 
     def get_bounds(self) -> Tuple[int, int]:
