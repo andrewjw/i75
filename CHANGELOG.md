@@ -2,11 +2,30 @@
 
 
 
+## v0.7.0 (2023-09-25)
+
+### Chore
+
+* chore(deps): update dependency python-semantic-release to v8.1.1 ([`7a56520`](https://github.com/andrewjw/i75/commit/7a5652091a2c48e4ec359bfa41ca53505f700cc0))
+
+### Feature
+
+* feat: Add line drawing which is easier to use than the default. ([`fcaf726`](https://github.com/andrewjw/i75/commit/fcaf726aee4cb60cecb2226b7694f09eb7260cf9))
+
+### Unknown
+
+* Merge pull request #7 from andrewjw/renovate/actions-checkout-4.x
+
+chore(deps): update actions/checkout action to v4 ([`a7a86d4`](https://github.com/andrewjw/i75/commit/a7a86d4a415114c92e5e9bfb1f2ad6cfbc7e05e5))
+
+
 ## v0.6.0 (2023-09-18)
 
 ### Chore
 
 * chore(deps): update dependency pygame to v2.5.2 ([`3e43062`](https://github.com/andrewjw/i75/commit/3e4306284aae277f12e2008b01d9805954a3769f))
+
+* chore(deps): update actions/checkout action to v4 ([`bb09e53`](https://github.com/andrewjw/i75/commit/bb09e532c2225e0741e0b06b589940865f41280a))
 
 ### Feature
 
