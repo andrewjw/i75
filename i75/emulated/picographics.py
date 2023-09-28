@@ -67,7 +67,6 @@ class PicoGraphics:
                 self.pixel(px, py)
 
     def pixel(self, x: int, y: int) -> None:
-        print(x, y, self.pen.as_tuple())
         self._buffer[y][x] = self.pen.as_tuple()
 
     def get_bounds(self) -> Tuple[int, int]:

@@ -68,14 +68,16 @@ class Graphics:
         dx = abs(x2 - x1)
         dy = abs(y2 - y1)
 
+        pixel = self.pixel
         if (dy / float(dx)) > 1:
             dx, dy = dy, dx
             x, y = y, x
             x1, y1, x2, y2 = y1, x1, y2, x2
+            pixel = lambda y, x: self.pixel(x, y)
 
         p = 2*dy - dx
 
-        self.pixel(x, y)
+        pixel(x, y)
 
         for _ in range(2, dx + 2):
             if p > 0:
@@ -86,7 +88,7 @@ class Graphics:
 
             x = x + 1 if x < x2 else x - 1
 
-            self.pixel(x, y)
+            pixel(x, y)
 
     def pixel(self, x: int, y: int) -> None:
         self._driver.pixel(x, y)
