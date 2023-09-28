@@ -25,7 +25,7 @@ hardware. In particular, problems may include:
 
 Any help improving these limitations is most welcome. Please see [CONTRIBUTING.md](https://github.com/andrewjw/i75/blob/main/CONTRIBUTING.md) for more details.
 
-= Installation =
+## Installation
 
 To install this library either check it out from GitHub or install it from [PyPI](https://pypi.org/project/i75/).
 
@@ -37,14 +37,14 @@ or
 
     pip3 install i75
 
-= Running On A PC =
+## Running On A PC
 
 To run your script simply follow `i75` with the path to your script. There are examples provided in the `examples`
 directory, which can be run as follows.
 
     i75 examples/clock/clock.py
 
-= Running On Interstate75 =
+## Running On Interstate75
 
 To install the library on your Interstate75 run `install.sh`. This will create an `i75` directory on the Raspberry Pi
 Zero, and copy across the required files.
