@@ -40,6 +40,7 @@ def get_center_point(angle) -> Tuple[int, int]:
         return (31, 32)
     return (31, 31)
 
+
 # This currently has issues due to the i75 working in single precision
 # floats, and Python3 using doubles.
 def render_clock_face(i75: I75) -> None:

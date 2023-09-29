@@ -73,7 +73,7 @@ class Graphics:
             dx, dy = dy, dx
             x, y = y, x
             x1, y1, x2, y2 = y1, x1, y2, x2
-            pixel = lambda y, x: self.pixel(x, y)
+            pixel = self.__pixel_reverse
 
         p = 2*dy - dx
 
@@ -92,6 +92,9 @@ class Graphics:
 
     def pixel(self, x: int, y: int) -> None:
         self._driver.pixel(x, y)
+
+    def __pixel_reverse(self, x: int, y: int) -> None:
+        self._driver.pixel(y, x)
 
     def update(self) -> None:
         self.hub75.update(self._driver)

@@ -23,9 +23,11 @@ import picographics
 
 from i75.graphics import Graphics
 
+
 @unittest.mock.patch("i75.graphics.picographics")
 class TestLineDrawing(unittest.TestCase):
-    def create(self, mockgraphics: unittest.mock.Mock) -> Tuple[unittest.mock.Mock, Graphics]:
+    def create(self, mockgraphics: unittest.mock.Mock) \
+            -> Tuple[unittest.mock.Mock, Graphics]:
         mock = unittest.mock.Mock()
 
         mock.get_bounds.return_value = (64, 64)
