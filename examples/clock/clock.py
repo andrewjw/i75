@@ -16,6 +16,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import math
+try:
+    from typing import Tuple
+except ImportError:
+    pass
+import sys
 
 import picographics
 
@@ -26,25 +31,42 @@ MINUTE_LENGTH = 30
 SECOND_LENGTH = 30
 
 
+def get_center_point(angle) -> Tuple[int, int]:
+    if angle < math.pi / 2:
+        return (32, 31)
+    if angle < math.pi:
+        return (32, 32)
+    if angle < 2 * math.pi / 3:
+        return (31, 32)
+    return (31, 31)
+
+# This currently has issues due to the i75 working in single precision
+# floats, and Python3 using doubles.
 def render_clock_face(i75: I75) -> None:
     for tick in range(12):
-        tick_len = 3 if tick in (0, 3, 6, 9) else 2
-        x1 = math.floor((31 - tick_len) *
-                        math.cos(2 * math.pi * tick / 12.0) + 31.5)
-        y1 = math.floor((31 - tick_len) *
-                        math.sin(2 * math.pi * tick / 12.0) + 31.5)
-        x2 = math.floor(31 * math.cos(2 * math.pi * tick / 12.0) + 31.5)
-        y2 = math.floor(31 * math.sin(2 * math.pi * tick / 12.0) + 31.5)
+        tick_len = 3 if tick in (0, 3, 6, 9) else 3
+        angle = 2 * math.pi * tick / 12.0
+        cx, cy = get_center_point(angle)
+        x1 = math.floor((31 - tick_len) * math.cos(angle) + cx)
+        y1 = math.floor((31 - tick_len) * math.sin(angle) + cy)
+        x2 = math.floor(31 * math.cos(angle) + cx)
+        y2 = math.floor(31 * math.sin(angle) + cy)
 
         i75.display.line(x1, y1, x2, y2)
 
+    i75.display.line(32, 3, 32, 0)
+    i75.display.line(31, 60, 31, 63)
+    i75.display.line(0, 31, 3, 31)
+    i75.display.line(60, 32, 63, 32)
+
 
 def render_hand(i75: I75, length: int, percent: float) -> None:
-    i75.display.line(32,
-                     32,
-                     math.floor(length * math.sin(2 * math.pi * percent) + 32),
-                     math.floor(length *
-                                -math.cos(2 * math.pi * percent) + 32))
+    angle = 2 * math.pi * percent
+    cx, cy = get_center_point(angle)
+    i75.display.line(cx,
+                     cy,
+                     math.floor(length * math.sin(angle) + cx),
+                     math.floor(length * -math.cos(angle) + cy))
 
 
 def render_clock(i75: I75,
@@ -83,6 +105,7 @@ def main() -> None:
 
     i75.enable_wifi()
     i75.set_time()
+    next_ntp = i75.now().hour + 23
     base_ticks = i75.ticks_ms()
 
     white = i75.display.create_pen(255, 255, 255)
@@ -95,6 +118,11 @@ def main() -> None:
     while True:
         now = i75.now()
         subsecond = i75.ticks_diff(i75.ticks_ms(), base_ticks) % 1000
+
+        if now.hour == next_ntp:
+            i75.set_time()
+            now = i75.now()
+            next_ntp = now.hour + 23
 
         if now != old_time and subsecond > old_subsecond and subsecond < 9975:
             base_ticks -= 25
