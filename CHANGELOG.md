@@ -2,6 +2,23 @@
 
 
 
+## v0.7.1 (2023-09-29)
+
+### Chore
+
+* chore: Fix code style. ([`a582b4e`](https://github.com/andrewjw/i75/commit/a582b4eff77202da1da898ef2aa4afb517dbde58))
+
+* chore: Fix headers in README.md ([`11c32d7`](https://github.com/andrewjw/i75/commit/11c32d75fce9609be487b270e42b80a3b6868cd9))
+
+* chore: Edit README.md ([`09fc6e7`](https://github.com/andrewjw/i75/commit/09fc6e729364e324ef6c4ac28363b7e1fb3096a5))
+
+### Fix
+
+* fix: Improve the analogue clock example. ([`83e076b`](https://github.com/andrewjw/i75/commit/83e076b8d1a9660ca3a1b65c9028c2248575ab6c))
+
+* fix: Fix drawing of steep lines and add some tests. ([`def6ea3`](https://github.com/andrewjw/i75/commit/def6ea33dc89cdfbc61be1fed8e5d6ea8be10b75))
+
+
 ## v0.7.0 (2023-09-25)
 
 ### Chore
