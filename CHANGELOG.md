@@ -2,6 +2,37 @@
 
 
 
+## v0.8.0 (2023-10-18)
+
+### Chore
+
+* chore(deps): update dependency mypy to v1.6.1 ([`a07c27c`](https://github.com/andrewjw/i75/commit/a07c27cdd6d82c6a2c3339a953f6727221b4abdd))
+
+* chore(deps): update dependency python-semantic-release to v8.1.2 ([`72763cf`](https://github.com/andrewjw/i75/commit/72763cfd336ee6ac96f6c6e30c9c7d51b9c6bbc7))
+
+* chore(deps): update dependency pycodestyle to v2.11.1 ([`ea01de2`](https://github.com/andrewjw/i75/commit/ea01de221e1f69271e5189c21ed8334be255f8af))
+
+* chore(deps): update dependency mypy to v1.6.0 ([`df2dba5`](https://github.com/andrewjw/i75/commit/df2dba58fb73c50998b2eaf41ddcdab5e56fcee6))
+
+* chore(deps): update dependency micropython-rp2-pico-stubs to v1.20.0.post3 ([`27271aa`](https://github.com/andrewjw/i75/commit/27271aa191559f0c469afda1f6ca517557ae4fe4))
+
+### Feature
+
+* feat: Add a new bouncing ball example. ([`cc76a05`](https://github.com/andrewjw/i75/commit/cc76a053e41d840904c29713a159c18a23a0f359))
+
+* feat: Add drawing filled circles. ([`e0bb3fb`](https://github.com/andrewjw/i75/commit/e0bb3fba3406f5999cb82269a58db039e1c2145b))
+
+### Fix
+
+* fix: Verify we&#39;re not drawing out of bounds. ([`ca1972c`](https://github.com/andrewjw/i75/commit/ca1972c6f39425b2902364dd240c6d4843d12875))
+
+### Unknown
+
+* Merge pull request #15 from andrewjw/add_circles
+
+Add circles and a bouncing ball example ([`1fb83ba`](https://github.com/andrewjw/i75/commit/1fb83bac862549f6097ac7b6ccbc4a16ddee6d5a))
+
+
 ## v0.7.1 (2023-09-29)
 
 ### Chore
