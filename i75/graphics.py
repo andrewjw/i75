@@ -90,11 +90,30 @@ class Graphics:
 
             pixel(x, y)
 
+    def circle(self, cx: int, cy: int, radius: int) -> None:
+        d = 3 - 2 * radius
+        y = radius
+        i = 0
+        while i <= y:
+            self.line(cx + i, cy + y, cx + i, cy - y)
+            self.line(cx - i, cy + y, cx - i, cy - y)
+            self.line(cx + y, cy + i, cx + y, cy - i)
+            self.line(cx - y, cy - i, cx - y, cy + i)
+
+            if d < 0:
+                d = d + 4 * i + 6
+            else:
+                d = d + 4 * (i - y) + 10
+                y = y - 1
+            i = i + 1
+
     def pixel(self, x: int, y: int) -> None:
-        self._driver.pixel(x, y)
+        if x >= 0 and x < 64 and y >= 0 and y < 64:
+            self._driver.pixel(x, y)
 
     def __pixel_reverse(self, x: int, y: int) -> None:
-        self._driver.pixel(y, x)
+        if x >= 0 and x < 64 and y >= 0 and y < 64:
+            self._driver.pixel(y, x)
 
     def update(self) -> None:
         self.hub75.update(self._driver)
