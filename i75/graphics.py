@@ -108,10 +108,12 @@ class Graphics:
             i = i + 1
 
     def pixel(self, x: int, y: int) -> None:
-        self._driver.pixel(x, y)
+        if x >= 0 and x < 64 and y >= 0 and y < 64:
+            self._driver.pixel(x, y)
 
     def __pixel_reverse(self, x: int, y: int) -> None:
-        self._driver.pixel(y, x)
+        if x >= 0 and x < 64 and y >= 0 and y < 64:
+            self._driver.pixel(y, x)
 
     def update(self) -> None:
         self.hub75.update(self._driver)
