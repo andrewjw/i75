@@ -38,7 +38,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/andrewjw/i75",
     scripts=["bin/i75"],
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_packages() + ["i75.emulated"] ,
     classifiers=[
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
