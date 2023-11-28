@@ -2,6 +2,33 @@
 
 
 
+## v0.8.1 (2023-11-28)
+
+### Chore
+
+* chore(deps): update dependency wheel to v0.42.0 ([`c45d787`](https://github.com/andrewjw/i75/commit/c45d7878b09c2626885790a4942f8c6660dd00f7))
+
+* chore(deps): update dependency mypy to v1.7.1 ([`4c2ad26`](https://github.com/andrewjw/i75/commit/4c2ad26ad3def13b07503649cbfb16844d961747))
+
+* chore(deps): update dependency micropython-rp2-pico-stubs to v1.20.0.post4 ([`0039a13`](https://github.com/andrewjw/i75/commit/0039a13e2cd63af525e67c3b839cc043ea4864cf))
+
+* chore(deps): update dependency mypy to v1.7.0 ([`b745446`](https://github.com/andrewjw/i75/commit/b7454468fca45027537d2ecd7e0ce2c6868c4374))
+
+* chore(deps): update dependency wheel to v0.41.3 ([`478f086`](https://github.com/andrewjw/i75/commit/478f086e6b676de976d6a4f677fddb04431558c2))
+
+* chore(deps): update dependency python-semantic-release to v8.3.0 ([`d96a884`](https://github.com/andrewjw/i75/commit/d96a884f9d3df1f2c6d09711688389588816844a))
+
+### Fix
+
+* fix: Fix install to include emulated libraries. ([`f9616b3`](https://github.com/andrewjw/i75/commit/f9616b3fbc2df52e89cfb79460d36e7b52170df7))
+
+### Unknown
+
+* Merge pull request #24 from andrewjw/add_circles
+
+fix: Fix install to include emulated libraries. ([`bc0987c`](https://github.com/andrewjw/i75/commit/bc0987cece18b59b19b29d54b44ca176f16db690))
+
+
 ## v0.8.0 (2023-10-18)
 
 ### Chore
