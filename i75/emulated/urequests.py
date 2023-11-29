@@ -17,5 +17,6 @@
 
 import requests
 
+
 def get(url) -> requests.Response:
     return requests.get(url)

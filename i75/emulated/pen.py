@@ -29,17 +29,18 @@ class Pen:
     @property
     def g(self) -> int:
         return (self._value >> 16) & 255
-    
+
     @property
     def b(self) -> int:
         return (self._value >> 8) & 255
-    
+
     @property
     def a(self) -> int:
         return self._value & 255
 
     def as_tuple(self) -> Tuple[int, int, int]:
         return (self.r, self.g, self.b)
+
 
 class RGB332Pen(Pen):
     def __init__(self, r: int, g: int, b: int) -> None:

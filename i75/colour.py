@@ -16,6 +16,7 @@
 
 from .basei75 import BaseI75
 
+
 class Colour:
     def __init__(self, value: int) -> None:
         self._value = value
@@ -27,11 +28,11 @@ class Colour:
     @property
     def g(self) -> int:
         return (self._value >> 16) & 255
-    
+
     @property
     def b(self) -> int:
         return (self._value >> 8) & 255
-    
+
     @property
     def a(self) -> int:
         return self._value & 255
