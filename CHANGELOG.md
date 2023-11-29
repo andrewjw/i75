@@ -2,6 +2,21 @@
 
 
 
+## v0.9.0 (2023-11-29)
+
+### Feature
+
+* feat: Add basic emulation of urequests library. ([`9f9d916`](https://github.com/andrewjw/i75/commit/9f9d916069c4bd22723bc8f0d14e67b3213b85bd))
+
+* feat: Add new library to add extra colour functions. ([`8a5a029`](https://github.com/andrewjw/i75/commit/8a5a029853992f572ed60a24d98ec6b1a1a42c5d))
+
+### Fix
+
+* fix: Fix style issues. ([`6723926`](https://github.com/andrewjw/i75/commit/67239265f05eefd2d5d891158a7fa3ccad314c83))
+
+* fix: Correctly add path to emulated libraries, don&#39;t rely on local directory. ([`63954f5`](https://github.com/andrewjw/i75/commit/63954f5efdd7f06249a2be473f00f57588945fff))
+
+
 ## v0.8.1 (2023-11-28)
 
 ### Chore
