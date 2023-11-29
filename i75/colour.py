@@ -18,28 +18,35 @@ from .basei75 import BaseI75
 
 
 class Colour:
+    """Manage colours from a 32-bit integer"""
     def __init__(self, value: int) -> None:
         self._value = value
 
     @property
     def r(self) -> int:
+        """The red component - 0 to 255."""
         return (self._value >> 24) & 255
 
     @property
     def g(self) -> int:
+        """The green component - 0 to 255."""
         return (self._value >> 16) & 255
 
     @property
     def b(self) -> int:
+        """The blue component - 0 to 255."""
         return (self._value >> 8) & 255
 
     @property
     def a(self) -> int:
+        """The alpha component - 0 to 255."""
         return self._value & 255
 
     def set_colour(self, i75: BaseI75):
+        """Set the current colour used by i75 to this colour."""
         i75.display.set_pen(i75.display.create_pen(self.r, self.g, self.b))
 
     @staticmethod
-    def fromint32(value) -> "Colour":
+    def fromint32(value: int) -> "Colour":
+        """Create a Colour object from a 32-bit integer."""
         return Colour(value)
