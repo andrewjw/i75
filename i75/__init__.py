@@ -18,6 +18,8 @@
 __version__ = "0.8.1"
 
 from .datetime import DateTime
+import os.path
+import sys
 
 import picographics
 if hasattr(picographics, "DisplayType"):
@@ -27,3 +29,5 @@ else:
     from .nativei75 import NativeI75
     I75 = NativeI75  # type: ignore
 del picographics
+
+from .colour import Colour
