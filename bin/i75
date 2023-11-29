@@ -16,7 +16,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import argparse
+import importlib
 import os
+import os.path
 import subprocess
 import sys
 
@@ -27,8 +29,10 @@ parser.add_argument('scriptname', help='the script to run')
 def main():
     args = parser.parse_args(sys.argv[1:])
 
-    os.environ["PYTHONPATH"] = "./i75/emulated:" + \
-        os.environ.get("PYTHONPATH", "")
+    i75path = importlib.util.find_spec("i75", None).origin
+
+    os.environ["PYTHONPATH"] = os.path.join(os.path.dirname(i75path), "emulated") + \
+        ":" + os.environ.get("PYTHONPATH", "")
 
     subprocess.call([sys.executable, args.scriptname])
 
