@@ -27,6 +27,6 @@ def get(url: str) -> requests.Response:
 
 
 def post(url: str,
-         headers: Optional[Dict[str, str]]=None,
-         data: Optional[str]=None) -> requests.Response:
+         headers: Optional[Dict[str, str]] = None,
+         data: Optional[str] = None) -> requests.Response:
     return requests.post(url, headers=headers, data=data)
