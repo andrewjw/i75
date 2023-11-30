@@ -2,6 +2,31 @@
 
 
 
+## v0.11.0 (2023-11-30)
+
+### Feature
+
+* feat: Add new emulated mem_free function. ([`6d63335`](https://github.com/andrewjw/i75/commit/6d633353965fb7faaa18e0ffc87508be0378adc7))
+
+* feat: Add new fill method for drawing a rectangle. ([`3be36e7`](https://github.com/andrewjw/i75/commit/3be36e7d55b6beaf008276240782060e7f78ea6b))
+
+* feat: Emulate the sys.print_exception function. ([`c45c5bb`](https://github.com/andrewjw/i75/commit/c45c5bb676ba118d316819905181df29575a3afc))
+
+* feat: Add emulated urequests.post function. ([`aceb8b0`](https://github.com/andrewjw/i75/commit/aceb8b0fbb98e1ff6ac81fc49e497e0ddcea7016))
+
+* feat: Add emulated sleep_ms function. ([`2b23191`](https://github.com/andrewjw/i75/commit/2b23191b4aa0023f4f5b67ce8c673eed46839dd9))
+
+### Fix
+
+* fix: Fix style error. ([`8b0010b`](https://github.com/andrewjw/i75/commit/8b0010bf82f1146fa3fba9ce571c4fbe4e72bec3))
+
+* fix: Handle PyGame messages to make sure it doesn&#39;t think we&#39;ve hung. ([`ea15beb`](https://github.com/andrewjw/i75/commit/ea15bebed1b000f7d1efaaca9d53cc32a42aaf59))
+
+* fix: Install the Colour class. ([`af41239`](https://github.com/andrewjw/i75/commit/af4123943c1980c71dc746b3fc44a446b4ff6dc8))
+
+* fix: Fix style. ([`f1c74eb`](https://github.com/andrewjw/i75/commit/f1c74ebc14f9986122cf1cfee446ebc404e2d097))
+
+
 ## v0.10.2 (2023-11-30)
 
 ### Fix
