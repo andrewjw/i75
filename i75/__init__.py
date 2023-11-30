@@ -27,3 +27,4 @@ else:
 del picographics
 
 from .colour import Colour  # noqa
+from .datetime import DateTime  # noqa

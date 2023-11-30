@@ -30,6 +30,7 @@ except AttributeError:
 
 
 class DateTime:
+    """Represents a specific date and a time."""
     BASE: int = 0
 
     def __init__(self,
