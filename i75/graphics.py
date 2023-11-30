@@ -107,6 +107,11 @@ class Graphics:
                 y = y - 1
             i = i + 1
 
+    def fill(self, tl_x: int, tl_y: int, br_x: int, br_y: int) -> None:
+        for x in range(tl_x, br_x):
+            for y in range(tl_y, br_y):
+                self.pixel(x, y)
+
     def pixel(self, x: int, y: int) -> None:
         if x >= 0 and x < 64 and y >= 0 and y < 64:
             self._driver.pixel(x, y)
