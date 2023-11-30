@@ -22,18 +22,18 @@ import sys
 
 import mp_time
 
-time.sleep_ms = mp_time.sleep_ms
+time.sleep_ms = mp_time.sleep_ms  # type: ignore[attr-defined]
 
 
 def print_exception(e: Exception, file=sys.stdout) -> None:
     traceback.print_exception(e, file=file)
 
 
-sys.print_exception = print_exception
+sys.print_exception = print_exception  # type: ignore[attr-defined]
 
 
 def mem_free() -> int:
     return 120000
 
 
-gc.mem_free = mem_free
+gc.mem_free = mem_free  # type: ignore[attr-defined]
