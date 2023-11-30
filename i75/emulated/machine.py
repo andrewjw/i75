@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import gc
 import traceback
 import time
 import sys
@@ -29,3 +30,9 @@ def print_exception(e: Exception, file=sys.stdout) -> None:
 
 
 sys.print_exception = print_exception
+
+
+def mem_free() -> int:
+    return 120000
+
+gc.mem_free = mem_free
