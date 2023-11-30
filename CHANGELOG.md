@@ -2,6 +2,13 @@
 
 
 
+## v0.11.1 (2023-11-30)
+
+### Fix
+
+* fix: Add type ignores where we&#39;re adding functions to standard modules. ([`0cd869e`](https://github.com/andrewjw/i75/commit/0cd869e1cc60dcf8be64b74daffc5354ad1016f8))
+
+
 ## v0.11.0 (2023-11-30)
 
 ### Feature
