@@ -14,3 +14,9 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+import time
+
+import mp_time
+
+time.sleep_ms = mp_time.sleep_ms
