@@ -2,6 +2,13 @@
 
 
 
+## v0.10.2 (2023-11-30)
+
+### Fix
+
+* fix: Mark the library as typed for mypy. ([`c69815d`](https://github.com/andrewjw/i75/commit/c69815d71c50ddf047d069ffa6b7bf5a2e517905))
+
+
 ## v0.10.1 (2023-11-30)
 
 ### Fix
