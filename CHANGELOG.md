@@ -2,6 +2,17 @@
 
 
 
+## v0.10.0 (2023-11-30)
+
+### Feature
+
+* feat: Add support for Python 3.12. ([`955ef0f`](https://github.com/andrewjw/i75/commit/955ef0ff6deee52a4c7f0d9e100b33519877301c))
+
+### Fix
+
+* fix: Fix assert method name change. ([`aee0cb4`](https://github.com/andrewjw/i75/commit/aee0cb4503840227be0cd64bd3e28f7f59ae4c3f))
+
+
 ## v0.9.1 (2023-11-30)
 
 ### Documentation
