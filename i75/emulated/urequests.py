@@ -16,7 +16,17 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import requests
+try:
+    from typing import Dict, Optional
+except ImportError:
+    pass
 
 
-def get(url) -> requests.Response:
+def get(url: str) -> requests.Response:
     return requests.get(url)
+
+
+def post(url: str,
+         headers: Optional[Dict[str, str]]=None,
+         data: Optional[str]=None) -> requests.Response:
+    return requests.post(url, headers=headers, data=data)
