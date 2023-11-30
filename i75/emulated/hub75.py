@@ -50,6 +50,10 @@ class Hub75:
         pass
 
     def update(self, buffer: picographics.PicoGraphics) -> None:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                raise KeyboardInterrupt()
+
         for y in range(self._height):
             for x in range(self._width):
                 if buffer._buffer[y][x] != self._buffer[y][x]:
