@@ -2,6 +2,19 @@
 
 
 
+## v0.9.1 (2023-11-30)
+
+### Documentation
+
+* docs: Add documentation for Colour class. ([`8feb9b7`](https://github.com/andrewjw/i75/commit/8feb9b77c26de13590eac50460bdba51e787c5bd))
+
+### Fix
+
+* fix: Fix style. ([`ae70e22`](https://github.com/andrewjw/i75/commit/ae70e22422d3c19dbe601651920eaff9cc3a55b5))
+
+* fix: Expose DateTime object and add documentation for it. ([`0b1646d`](https://github.com/andrewjw/i75/commit/0b1646dc8519923e43b4463d17fc02c46978386c))
+
+
 ## v0.9.0 (2023-11-29)
 
 ### Feature
