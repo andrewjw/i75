@@ -15,8 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import traceback
 import time
+import sys
 
 import mp_time
 
 time.sleep_ms = mp_time.sleep_ms
+
+
+def print_exception(e: Exception, file=sys.stdout) -> None:
+    traceback.print_exception(e, file=file)
+
+
+sys.print_exception = print_exception
