@@ -2,6 +2,17 @@
 
 
 
+## v0.12.0 (2023-12-01)
+
+### Feature
+
+* feat: Add support for Europe/London timezone and update clock example to use it. ([`410908a`](https://github.com/andrewjw/i75/commit/410908aab3f80b92dfa079c594db3c3f07490687))
+
+### Fix
+
+* fix: Include timezone module in package. ([`f947670`](https://github.com/andrewjw/i75/commit/f9476709e045864819a430ee94ac8f6a11e0eb37))
+
+
 ## v0.11.1 (2023-11-30)
 
 ### Fix
