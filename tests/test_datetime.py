@@ -15,9 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .emulated import *
-from .tz import *
+import unittest
+import unittest.mock
 
-from .test_datetime import TestDateTime
-from .test_emulatedi75 import TestEmulatedI75
-from .test_linedrawing import TestLineDrawing
+from i75.datetime import Date, DateTime, TimeDelta
+
+
+class TestDateTime(unittest.TestCase):
+    def test_date_leap_year(self):
+        d = Date(2024, 2, 29)
+        self.assertEqual(2024, d.year)
+        self.assertEqual(2, d.month)
+        self.assertEqual(29, d.day)
+        self.assertEqual(3, d.weekday())

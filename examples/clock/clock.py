@@ -25,6 +25,7 @@ import sys
 import picographics
 
 from i75 import DateTime, I75
+from i75.tz import EuropeLondon
 
 HOUR_LENGTH = 25
 MINUTE_LENGTH = 30
@@ -90,7 +91,7 @@ def render_clock(i75: I75,
     minute_percent = (now.minute * 60
                       + now.second
                       + part_second) / (60.0 * 60)
-    hour_percent = (((now.hour + 1) % 12) * (60 * 60)
+    hour_percent = ((now.hour % 12) * (60 * 60)
                     + now.minute * 60
                     + now.second + part_second) / (60.0 * 60 * 12)
     render_hand(i75, MINUTE_LENGTH, minute_percent)
@@ -131,6 +132,7 @@ def main() -> None:
             base_ticks += 25
             subsecond = 999
 
+        now = EuropeLondon.to_localtime(now)
         render_clock(i75,
                      black,
                      black,

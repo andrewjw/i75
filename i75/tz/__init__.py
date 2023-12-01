@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env micropython
 # i75
 # Copyright (C) 2023 Andrew Wilkinson
 #
@@ -15,9 +15,4 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .emulated import *
-from .tz import *
-
-from .test_datetime import TestDateTime
-from .test_emulatedi75 import TestEmulatedI75
-from .test_linedrawing import TestLineDrawing
+from .europe_london import EuropeLondon
