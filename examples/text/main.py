@@ -15,17 +15,25 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-__version__ = "0.12.0"
-
 import picographics
-if hasattr(picographics, "DisplayType"):
-    from .emulatedi75 import EmulatedI75
-    I75 = EmulatedI75  # type: ignore
-else:
-    from .nativei75 import NativeI75
-    I75 = NativeI75  # type: ignore
-del picographics
 
-from .colour import Colour  # noqa
-from .datetime import DateTime  # noqa
-from .text import text  # noqa
+from i75 import I75, text
+
+
+def main() -> None:
+    i75 = I75(
+        display_type=picographics.DISPLAY_INTERSTATE75_64X64,
+        rotate=0 if I75.is_emulated() else 90)
+
+    white = i75.display.create_pen(255, 255, 255)
+    i75.display.set_pen(white)
+
+    text(i75.display, "cg_pixel_3x5_5", 0, 0, "The Quick Brown Fox")
+
+    i75.display.update()
+
+    i75.sleep_ms(10000)
+
+
+if __name__ == "__main__":
+    main()
