@@ -4,3 +4,4 @@ htmldocs/
 build/
 dist/
 i75.egg-info/
+i75/fontdata/*.py
