@@ -2,6 +2,33 @@
 
 
 
+## v0.13.0 (2023-12-13)
+
+### Chore
+
+* chore(deps): update dependency python-semantic-release to v8.5.1 ([`6afeafc`](https://github.com/andrewjw/i75/commit/6afeafc3c455a6e3c93ba6cbba3cb2d17264ad3b))
+
+* chore(deps): update dependency sphinx_rtd_theme to v2 ([`a4868d0`](https://github.com/andrewjw/i75/commit/a4868d0918ee0226248c6e0279b8b1574be070a2))
+
+* chore(deps): update actions/setup-python action to v5 ([`b9e960d`](https://github.com/andrewjw/i75/commit/b9e960db167874b0a2e91b693fb85e273878fc10))
+
+* chore(deps): update dependency python-semantic-release to v8.5.0 ([`002fa5a`](https://github.com/andrewjw/i75/commit/002fa5ac4d44a0fd620c78c25dcd5895ccadc7fa))
+
+* chore: Add new timezone module to install script. ([`c7e87ba`](https://github.com/andrewjw/i75/commit/c7e87baad231d5873b9a7238798cafcdd3dcdb7d))
+
+### Feature
+
+* feat: Add basic text handling. ([`da99539`](https://github.com/andrewjw/i75/commit/da995391b578a0d03ef1c0ee3fe537198ad2be8f))
+
+### Fix
+
+* fix: Add font data. ([`d18ccc3`](https://github.com/andrewjw/i75/commit/d18ccc3649f65fa024f3de6c7995adfebdc9c719))
+
+* fix: Add Pillow to requirements.txt. ([`c16e896`](https://github.com/andrewjw/i75/commit/c16e8962a9219b4dd60842ef06532afea2fff6a7))
+
+* fix: Generate font data before releasing. ([`530559e`](https://github.com/andrewjw/i75/commit/530559e70663955df99f5dc784563cf6c587895f))
+
+
 ## v0.12.0 (2023-12-01)
 
 ### Feature
