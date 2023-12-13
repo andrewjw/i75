@@ -9,3 +9,4 @@ adafruit-ampy==1.1.0
 wheel==0.42.0
 twine==4.0.2
 requests==2.31.0
+Pillow==10.1.0
