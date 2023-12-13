@@ -34,6 +34,10 @@ jobs:
       - name: Test
         run: |
           ./run_tests.sh
+      - name: Generate Fonts
+        run: |
+          python3 utils/generate_fonts.py
+
 
   release:
     runs-on: ubuntu-latest
@@ -62,6 +66,7 @@ jobs:
           COVERALLS_REPO_TOKEN=${{ secrets.I75_COVERALLS_REPO_TOKEN }} coveralls
       - name: Release
         run: |
+          python3 utils/generate_fonts.py
           git config --global user.email "andrewjwilkinson@gmail.com"
           git config --global user.name "Andrew Wilkinson"
           export VERSION=$(semantic-release --noop version)
