@@ -2,6 +2,25 @@
 
 
 
+## v1.0.0 (2023-12-30)
+
+### Breaking
+
+* feat: Add the ability to wrap text and calculate the bounding box.
+
+BREAKING CHANGE: text has been renamed to render_text. ([`dfbe937`](https://github.com/andrewjw/i75/commit/dfbe9379efc8832ef2ac0c50f8dceaa101daa342))
+
+### Chore
+
+* chore(deps): update dependency micropython-rp2-pico-stubs to v1.20.0.post5 ([`6a6d487`](https://github.com/andrewjw/i75/commit/6a6d487facc36ff36bee30db87aca11a9d73f671))
+
+* chore(deps): update dependency python-semantic-release to v8.7.0 ([`c6407b7`](https://github.com/andrewjw/i75/commit/c6407b70146fa75f3a6f9b3a6ef0b5fa013fc526))
+
+* chore(deps): update dependency mypy to v1.8.0 ([`ee9633e`](https://github.com/andrewjw/i75/commit/ee9633e622f7cbfa80bc4d452d53ac5bfd141f4b))
+
+* chore(deps): update dependency python-semantic-release to v8.5.2 ([`ca8a4ec`](https://github.com/andrewjw/i75/commit/ca8a4ec1647496cb1fc99a0d027b981a3115d862))
+
+
 ## v0.13.0 (2023-12-13)
 
 ### Chore
