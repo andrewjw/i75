@@ -16,11 +16,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os.path
-import json
-import math
 from typing import Tuple
 import string
-import sys
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -71,10 +68,10 @@ def generate_font_data(fontfile: str, size: int) -> None:
     except FileExistsError:
         pass
     with open(f"i75/fontdata/{fontname}_{size}.py", "w") as fp:
-        fp.write(f"# This font data was generated from {fontfile} with size {size}.\n")
+        fp.write(f"# This font data was generated from\n# {fontfile} with size {size}.\n")
 
-        fp.write(f"HEIGHT = {max_height} \n")
-        fp.write(f"SPACE_WIDTH = {max_width} \n")
+        fp.write(f"HEIGHT = {max_height}\n")
+        fp.write(f"SPACE_WIDTH = {max_width}\n")
         fp.write("DATA = {\n")
         for c in font_data.keys():
             fp.write(f"    {repr(c)}: {font_data[c]},\n")

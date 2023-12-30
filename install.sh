@@ -12,4 +12,4 @@ ampy ${@:1} put i75/nativei75.py i75/nativei75.py
 ampy ${@:1} put i75/text.py i75/text.py
 ampy ${@:1} put i75/tz/__init__.py i75/tz/__init__.py
 ampy ${@:1} put i75/tz/europe_london.py i75/tz/europe_london.py
-ampy ${@:1} put i75/fontdata/Pixel_Millennium_8.py i75/fontdata/Pixel_Millennium_8.py
+ampy ${@:1} put i75/fontdata/cg_pixel_3x5_5.py i75/fontdata/cg_pixel_3x5_5.py

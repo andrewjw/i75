@@ -28,4 +28,4 @@ del picographics
 
 from .colour import Colour  # noqa
 from .datetime import DateTime  # noqa
-from .text import text  # noqa
+from .text import render_text, text_boundingbox, wrap_text  # noqa
