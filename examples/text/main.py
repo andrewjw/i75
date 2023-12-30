@@ -17,7 +17,11 @@
 
 import picographics
 
-from i75 import I75, text
+from i75 import I75, render_text, wrap_text, text_boundingbox
+
+PANGRAM = "The Quick Brown Fox Jumps Over The Lazy Dog."
+
+FONT = "cg_pixel_3x5_5"
 
 
 def main() -> None:
@@ -28,7 +32,11 @@ def main() -> None:
     white = i75.display.create_pen(255, 255, 255)
     i75.display.set_pen(white)
 
-    text(i75.display, "cg_pixel_3x5_5", 0, 0, "The Quick Brown Fox")
+    _, height = text_boundingbox(FONT, PANGRAM)
+    render_text(i75.display, FONT, 0, 0, PANGRAM)
+
+    pangram_wrapped = wrap_text(FONT, PANGRAM, 64)
+    render_text(i75.display, FONT, 0, height, pangram_wrapped)
 
     i75.display.update()
 

@@ -51,7 +51,7 @@ def render_text(buffer: Graphics,
 
     font_data = __get_font(font)
 
-    for c in text:
+    for c in text.upper():
         if c == " ":
             x += font_data.SPACE_WIDTH
             continue

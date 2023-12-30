@@ -21,7 +21,7 @@ import string
 
 from PIL import Image, ImageDraw, ImageFont
 
-character_set = string.digits + string.ascii_letters + string.punctuation
+character_set = set(string.digits + string.ascii_letters.upper() + string.punctuation)
 
 def get_max_size(font: ImageFont.FreeTypeFont) -> Tuple[int, int]:
     width, height = 0, 0
@@ -32,9 +32,23 @@ def get_max_size(font: ImageFont.FreeTypeFont) -> Tuple[int, int]:
     return width, height
 
 def get_size(font: ImageFont.FreeTypeFont, c: str) -> Tuple[int, int]:
-    ascent, descent = font.getmetrics()
-    left, top, right, bottom = font.getmask(c, stroke_width=0).getbbox()
-    return right, bottom + max(0, ascent + descent)
+    im = Image.new(mode="1", size=(100, 100))
+    draw = ImageDraw.Draw(im)
+    draw.text((0, 0), c, font=font, fill=1, stroke_width=0)
+
+    max_x, max_y = 0, 0
+    for y in range(100):
+        for x in range(100):
+            if im.getpixel((x, y)) == 1:
+                max_x = max(max_x, x)
+                max_y = max(max_y, y)
+    print(c, max_x, max_y)
+    return max_x + 1, max_y + 2
+
+    # why doesn't the following work?
+    #ascent, descent = font.getmetrics()
+    #left, top, right, bottom = font.getmask(c, stroke_width=0).getbbox()
+    #return right, bottom + max(0, ascent + descent)
 
 
 def get_char_data(font: ImageFont.FreeTypeFont, height: int, c: str) -> bytes:
