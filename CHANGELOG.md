@@ -2,6 +2,13 @@
 
 
 
+## v1.0.1 (2023-12-30)
+
+### Fix
+
+* fix: Fix calculation of font height. ([`63cdaab`](https://github.com/andrewjw/i75/commit/63cdaab95ad824e525a4f36b99bb5aecb7bd7b5f))
+
+
 ## v1.0.0 (2023-12-30)
 
 ### Breaking
