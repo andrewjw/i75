@@ -1,4 +1,4 @@
-#!/usr/bin/env micropython
+#!/usr/bin/env python3
 # i75
 # Copyright (C) 2023 Andrew Wilkinson
 #
@@ -15,18 +15,20 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-__version__ = "1.0.1"
+from io import BytesIO
 
-import picographics
-if hasattr(picographics, "DisplayType"):
-    from .emulatedi75 import EmulatedI75
-    I75 = EmulatedI75  # type: ignore
-else:
-    from .nativei75 import NativeI75
-    I75 = NativeI75  # type: ignore
-del picographics
+import unittest
+import unittest.mock
 
-from .colour import Colour  # noqa
-from .datetime import DateTime  # noqa
-from .image import Image  # noqa
-from .text import render_text, text_boundingbox, wrap_text  # noqa
+from i75.image import SingleColourImage
+
+
+class TestImage(unittest.TestCase):
+    def test_single_color_image_is_pixel(self):
+        image_data = BytesIO((1 << 6).to_bytes(1) + (1 << 7).to_bytes(1))
+        sci = SingleColourImage(2, 2, image_data)
+
+        self.assertFalse(sci._is_pixel(0, 0))
+        self.assertTrue(sci._is_pixel(1, 0))
+        self.assertTrue(sci._is_pixel(0, 1))
+        self.assertFalse(sci._is_pixel(1, 1))

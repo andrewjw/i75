@@ -20,4 +20,5 @@ from .tz import *
 
 from .test_datetime import TestDateTime
 from .test_emulatedi75 import TestEmulatedI75
+from .test_image import TestImage
 from .test_linedrawing import TestLineDrawing

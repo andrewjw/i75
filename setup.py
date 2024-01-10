@@ -37,7 +37,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/andrewjw/i75",
-    scripts=["bin/i75"],
+    scripts=["bin/i75", "bin/i75-convert-image"],
     packages=setuptools.find_packages() + ["i75.emulated", "i75.tz", "i75.fontdata"],
     include_package_data=True,
     classifiers=[

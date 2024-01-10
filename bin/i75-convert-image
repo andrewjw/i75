@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+# i75
+# Copyright (C) 2023 Andrew Wilkinson
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+import sys
+
+from PIL import Image
+
+def single_colour(im: Image.Image) -> bytes:
+    r: bytes = b""
+    for y in range(im.height):
+        bit, byte = 0, 0
+        for x in range(im.width):
+            bit += 1
+            byte = byte << 1 | (1 if im.getpixel((x, y))[3] == 255 else 0)
+            
+            if bit == 8:
+                bit = 0
+                r += byte.to_bytes(1)
+                byte = 0
+        if bit > 0:
+            r += byte.to_bytes(1)
+    return r
+
+def three_colour(im: Image.Image) -> bytes:
+    val: bytes = b""
+    for y in range(im.height):
+        for x in range(im.width):
+            r, g, b = im.getpixel((x, y))
+            val += r.to_bytes(1)
+            val += g.to_bytes(1)
+            val += b.to_bytes(1)
+    return val
+
+def main() -> None:
+    im = Image.open(sys.argv[1])
+    colours = int(sys.argv[2])
+
+    if colours == 1:
+        data = single_colour(im)
+    elif colours == 3:
+        data = three_colour(im)
+    else:
+        raise ValueError("Invalid colour setting.")
+
+    sys.stdout.buffer.write(b"I75v1" + im.width.to_bytes(1) + im.height.to_bytes(1) + colours.to_bytes(1))
+    sys.stdout.buffer.write(data)
+    
+if __name__ == "__main__":
+    main()
