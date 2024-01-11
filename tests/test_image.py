@@ -25,7 +25,7 @@ from i75.image import SingleColourImage
 
 class TestImage(unittest.TestCase):
     def test_single_color_image_is_pixel(self):
-        image_data = BytesIO((1 << 6).to_bytes(1, byteorder="big") \
+        image_data = BytesIO((1 << 6).to_bytes(1, byteorder="big")
                              + (1 << 7).to_bytes(1, byteorder="big"))
         sci = SingleColourImage(2, 2, image_data)
 
