@@ -29,10 +29,10 @@ def single_colour(im: Image.Image) -> bytes:
             
             if bit == 8:
                 bit = 0
-                r += byte.to_bytes(1)
+                r += byte.to_bytes(1, byteorder='big')
                 byte = 0
         if bit > 0:
-            r += byte.to_bytes(1)
+            r += byte.to_bytes(1, byteorder='big')
     return r
 
 def three_colour(im: Image.Image) -> bytes:
@@ -40,9 +40,9 @@ def three_colour(im: Image.Image) -> bytes:
     for y in range(im.height):
         for x in range(im.width):
             r, g, b = im.getpixel((x, y))
-            val += r.to_bytes(1)
-            val += g.to_bytes(1)
-            val += b.to_bytes(1)
+            val += r.to_bytes(1, byteorder='big')
+            val += g.to_bytes(1, byteorder='big')
+            val += b.to_bytes(1, byteorder='big')
     return val
 
 def main() -> None:
@@ -56,7 +56,10 @@ def main() -> None:
     else:
         raise ValueError("Invalid colour setting.")
 
-    sys.stdout.buffer.write(b"I75v1" + im.width.to_bytes(1) + im.height.to_bytes(1) + colours.to_bytes(1))
+    sys.stdout.buffer.write(b"I75v1" \
+                            + im.width.to_bytes(1, byteorder='big') \
+                            + im.height.to_bytes(1, byteorder='big') \
+                            + colours.to_bytes(1, byteorder='big'))
     sys.stdout.buffer.write(data)
     
 if __name__ == "__main__":
