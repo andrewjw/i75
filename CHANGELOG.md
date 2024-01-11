@@ -2,6 +2,33 @@
 
 
 
+## v1.1.0 (2024-01-11)
+
+### Chore
+
+* chore(deps): update dependency pillow to v10.2.0 ([`1cdece3`](https://github.com/andrewjw/i75/commit/1cdece35dcf33bdc364abb6106dc67ef19772171))
+
+### Feature
+
+* feat: Add basic image support. ([`5be8f98`](https://github.com/andrewjw/i75/commit/5be8f98e9aa4fe3fbc31888382513e8b205b1186))
+
+### Fix
+
+* fix: Fix style. ([`600ac9d`](https://github.com/andrewjw/i75/commit/600ac9ddf0f87ca678f7e3d5e1e5eb9738e79377))
+
+* fix: Fix style ([`17aa2ab`](https://github.com/andrewjw/i75/commit/17aa2ab4bcfa97354aae1198aa794a2b28417f2c))
+
+* fix: Fix Python support before 3.11. ([`9586af5`](https://github.com/andrewjw/i75/commit/9586af517778ac8c61ab84279bfd8214ddb62c44))
+
+* fix: Fix support for Python before 3.11. ([`d29d3a9`](https://github.com/andrewjw/i75/commit/d29d3a912b1366bf4eb1d64b79d14266877911ad))
+
+* fix: Fix compatibility with Python before 3.11. ([`7f74ad8`](https://github.com/andrewjw/i75/commit/7f74ad815cd9d3f699fb92fbab182c0938cee60a))
+
+### Unknown
+
+* Fix style. ([`63fd990`](https://github.com/andrewjw/i75/commit/63fd99013e143d8f011dde6f68800198d2ec3661))
+
+
 ## v1.0.1 (2023-12-30)
 
 ### Fix
