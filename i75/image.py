@@ -31,9 +31,9 @@ class Image:
         if magic != b"I75v1":
             raise ValueError(
                 "Image has the wrong initial bytes. Wrong format?")
-        width = int.from_bytes(fp.read(1))
-        height = int.from_bytes(fp.read(1))
-        colours = int.from_bytes(fp.read(1))
+        width = int.from_bytes(fp.read(1), byteorder="big")
+        height = int.from_bytes(fp.read(1), byteorder="big")
+        colours = int.from_bytes(fp.read(1), byteorder="big")
 
         if colours == 1:
             return SingleColourImage(width, height, fp)
