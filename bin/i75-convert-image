@@ -57,8 +57,8 @@ def main() -> None:
         raise ValueError("Invalid colour setting.")
 
     sys.stdout.buffer.write(b"I75v1" \
-                            + im.width.to_bytes(1, byteorder='big') \
-                            + im.height.to_bytes(1, byteorder='big') \
+                            + im.width.to_bytes(1, byteorder='big')
+                            + im.height.to_bytes(1, byteorder='big')
                             + colours.to_bytes(1, byteorder='big'))
     sys.stdout.buffer.write(data)
     
