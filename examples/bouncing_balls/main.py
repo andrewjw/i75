@@ -20,7 +20,7 @@
 import math
 import random
 try:
-    from typing import Tuple, Optional
+    from typing import Tuple, Optional, Union
 except ImportError:
     pass
 import sys
@@ -51,8 +51,17 @@ class Vector:
     def __sub__(self, other: "Vector") -> "Vector":
         return Vector(self.x - other.x, self.y - other.y)
 
+    def __gt__(self, other: Union[int, "Vector"]) -> bool:
+        if isinstance(other, Vector):
+            return (self.x ** 2 + self.y ** 2) > (other.x ** 2 + other.y ** 2)
+        else:
+            return (self.x ** 2 + self.y ** 2) > other ** 2
+
     def length(self) -> float:
         return math.sqrt(self.x ** 2 + self.y ** 2)
+
+    def __str__(self) -> str:
+        return f"<V {self.x} {self.y}>"
 
 
 class Matrix:
@@ -76,9 +85,10 @@ class Ball:
         self.centre = centre
         self.size = size
         self.motion = motion
+        self.growing = size < 5
 
-    def update(self):
-        self.centre = self.centre + self.motion
+    def update(self, frame_time: int):
+        self.centre = self.centre + self.motion * (frame_time / 1000.0)
 
         if self.centre.x - self.size <= 0:
             self.motion.x = abs(self.motion.x)
@@ -91,24 +101,26 @@ class Ball:
             self.motion.y = -abs(self.motion.y)
 
     def collide(self, other: "Ball") -> None:
-        distance = (self.centre - other.centre).length()
+        distance = self.centre - other.centre
         if distance > (self.size + other.size):
             return
 
-        next = self.centre + self.motion
-        onext = other.centre + other.motion
-        next_distance = (next - onext).length()
-        if next_distance > distance:
+        next = self.centre + self.motion * 0.01
+        onext = other.centre + other.motion * 0.01
+        if (next - onext) > distance:
             return
 
         n = (other.centre - self.centre).unit()
         t = coordinate_rotation(n, math.pi / 2)
 
+        #v_rel = (self.motion * self.size) - (other.motion * other.size)
         v_rel = self.motion - other.motion
         v_mag = v_rel.length()
 
         beta = angle(v_rel, n)
 
+        #self.motion = t * (v_mag * (float(other.size) / self.size)) * math.sin(beta) + other.motion
+        #other.motion = n * (v_mag * (float(self.size) / other.size)) * math.cos(beta) + other.motion
         self.motion = t * v_mag * math.sin(beta) + other.motion
         other.motion = n * v_mag * math.cos(beta) + other.motion
 
@@ -117,6 +129,19 @@ class Ball:
         i75.display.circle(round(self.centre.x),
                            round(self.centre.y),
                            self.size)
+
+    def resize(self):
+        if random.random() > 0.2:
+            return True
+        if self.growing:
+            self.size += 1
+            self.motion *= 0.9
+            if self.size >= 6:
+                self.growing = False
+        else:
+            self.size -= 1
+            self.motion *= 1.1
+        return self.size > 1
 
 
 def coordinate_rotation(v: Vector, phi: float) -> Vector:
@@ -163,9 +188,9 @@ def from_hsv(h, s, v):
         return int(v), int(p), int(q)
 
 
-def generate_ball(i75: I75, v: Vector) -> Ball:
-    return Ball(i75, v, 4, Vector(random.random(),
-                                  random.random()))
+def generate_ball(i75: I75, size: int, v: Vector) -> Ball:
+    return Ball(i75, v, size, Vector(random.random() * 8,
+                                     random.random() * 8))
 
 
 def main() -> None:
@@ -173,21 +198,47 @@ def main() -> None:
         display_type=picographics.DISPLAY_INTERSTATE75_64X64,
         rotate=0 if I75.is_emulated() else 90)
 
-    balls = [generate_ball(Vector(10, 20)),
-             generate_ball(Vector(20, 10)),
-             generate_ball(Vector(40, 10))]
+    black = i75.display.create_pen(0, 0, 0)
 
+    balls = [generate_ball(i75, 1, Vector(10, 20)),
+             generate_ball(i75, 3, Vector(20, 10)),
+             generate_ball(i75, 5, Vector(40, 10))]
+
+    frame_time, frame_count = 0, 0
+    start = frame = i75.ticks_ms()
     while True:
-        for ball in balls:
-            ball.render(i75, black)
-            ball.update()
+        new_frame = i75.ticks_ms()
+        frame_time = frame_time + i75.ticks_diff(new_frame, frame)
+        frame = new_frame
 
-        for i in range(len(balls) - 1):
-            for j in range(i+1, len(balls)):
-                balls[i].collide(balls[j])
+        frame_count += 1
+        if frame_count % 50 == 0:
+            print(f"Avg frame time: {i75.ticks_diff(frame, start) / frame_count}")
+
+        while frame_time > 100:
+            for ball in balls:
+                ball.render(i75, black)
+                ball.update(frame_time)
+       
+            for i in range(len(balls) - 1):
+                for j in range(i+1, len(balls)):
+                    balls[i].collide(balls[j])
+
+            frame_time -= 100
 
         for ball in balls:
             ball.render(i75)
+
+        if i75.ticks_diff(new_frame, start) > 5000:
+            start = new_frame
+            frame_count = 0
+            
+            [b.render(i75, black) for b in balls]
+            balls = [b for b in balls if b.resize()]
+
+            if len(balls) < 5 and random.random() < 0.2:
+                balls.append(generate_ball(i75, 2, Vector(int(random.random() * 59) + 5, int(random.random() * 59) + 5)))
+            [b.render(i75) for b in balls]
 
         i75.display.update()
 
