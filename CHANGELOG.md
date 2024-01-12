@@ -2,6 +2,17 @@
 
 
 
+## v1.1.1 (2024-01-12)
+
+### Chore
+
+* chore(deps): update dependency types_pillow to v10.2.0.20240111 ([`bae0013`](https://github.com/andrewjw/i75/commit/bae0013b20d11411e4a7df7e3969efc87ebd3f15))
+
+### Fix
+
+* fix: Install image.py, and micropython requires byte ordering in from_bytes. ([`7e4a9af`](https://github.com/andrewjw/i75/commit/7e4a9af37b2f71fe07ede79fa0cd3c98d023a5cb))
+
+
 ## v1.1.0 (2024-01-11)
 
 ### Chore
