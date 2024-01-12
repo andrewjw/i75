@@ -15,7 +15,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import math
-from typing import Tuple
+try:
+    from typing import Tuple
+except ImportError:
+    pass
 
 from .graphics import Graphics
 
@@ -31,9 +34,9 @@ class Image:
         if magic != b"I75v1":
             raise ValueError(
                 "Image has the wrong initial bytes. Wrong format?")
-        width = int.from_bytes(fp.read(1), byteorder="big")
-        height = int.from_bytes(fp.read(1), byteorder="big")
-        colours = int.from_bytes(fp.read(1), byteorder="big")
+        width = int.from_bytes(fp.read(1), "big")
+        height = int.from_bytes(fp.read(1), "big")
+        colours = int.from_bytes(fp.read(1), "big")
 
         if colours == 1:
             return SingleColourImage(width, height, fp)
