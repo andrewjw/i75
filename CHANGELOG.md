@@ -2,6 +2,17 @@
 
 
 
+## v1.1.2 (2024-02-01)
+
+### Chore
+
+* chore(deps): update dependency types_pillow to v10.2.0.20240125 ([`fb60a8d`](https://github.com/andrewjw/i75/commit/fb60a8d190650fb2e46217bca3f217ee21b091e8))
+
+### Fix
+
+* fix: Add base method for Image.render. ([`2ce2f9c`](https://github.com/andrewjw/i75/commit/2ce2f9cad6099cecdd032e8c0bfef455d746747f))
+
+
 ## v1.1.1 (2024-01-12)
 
 ### Chore
