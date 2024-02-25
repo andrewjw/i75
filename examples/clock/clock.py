@@ -97,8 +97,6 @@ def render_clock(i75: I75,
     render_hand(i75, MINUTE_LENGTH, minute_percent)
     render_hand(i75, HOUR_LENGTH, hour_percent)
 
-    return now
-
 
 def main() -> None:
     i75 = I75(

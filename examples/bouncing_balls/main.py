@@ -20,7 +20,7 @@
 import math
 import random
 try:
-    from typing import Tuple, Optional
+    from typing import List, Optional
 except ImportError:
     pass
 import sys
@@ -51,13 +51,10 @@ class Vector:
     def __sub__(self, other: "Vector") -> "Vector":
         return Vector(self.x - other.x, self.y - other.y)
 
-    def length(self) -> float:
-        return math.sqrt(self.x ** 2 + self.y ** 2)
-
 
 class Matrix:
     def __init__(self) -> None:
-        self.values = [[0, 0], [0, 0]]
+        self.values: List[List[int | float]] = [[0, 0], [0, 0]]
 
     def dot(self, v: Vector) -> Vector:
         return Vector(self.values[0][0] * v.x + self.values[0][1] * v.y,
@@ -173,9 +170,11 @@ def main() -> None:
         display_type=picographics.DISPLAY_INTERSTATE75_64X64,
         rotate=0 if I75.is_emulated() else 90)
 
-    balls = [generate_ball(Vector(10, 20)),
-             generate_ball(Vector(20, 10)),
-             generate_ball(Vector(40, 10))]
+    balls = [generate_ball(i75, Vector(10, 20)),
+             generate_ball(i75, Vector(20, 10)),
+             generate_ball(i75, Vector(40, 10))]
+
+    black = i75.display.create_pen(0, 0, 0)
 
     while True:
         for ball in balls:
