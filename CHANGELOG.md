@@ -2,6 +2,15 @@
 
 
 
+## v1.2.1 (2024-02-25)
+
+### Fix
+
+* fix: Remove Python 3.10+ syntax ([`4fe4696`](https://github.com/andrewjw/i75/commit/4fe4696e534352963b8c09a116b5de639ef9909e))
+
+* fix: Fix mypy processing of the examples. ([`cfff426`](https://github.com/andrewjw/i75/commit/cfff42660661b3b3ec3d7b85114529c3863743d7))
+
+
 ## v1.2.0 (2024-02-25)
 
 ### Chore
