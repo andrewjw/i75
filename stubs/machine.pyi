@@ -19,3 +19,6 @@ from typing import Tuple
 class RTC:
     def datetime(self) -> Tuple[int, int, int, int, int, int, int]:
         ...
+
+def unique_id() -> bytes:
+    ...
