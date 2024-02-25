@@ -2,6 +2,25 @@
 
 
 
+## v1.2.0 (2024-02-25)
+
+### Chore
+
+* chore(deps): update dependency twine to v5 ([`fd1769c`](https://github.com/andrewjw/i75/commit/fd1769c95deedb5c03362534b1b177656ddaaad2))
+
+* chore(deps): update dependency python-semantic-release to v9 ([`5859586`](https://github.com/andrewjw/i75/commit/5859586ac9b27bbcf988a2f77828bf77fd0f3589))
+
+* chore(deps): update dependency types_pillow to v10.2.0.20240206 ([`781d08f`](https://github.com/andrewjw/i75/commit/781d08f943ad6154cbc6d59618bbfb70d036b220))
+
+### Feature
+
+* feat: Add emulated machine.unique_id. ([`29da5f8`](https://github.com/andrewjw/i75/commit/29da5f8ef516cc7ea866bc890dd08c2e5c819b66))
+
+### Fix
+
+* fix: Add new function to machine stub file. ([`89a2116`](https://github.com/andrewjw/i75/commit/89a2116e9f69f55f652e6ea23650c43fcd0bb923))
+
+
 ## v1.1.2 (2024-02-01)
 
 ### Chore
