@@ -20,7 +20,7 @@
 import math
 import random
 try:
-    from typing import List, Optional
+    from typing import List, Optional, Union
 except ImportError:
     pass
 import sys
@@ -54,7 +54,7 @@ class Vector:
 
 class Matrix:
     def __init__(self) -> None:
-        self.values: List[List[int | float]] = [[0, 0], [0, 0]]
+        self.values: List[List[Union[int, float]]] = [[0, 0], [0, 0]]
 
     def dot(self, v: Vector) -> Vector:
         return Vector(self.values[0][0] * v.x + self.values[0][1] * v.y,
