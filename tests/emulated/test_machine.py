@@ -15,5 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .test_pen import TestPen
-from .test_machine import TestMachine
+import unittest
+
+from machine import unique_id
+
+
+class TestMachine(unittest.TestCase):
+    def test_unique_id(self):
+        self.assertTrue(len(unique_id()) > 1)

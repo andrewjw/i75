@@ -19,6 +19,7 @@ import gc
 import traceback
 import time
 import sys
+import uuid
 
 import mp_time
 
@@ -37,3 +38,7 @@ def mem_free() -> int:
 
 
 gc.mem_free = mem_free  # type: ignore[attr-defined]
+
+
+def unique_id() -> bytes:
+    return hex(uuid.getnode()).encode("ascii")
