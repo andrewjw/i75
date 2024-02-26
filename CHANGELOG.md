@@ -2,6 +2,13 @@
 
 
 
+## v1.3.1 (2024-02-26)
+
+### Fix
+
+* fix: Add missing data and header parameters for urequests.get. ([`0d8cd91`](https://github.com/andrewjw/i75/commit/0d8cd9133c4dd983133e5eb3a4d7708f81a0fbf4))
+
+
 ## v1.3.0 (2024-02-26)
 
 ### Chore
