@@ -22,3 +22,9 @@ class RTC:
 
 def unique_id() -> bytes:
     ...
+
+def reset() -> None:
+    ...
+
+def soft_reset() -> None:
+    ...

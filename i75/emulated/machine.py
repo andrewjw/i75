@@ -42,3 +42,11 @@ gc.mem_free = mem_free  # type: ignore[attr-defined]
 
 def unique_id() -> bytes:
     return hex(uuid.getnode()).encode("ascii")
+
+
+def reset() -> None:
+    sys.exit()
+
+
+def soft_reset() -> None:
+    sys.exit()
