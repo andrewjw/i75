@@ -2,6 +2,17 @@
 
 
 
+## v1.3.0 (2024-02-26)
+
+### Chore
+
+* chore(deps): update dependency types_pillow to v10.2.0.20240213 ([`172b29e`](https://github.com/andrewjw/i75/commit/172b29e04ff48afb8f3742890891c873f6cd7d15))
+
+### Feature
+
+* feat: Add machine reset functions. ([`8cebae1`](https://github.com/andrewjw/i75/commit/8cebae19d43e4cab0df5f824f08b0e43ec5c7c23))
+
+
 ## v1.2.1 (2024-02-25)
 
 ### Fix
