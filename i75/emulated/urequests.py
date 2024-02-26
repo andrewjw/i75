@@ -22,8 +22,10 @@ except ImportError:
     pass
 
 
-def get(url: str) -> requests.Response:
-    return requests.get(url)
+def get(url: str,
+        headers: Optional[Dict[str, str]] = None,
+        data: Optional[str] = None) -> requests.Response:
+    return requests.get(url, headers=headers, data=data)
 
 
 def post(url: str,
