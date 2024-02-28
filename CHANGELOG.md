@@ -2,6 +2,13 @@
 
 
 
+## v1.4.0 (2024-02-28)
+
+### Feature
+
+* feat: Add stream parameter to request functions for compatibility with proper Python requests. ([`39f5516`](https://github.com/andrewjw/i75/commit/39f55165ce390926a5222ade9a7f50f9a24654b3))
+
+
 ## v1.3.1 (2024-02-26)
 
 ### Fix
