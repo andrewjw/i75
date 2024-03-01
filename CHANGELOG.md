@@ -2,6 +2,17 @@
 
 
 
+## v1.5.0 (2024-03-01)
+
+### Feature
+
+* feat: Include stubs for gc module. ([`0186466`](https://github.com/andrewjw/i75/commit/01864663e1b4bb113a74c3ccdc3db4d94f448230))
+
+* feat: Include stub files. ([`c018288`](https://github.com/andrewjw/i75/commit/c01828889707f6fbc8d14ff90917b64cf2c47b57))
+
+* feat: Add threading example. ([`ce1e362`](https://github.com/andrewjw/i75/commit/ce1e362df5b65e9cf62de521e06ec4185389ec8e))
+
+
 ## v1.4.0 (2024-02-28)
 
 ### Feature
