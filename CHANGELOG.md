@@ -2,6 +2,37 @@
 
 
 
+## v1.6.0 (2024-03-13)
+
+### Chore
+
+* chore(deps): update dependency wheel to v0.43.0 ([`648b8a7`](https://github.com/andrewjw/i75/commit/648b8a74e35540f29f95fb6181780cd0cdfead3e))
+
+* chore(deps): update dependency types_pillow to v10.2.0.20240311 ([`9855854`](https://github.com/andrewjw/i75/commit/98558540b091a05f264f605f84bcce35a87fae7b))
+
+* chore(deps): update dependency types-requests to v2.31.0.20240311 ([`664dc05`](https://github.com/andrewjw/i75/commit/664dc0571625460511e6ecb3f1a6c9cb79beb1eb))
+
+* chore(deps): update dependency types-requests to v2.31.0.20240310 ([`c2c7ef8`](https://github.com/andrewjw/i75/commit/c2c7ef8f251563fea93e9503622ebd5c6b7959a8))
+
+* chore(deps): update dependency mypy to v1.9.0 ([`cebadc9`](https://github.com/andrewjw/i75/commit/cebadc9fb0513b4c54818970d4b35e5a8b04850f))
+
+### Feature
+
+* feat: Add emulated version of const function. ([`3b3d2c1`](https://github.com/andrewjw/i75/commit/3b3d2c1d24105495135b4743e878f3cb128f4b51))
+
+### Fix
+
+* fix: Generate font data before tests. ([`09bcc25`](https://github.com/andrewjw/i75/commit/09bcc25e0848f9ed031283dddf0dae695ae75f70))
+
+* fix: Generate font data before tests. ([`a3d6ce6`](https://github.com/andrewjw/i75/commit/a3d6ce6ef19e62e765671901ce44408ef7fd310b))
+
+* fix: Code style. ([`327316f`](https://github.com/andrewjw/i75/commit/327316f24f765ecc6f97321d38dae016a39d3d18))
+
+* fix: Properly mock out pygame in tests. ([`06437ed`](https://github.com/andrewjw/i75/commit/06437edba71c38c3627759d9c53af7fb334c6b08))
+
+* fix: Fix different between bounding box size and rendered text when using lowercase text. ([`d29ff5b`](https://github.com/andrewjw/i75/commit/d29ff5b549600a75929337f845b31c2e1be5ae33))
+
+
 ## v1.5.0 (2024-03-01)
 
 ### Feature
