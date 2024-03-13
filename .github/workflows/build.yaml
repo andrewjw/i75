@@ -31,12 +31,12 @@ jobs:
       - name: Code Style
         run: |
           ./code_style.sh
-      - name: Test
-        run: |
-          ./run_tests.sh
       - name: Generate Fonts
         run: |
           python3 utils/generate_fonts.py
+      - name: Test
+        run: |
+          ./run_tests.sh
 
 
   release:
