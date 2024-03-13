@@ -18,5 +18,7 @@
 from typing import TypeVar
 
 CONST = TypeVar("CONST")
+
+
 def const(v: CONST) -> CONST:
     return v
