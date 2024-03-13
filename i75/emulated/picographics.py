@@ -18,8 +18,6 @@
 import math
 from typing import List, Optional, Tuple
 
-import pygame
-
 from pen import Pen, RGB888Pen
 
 

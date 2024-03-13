@@ -24,7 +24,7 @@ from i75.emulatedi75 import EmulatedI75
 
 
 class TestEmulatedI75(unittest.TestCase):
-    @unittest.mock.patch("picographics.pygame")
+    @unittest.mock.patch("hub75.pygame")
     def test_wifi(self, _):
         i75 = EmulatedI75(picographics.DISPLAY_INTERSTATE75_64X64)
 

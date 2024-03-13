@@ -24,6 +24,7 @@ import picographics
 from i75.graphics import Graphics
 
 
+@unittest.mock.patch("hub75.pygame")
 @unittest.mock.patch("i75.graphics.picographics")
 class TestLineDrawing(unittest.TestCase):
     def create(self, mockgraphics: unittest.mock.Mock) \
@@ -37,7 +38,7 @@ class TestLineDrawing(unittest.TestCase):
 
         return (mock, graphics)
 
-    def test_diag_down(self, mockgraphics: unittest.mock.Mock) -> None:
+    def test_diag_down(self, mockgraphics: unittest.mock.Mock, _) -> None:
         mock, graphics = self.create(mockgraphics)
 
         graphics.line(5, 5, 0, 0)
@@ -48,7 +49,7 @@ class TestLineDrawing(unittest.TestCase):
                                    (2, 2), (1, 1), (0, 0)]):
             self.assertEqual(call[1], expected)
 
-    def test_diag_up(self, mockgraphics: unittest.mock.Mock) -> None:
+    def test_diag_up(self, mockgraphics: unittest.mock.Mock, _) -> None:
         mock, graphics = self.create(mockgraphics)
 
         graphics.line(0, 5, 5, 0)
@@ -59,7 +60,7 @@ class TestLineDrawing(unittest.TestCase):
                                    (3, 2), (4, 1), (5, 0)]):
             self.assertEqual(call[1], expected)
 
-    def test_steep_up(self, mockgraphics: unittest.mock.Mock) -> None:
+    def test_steep_up(self, mockgraphics: unittest.mock.Mock, _) -> None:
         mock, graphics = self.create(mockgraphics)
 
         graphics.line(0, 5, 2, 0)
@@ -70,7 +71,7 @@ class TestLineDrawing(unittest.TestCase):
                                    (1, 2), (2, 1), (2, 0)]):
             self.assertEqual(call[1], expected)
 
-    def test_horizontal(self, mockgraphics: unittest.mock.Mock) -> None:
+    def test_horizontal(self, mockgraphics: unittest.mock.Mock, _) -> None:
         mock, graphics = self.create(mockgraphics)
 
         graphics.line(0, 0, 0, 5)
@@ -81,7 +82,7 @@ class TestLineDrawing(unittest.TestCase):
                                    (0, 3), (0, 4), (0, 5)]):
             self.assertEqual(call[1], expected)
 
-    def test_vertical(self, mockgraphics: unittest.mock.Mock) -> None:
+    def test_vertical(self, mockgraphics: unittest.mock.Mock, _) -> None:
         mock, graphics = self.create(mockgraphics)
 
         graphics.line(0, 0, 5, 0)
