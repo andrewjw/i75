@@ -93,7 +93,7 @@ def text_boundingbox(font: str, text: str) -> Tuple[int, int]:
     width, height = 0, 0
     for line in text.split("\n"):
         line_width = 0
-        for c in line:
+        for c in line.upper():
             if c == " ":
                 line_width += font_data.SPACE_WIDTH
                 continue
