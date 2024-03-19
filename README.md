@@ -56,3 +56,4 @@ Install your script in the normal way, e.g.
 For `ampy` to work you need to tell it the correct device to use to communicate with Raspberry Pi Pico. To do that either
 run `install.sh -p /dev/tty.usbmodemN` or set the `AMPY_PORT` environment details. For more details about `ampy`,
 check out [their documentation](https://github.com/scientifichackers/ampy).
+
