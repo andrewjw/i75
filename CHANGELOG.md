@@ -2,6 +2,19 @@
 
 
 
+## v1.6.1 (2024-03-19)
+
+### Chore
+
+* chore(deps): update dependency python-semantic-release to v9.2.2 ([`3c826af`](https://github.com/andrewjw/i75/commit/3c826afac534584221f2b849a0ab0c1917e5117d))
+
+* chore(deps): update dependency python-semantic-release to v9.2.0 ([`996f8a6`](https://github.com/andrewjw/i75/commit/996f8a6873a87166164a26abaf01e2ddb6b8ee23))
+
+### Fix
+
+* fix: Fake commit to trigger to upload to PyPI after the last release failed. ([`00b79ed`](https://github.com/andrewjw/i75/commit/00b79ed8ead6eecd6ea10ad4c42ba5c8b237ad35))
+
+
 ## v1.6.0 (2024-03-13)
 
 ### Chore
