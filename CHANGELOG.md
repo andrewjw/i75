@@ -2,6 +2,13 @@
 
 
 
+## v1.7.0 (2024-03-20)
+
+### Feature
+
+* feat: Allow images to be loaded into predefined byte array. ([`a932c18`](https://github.com/andrewjw/i75/commit/a932c18d172775120f9db50058af5084c99b4c76))
+
+
 ## v1.6.1 (2024-03-19)
 
 ### Chore
