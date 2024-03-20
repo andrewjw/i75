@@ -16,7 +16,7 @@
 
 import math
 try:
-    from typing import Tuple
+    from typing import Tuple, Optional
 except ImportError:
     pass
 
@@ -24,6 +24,8 @@ from .graphics import Graphics
 
 
 class Image:
+    data: bytearray
+
     def __init__(self, width: int, height: int) -> None:
         self.width = width
         self.height = height
@@ -47,11 +49,38 @@ class Image:
             return ThreeColourImage(width, height, fp)
         raise ValueError("Image has an unsupported number of colours.")
 
+    @staticmethod
+    def load_into_buffer(fp, data: bytearray) -> "Image":
+        magic = fp.read(5)
+        if magic != b"I75v1":
+            raise ValueError(
+                "Image has the wrong initial bytes. Wrong format?")
+        width = int.from_bytes(fp.read(1), "big")
+        height = int.from_bytes(fp.read(1), "big")
+        colours = int.from_bytes(fp.read(1), "big")
+
+        if colours == 1:
+            assert len(data) >= width * math.ceil(width / 8.0)
+            return SingleColourImage(width, height, fp, data)
+        if colours == 3:
+            assert len(data) >= width * height * 3
+            return ThreeColourImage(width, height, fp, data)
+        raise ValueError("Image has an unsupported number of colours.")
+
 
 class SingleColourImage(Image):
-    def __init__(self, width: int, height: int, fp) -> None:
+    def __init__(self,
+                 width: int,
+                 height: int,
+                 fp,
+                 data: Optional[bytearray] = None) -> None:
         super().__init__(width, height)
-        self.data: bytes = fp.read(height * math.ceil(width / 8.0))
+        if data is None:
+            self.data: bytearray = fp.read(height * math.ceil(width / 8.0))
+        else:
+            self.data = data
+            for i in range(0, height * math.ceil(width / 8.0)):
+                self.data[i] = ord(fp.read(1))
         self.colour: Tuple[int, int, int] = (255, 255, 255)
 
     def set_colour(self, red: int, green: int, blue: int) -> None:
@@ -71,9 +100,18 @@ class SingleColourImage(Image):
 
 
 class ThreeColourImage(Image):
-    def __init__(self, width: int, height: int, fp) -> None:
+    def __init__(self,
+                 width: int,
+                 height: int,
+                 fp,
+                 data: Optional[bytearray] = None) -> None:
         super().__init__(width, height)
-        self.data: bytes = fp.read(3 * width * height)
+        if data is None:
+            self.data: bytearray = fp.read(3 * width * height)
+        else:
+            self.data = data
+            for i in range(0, 3 * width * height):
+                self.data[i] = ord(fp.read(1))
 
     def render(self, buffer: Graphics, offset_x: int, offset_y: int) -> None:
         for y in range(self.height):
