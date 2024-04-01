@@ -15,12 +15,23 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .emulated import *
-from .screens import *
-from .tz import *
+import unittest
 
-from .test_datetime import TestDateTime
-from .test_emulatedi75 import TestEmulatedI75
-from .test_image import TestImage
-from .test_linedrawing import TestLineDrawing
-from .test_text import TestText
+from i75.screens import SingleColourBuffer
+
+class TestSingleColourBuffer(unittest.TestCase):
+    def test_set_zero_zero(self):
+        buf = SingleColourBuffer(10, 10)
+        self.assertFalse(buf.is_pixel_set(0, 0))
+        buf.set_pixel(0, 0)
+        self.assertTrue(buf.is_pixel_set(0, 0))
+        buf.clear_pixel(0, 0)
+        self.assertFalse(buf.is_pixel_set(0, 0))
+
+    def test_set_part_row_byte(self):
+        buf = SingleColourBuffer(10, 10)
+        self.assertFalse(buf.is_pixel_set(9, 2))
+        buf.set_pixel(9, 2)
+        self.assertTrue(buf.is_pixel_set(9, 2))
+        buf.clear_pixel(9, 2)
+        self.assertFalse(buf.is_pixel_set(9, 2))

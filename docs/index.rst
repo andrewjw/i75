@@ -11,6 +11,8 @@ and doesn't need constant deploying to physical hardware for testing.
    :maxdepth: 2
 
    about
+   datetime
+   colour
    installing
    running
    i75
@@ -20,6 +22,9 @@ and doesn't need constant deploying to physical hardware for testing.
    colour
    datetime
    graphics
+
+   screens/single_colour_buffer
+
    text
 
    secrets

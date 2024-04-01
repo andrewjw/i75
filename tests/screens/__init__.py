@@ -15,12 +15,4 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .emulated import *
-from .screens import *
-from .tz import *
-
-from .test_datetime import TestDateTime
-from .test_emulatedi75 import TestEmulatedI75
-from .test_image import TestImage
-from .test_linedrawing import TestLineDrawing
-from .test_text import TestText
+from .test_single_colour_buffer import TestSingleColourBuffer
