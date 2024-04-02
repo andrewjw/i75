@@ -24,6 +24,8 @@ and doesn't need constant deploying to physical hardware for testing.
    graphics
 
    screens/single_colour_buffer
+   screens/single_bit_buffer
+   screens/index
 
    text
 

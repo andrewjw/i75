@@ -24,6 +24,8 @@ import math
 import picographics
 import hub75
 
+from .colour import Colour
+
 
 class Graphics:
     """
@@ -54,6 +56,10 @@ class Graphics:
 
     def set_pen(self, pen: picographics.Pen) -> None:
         self._driver.set_pen(pen)
+
+    def set_colour(self, colour: Colour):
+        """Set the current colour used by i75 to this colour."""
+        self.set_pen(self.create_pen(colour.r, colour.g, colour.b))
 
     def line(self, x1: int, y1: int, x2: int, y2: int) -> None:
         # While picographics has a line function, it doesn't include

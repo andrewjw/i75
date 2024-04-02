@@ -14,9 +14,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .basei75 import BaseI75
-
-
 class Colour:
     """Manage colours from a 32-bit integer"""
     def __init__(self, value: int) -> None:
@@ -42,9 +39,18 @@ class Colour:
         """The alpha component - 0 to 255."""
         return self._value & 255
 
-    def set_colour(self, i75: BaseI75):
-        """Set the current colour used by i75 to this colour."""
-        i75.display.set_pen(i75.display.create_pen(self.r, self.g, self.b))
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Colour):
+            return False
+        return self._value == other._value
+
+    def __neq__(self, other: object) -> bool:
+        if not isinstance(other, Colour):
+            return False
+        return self._value != other._value
+
+    def __str__(self) -> str:
+        return f"<Colour {self.r} {self.g} {self.b} {self.b}>"
 
     @staticmethod
     def fromint32(value: int) -> "Colour":

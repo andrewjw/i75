@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env micropython
 # i75
 # Copyright (C) 2023 Andrew Wilkinson
 #
@@ -15,5 +15,23 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .test_colour_block import TestColourBlock
-from .test_single_bit_buffer import TestSingleBitBuffer
+try:
+    from typing import Callable, Optional
+except ImportError:
+    pass
+
+from ..colour import Colour
+
+
+class Screen:
+    def __init__(self, child: Optional["Screen"] = None) -> None:
+        self._child: Optional["Screen"] = child
+
+    def get_pixel(self, x: int, y: int) -> Colour:
+        raise NotImplementedError()
+
+    def update(self,
+               frame_time: int,
+               mark_dirty: Callable[[int, int], None]) -> None:
+        if self._child is not None:
+            self._child.update(frame_time, mark_dirty)

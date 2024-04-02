@@ -40,13 +40,16 @@ class EmulatedI75(BaseI75):
                          rotate=rotate,
                          wifi_ssid="native",
                          wifi_password="native")
+        
+        self.__time_set = False
 
     @staticmethod
     def is_emulated() -> bool:
         return True
 
     def set_time(self) -> bool:
-        return self.wlan is not None and self.wlan.isconnected()
+        self.__time_set = self.wlan is not None and self.wlan.isconnected()
+        return self.__time_set
 
     def ticks_ms(self) -> int:
         return math.floor(time.time_ns() / 1000000)
@@ -58,6 +61,7 @@ class EmulatedI75(BaseI75):
         time.sleep(delay / 1000.0)
 
     def now(self) -> DateTime:
+        assert self.__time_set, "Call set_time before calling now."
         now = PyDateTime.utcnow()
         return DateTime(now.year,
                         now.month,

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env micropython
 # i75
 # Copyright (C) 2023 Andrew Wilkinson
 #
@@ -15,5 +15,22 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .test_colour_block import TestColourBlock
-from .test_single_bit_buffer import TestSingleBitBuffer
+from .screen import Screen
+
+
+class ScreenWipe(Screen):
+    def __init__(self,
+                 width: int,
+                 height: int,
+                 duration: int,
+                 first: Screen,
+                 second: Screen) -> None:
+        self.width = width
+        self.height = height
+        self.total_time = 0
+        self.duration = duration
+        self.first = first
+        self.second = second
+
+    def is_complete(self):
+        return self.total_time >= self.duration

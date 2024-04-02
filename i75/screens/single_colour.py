@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env micropython
 # i75
 # Copyright (C) 2023 Andrew Wilkinson
 #
@@ -15,5 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .test_colour_block import TestColourBlock
-from .test_single_bit_buffer import TestSingleBitBuffer
+from ..colour import Colour
+from .screen import Screen
+
+
+class SingleColour(Screen):
+    def __init__(self, colour: Colour) -> None:
+        super().__init__(None)
+        self.colour = colour
+
+    def get_pixel(self, x: int, y: int) -> Colour:
+        return self.colour

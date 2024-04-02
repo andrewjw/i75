@@ -21,7 +21,7 @@ except ImportError:
     def cast(x, y):  # type:ignore
         return y
 
-from .graphics import Graphics
+from .screens.writable_screen import WritableScreen
 
 
 class FontData:
@@ -47,7 +47,7 @@ def __scale_pixel(scale: int,
     return r
 
 
-def render_text(buffer: Graphics,
+def render_text(buffer: WritableScreen,
                 font: str,
                 x: int,
                 y: int,
@@ -88,7 +88,7 @@ def render_text(buffer: Graphics,
         x += (width + 1) * scale
 
 
-def render_text_multiline(buffer: Graphics,
+def render_text_multiline(buffer: WritableScreen,
                           font: str,
                           x: int,
                           y: int,

@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env micropython
 # i75
 # Copyright (C) 2023 Andrew Wilkinson
 #
@@ -15,5 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .test_colour_block import TestColourBlock
-from .test_single_bit_buffer import TestSingleBitBuffer
+from .screen import Screen
+
+
+class WritableScreen(Screen):
+    def pixel(self, x: int, y: int) -> None:
+        raise NotImplementedError()

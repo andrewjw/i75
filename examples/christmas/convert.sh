@@ -1,6 +1,6 @@
-#!/usr/bin/env python3
+#!/bin/bash
 # i75
-# Copyright (C) 2023 Andrew Wilkinson
+# Copyright (C) 2024 Andrew Wilkinson
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,5 +15,4 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .test_colour_block import TestColourBlock
-from .test_single_bit_buffer import TestSingleBitBuffer
+i75-convert-image snowflake.png 1 > snowflake.i75
