@@ -17,21 +17,21 @@
 
 import unittest
 
-from i75.screens import SingleColourBuffer
+from i75 import Colour
+from i75.screens import ColourBlock
 
-class TestSingleColourBuffer(unittest.TestCase):
-    def test_set_zero_zero(self):
-        buf = SingleColourBuffer(10, 10)
-        self.assertFalse(buf.is_pixel_set(0, 0))
-        buf.set_pixel(0, 0)
-        self.assertTrue(buf.is_pixel_set(0, 0))
-        buf.clear_pixel(0, 0)
-        self.assertFalse(buf.is_pixel_set(0, 0))
 
-    def test_set_part_row_byte(self):
-        buf = SingleColourBuffer(10, 10)
-        self.assertFalse(buf.is_pixel_set(9, 2))
-        buf.set_pixel(9, 2)
-        self.assertTrue(buf.is_pixel_set(9, 2))
-        buf.clear_pixel(9, 2)
-        self.assertFalse(buf.is_pixel_set(9, 2))
+class TestColourBlock(unittest.TestCase):
+    def test_get_colour(self):
+        colour = Colour.fromrgb(255, 0, 0)
+        cb = ColourBlock(10, 10, 20, 20, colour)
+        self.assertEqual(cb.get_pixel(10, 10), colour)
+
+    def test_outside(self):
+        colour1 = Colour.fromrgb(255, 0, 0)
+        colour2 = Colour.fromrgb(255, 0, 0)
+        cb2 = ColourBlock(0, 0, 30, 30, colour2)
+        cb1 = ColourBlock(10, 10, 20, 20, colour1, cb2)
+        self.assertEqual(cb1.get_pixel(10, 10), colour1)
+        self.assertEqual(cb1.get_pixel(5, 5), colour1)
+        self.assertEqual(cb1.get_pixel(25, 25), colour2)

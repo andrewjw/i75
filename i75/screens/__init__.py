@@ -15,4 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .single_colour_buffer import SingleColourBuffer
+from .colour_block import ColourBlock
+from .screen import Screen
+from .screen_manager import ScreenManager
+from .screen_wipe import ScreenWipe
+from .single_bit_buffer import SingleBitBuffer
+from .swipe_down import SwipeDown
+from .swipe_left import SwipeLeft
+from .swipe_right import SwipeRight
+from .swipe_up import SwipeUp

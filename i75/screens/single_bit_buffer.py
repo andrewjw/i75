@@ -17,9 +17,8 @@
 
 import math
 
-from ..colour import Colour
 
-class SingleColourBuffer:
+class SingleBitBuffer:
     """
     Holds a buffer capable of telling if a single pixel is set of not.
 
@@ -30,10 +29,12 @@ class SingleColourBuffer:
         self.width = width
         self.height = height
         self._row_width = math.ceil(self.width / 8.0)
+        self._is_dirty = False
         self._data: bytearray = bytearray(self._row_width * self.height)
 
     def set_pixel(self, x: int, y: int) -> None:
         """Set the given pixel."""
+        self._is_dirty = True
         byte = self._row_width * y + math.floor(x / 8.0)
         self._data[byte] = self._data[byte] | (1 << (x % 8))
 
@@ -46,3 +47,15 @@ class SingleColourBuffer:
         """Returns true if the given pixel is set."""
         byte = self._row_width * y + math.floor(x / 8.0)
         return (self._data[byte] & (1 << (x % 8))) != 0
+
+    def reset(self):
+        """
+        Marks all bits as unset
+
+        A noop if no bits were set since the last reset.
+        """
+        if not self._is_dirty:
+            return
+        for b in range(len(self._data)):
+            self._data[b] = 0
+        self._is_dirty = False
