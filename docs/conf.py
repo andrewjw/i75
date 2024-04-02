@@ -36,3 +36,6 @@ html_use_index = False
 html_show_sphinx = False
 htmlhelp_basename = 'i75'
 html_show_sourcelink = False
+
+coverage_statistics_to_stdout = True
+coverage_show_missing_items = True
