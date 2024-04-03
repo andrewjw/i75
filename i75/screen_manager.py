@@ -20,9 +20,9 @@ try:
 except ImportError:
     pass
 
-from ..graphics import Graphics
-from .screen import Screen
-from .single_bit_buffer import SingleBitBuffer
+from .graphics import Graphics
+from .screens.screen import Screen
+from .screens.single_bit_buffer import SingleBitBuffer
 
 
 class ScreenManager:
@@ -52,9 +52,9 @@ class ScreenManager:
             for y in range(self.height):
                 if self._dirty_buffer.is_pixel_set(x, y):
                     c = self._screen.get_pixel(x, y)
-                    c.set_colour(self._display)
+                    self._display.set_colour(c)
                     self._display.pixel(x, y)
 
-        self._display.update()
+        self._display.flip()
 
         self._dirty_buffer.reset()

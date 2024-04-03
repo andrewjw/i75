@@ -16,11 +16,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from .colour_block import ColourBlock
+from .horizontal_scrolling_screen import HorizontalScrollingScreen
 from .screen import Screen
-from .screen_manager import ScreenManager
 from .screen_wipe import ScreenWipe
 from .single_bit_buffer import SingleBitBuffer
+from .single_bit_screen import SingleBitScreen
+from .single_colour import SingleColour
 from .swipe_down import SwipeDown
 from .swipe_left import SwipeLeft
 from .swipe_right import SwipeRight
 from .swipe_up import SwipeUp
+from .vertical_scrolling_screen import VerticalScrollingScreen
+from .writable_screen import WritableScreen

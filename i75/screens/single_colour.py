@@ -15,17 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-__version__ = "1.16.0"
+from ..colour import Colour
+from .screen import Screen
 
-import picographics
-if hasattr(picographics, "DisplayType"):
-    from .emulatedi75 import EmulatedI75
-    I75 = EmulatedI75  # type: ignore
-else:
-    from .nativei75 import NativeI75
-    I75 = NativeI75  # type: ignore
-del picographics
 
-from .colour import Colour  # noqa
-from .screen_manager import ScreenManager  # noqa
-from .text import render_text, text_boundingbox, wrap_text  # noqa
+class SingleColour(Screen):
+    def __init__(self, colour: Colour) -> None:
+        super().__init__(None)
+        self.colour = colour
+
+    def get_pixel(self, x: int, y: int) -> Colour:
+        return self.colour

@@ -24,8 +24,11 @@ import math
 import picographics
 import hub75
 
+from .colour import Colour
+from .screens import WritableScreen
 
-class Graphics:
+
+class Graphics(WritableScreen):
     """
     This class provides functionality to render simple graphics to the screen.
 
@@ -54,6 +57,10 @@ class Graphics:
 
     def set_pen(self, pen: picographics.Pen) -> None:
         self._driver.set_pen(pen)
+
+    def set_colour(self, colour: Colour):
+        """Set the current colour used by i75 to this colour."""
+        self.set_pen(self.create_pen(colour.r, colour.g, colour.b))
 
     def line(self, x1: int, y1: int, x2: int, y2: int) -> None:
         # While picographics has a line function, it doesn't include
@@ -137,10 +144,14 @@ class Graphics:
         if x >= 0 and x < self.width and y >= 0 and y < self.height:
             self._driver.pixel(y, x)
 
+<<<<<<< HEAD
     def update(self) -> None:
         """
         Updates the screen with the current buffer contents.
         """
+=======
+    def flip(self) -> None:
+>>>>>>> 9595984 (feat: Add scrolling screens, and a scrolling text example.)
         self.hub75.update(self._driver)
 
     def get_bounds(self) -> Tuple[int, int]:

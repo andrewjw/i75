@@ -14,9 +14,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .graphics import Graphics
-
-
 class Colour:
     """Manage colours from a 32-bit integer"""
     def __init__(self, value: int) -> None:
@@ -41,10 +38,6 @@ class Colour:
     def a(self) -> int:
         """The alpha component - 0 to 255."""
         return self._value & 255
-
-    def set_colour(self, graphics: Graphics):
-        """Set the current colour used by i75 to this colour."""
-        graphics.set_pen(graphics.create_pen(self.r, self.g, self.b))
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, Colour):
