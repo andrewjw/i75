@@ -2,6 +2,51 @@
 
 
 
+## v1.8.0 (2024-04-26)
+
+### Chore
+
+* chore: Update to new stubs location. ([`384dbf3`](https://github.com/andrewjw/i75/commit/384dbf30585970da1870a9793c1d46d8119934f8))
+
+* chore(deps): update dependency mypy to v1.10.0 ([`b53d31d`](https://github.com/andrewjw/i75/commit/b53d31d65b2d9951553bb4bf7b36a092331fcffe))
+
+* chore(deps): update dependency python-semantic-release to v9.5.0 ([`8e0e64c`](https://github.com/andrewjw/i75/commit/8e0e64cf12ca69a59bda4f324a9aa0989df57202))
+
+* chore(deps): update dependency types_pillow to v10.2.0.20240423 ([`dbe1564`](https://github.com/andrewjw/i75/commit/dbe15643fa9c85df22adb2dd9b53414ba72f0b0a))
+
+* chore(deps): update dependency types_pillow to v10.2.0.20240415 ([`c87cc5b`](https://github.com/andrewjw/i75/commit/c87cc5b093bf25d040c3b9f2767e9e809b4b6a90))
+
+* chore(deps): update dependency python-semantic-release to v9.4.2 ([`e37e534`](https://github.com/andrewjw/i75/commit/e37e53499bee876986646bf2a7a6b23bb6a5e8b9))
+
+* chore(deps): update dependency types_pillow to v10.2.0.20240406 ([`73e0e2f`](https://github.com/andrewjw/i75/commit/73e0e2f8cd1aeeda497412394bb28269fee656fe))
+
+* chore(deps): update dependency types-requests to v2.31.0.20240406 ([`c964ed7`](https://github.com/andrewjw/i75/commit/c964ed71968c6531b1312b8a5f88b30e3428f51c))
+
+* chore(deps): update dependency types-requests to v2.31.0.20240403 ([`61cf57c`](https://github.com/andrewjw/i75/commit/61cf57cf52fda4336446dc7ea99ce83928b41a36))
+
+* chore(deps): update dependency types-requests to v2.31.0.20240402 ([`e88b83d`](https://github.com/andrewjw/i75/commit/e88b83d815ed9866616462ed26d630009cb79703))
+
+* chore(deps): update dependency pillow to v10.3.0 ([`0c4a997`](https://github.com/andrewjw/i75/commit/0c4a9977d15991c8ccde4f53cad1c7d74cdf4502))
+
+* chore(deps): update dependency python-semantic-release to v9.4.0 ([`3e14450`](https://github.com/andrewjw/i75/commit/3e144508138d06661032cd342a40f49702080b90))
+
+* chore(deps): update dependency types_pillow to v10.2.0.20240331 ([`d0cce6e`](https://github.com/andrewjw/i75/commit/d0cce6eca1dc74600fc0effec95a1fd4ae2a81ee))
+
+* chore(deps): update dependency python-semantic-release to v9.3.1 ([`4ca905e`](https://github.com/andrewjw/i75/commit/4ca905e4e193d31723e5881a8bb08bbc3308c5f4))
+
+* chore(deps): update dependency types_pillow to v10.2.0.20240324 ([`06a528b`](https://github.com/andrewjw/i75/commit/06a528b66f6dcdf909edec2bbcbbf61d572d54ec))
+
+* chore(deps): update dependency python-semantic-release to v9.3.0 ([`d40579c`](https://github.com/andrewjw/i75/commit/d40579c12fde200b9590ffcf2f22505bc9f8941f))
+
+### Feature
+
+* feat: Add stubs of core MicroPython libraries to the PyPI package. ([`e601f07`](https://github.com/andrewjw/i75/commit/e601f07708192761dc3f74c3f026fc1cd5a66063))
+
+### Fix
+
+* fix: Allow alpha channel to be ignored when converting three colour images. ([`1cb430e`](https://github.com/andrewjw/i75/commit/1cb430ebd6cefd2c78d185f93a7c36ff9a4e3639))
+
+
 ## v1.7.0 (2024-03-20)
 
 ### Feature
