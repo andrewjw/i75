@@ -39,7 +39,10 @@ def three_colour(im: Image.Image) -> bytes:
     val: bytes = b""
     for y in range(im.height):
         for x in range(im.width):
-            r, g, b = im.getpixel((x, y))
+            try:
+                r, g, b = im.getpixel((x, y))
+            except ValueError:
+                r, g, b, a = im.getpixel((x, y))
             val += r.to_bytes(1, byteorder='big')
             val += g.to_bytes(1, byteorder='big')
             val += b.to_bytes(1, byteorder='big')
