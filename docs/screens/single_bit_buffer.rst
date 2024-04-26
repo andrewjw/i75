@@ -2,5 +2,6 @@
 SingleBitBuffer
 ===============
 
-.. automodule:: i75.screens.single_bit_buffer
+.. autoclass:: i75.screens.SingleBitBuffer
    :members:
+   :undoc-members:
