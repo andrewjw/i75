@@ -2,6 +2,17 @@
 
 
 
+## v1.8.1 (2024-04-29)
+
+### Chore
+
+* chore(deps): update dependency python-semantic-release to v9.6.0 ([`fd9753e`](https://github.com/andrewjw/i75/commit/fd9753e932bfb1010e70c6705856a32a49c64b8d))
+
+### Fix
+
+* fix: Add currency symbols and some unicode characters to the supported set of characters. ([`3a637c0`](https://github.com/andrewjw/i75/commit/3a637c0b062a4a67f8666a123f43c9fd5bb6dcca))
+
+
 ## v1.8.0 (2024-04-26)
 
 ### Chore
