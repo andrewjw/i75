@@ -21,7 +21,8 @@ import string
 
 from PIL import Image, ImageDraw, ImageFont
 
-character_set = set(string.digits + string.ascii_letters.upper() + string.punctuation)
+character_set = set(string.digits + string.ascii_letters.upper() + string.punctuation + "‐£$€"
+                    + "\u2018\u2019\u201c\u201d") # quote marks
 
 def get_max_size(font: ImageFont.FreeTypeFont) -> Tuple[int, int]:
     width, height = 0, 0
