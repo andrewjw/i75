@@ -16,13 +16,36 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os.path
-from typing import Tuple
+from typing import Dict, List, Tuple
 import string
 
 from PIL import Image, ImageDraw, ImageFont
 
 character_set = set(string.digits + string.ascii_letters.upper() + string.punctuation + "‐£$€"
                     + "\u2018\u2019\u201c\u201d") # quote marks
+
+character_map: Dict[str, str | List[str]] = {
+    "‐": "-",
+    "\u2018": "'",
+    "\u2019": "'",
+    "\u201c": "\"",
+    "\u201d": "\"",
+    "£": [" xx",
+          "x   ",
+          "xxx",
+          "x   ",
+          "xxx"],
+    "$": [" xx",
+          "xx",
+          "xxx",
+          " xx",
+          "xx "],
+    "€": [" xx",
+          "x  ",
+          "xxx",
+          "x  ",
+          " xx"]
+}
 
 def get_max_size(font: ImageFont.FreeTypeFont) -> Tuple[int, int]:
     width, height = 0, 0
@@ -33,6 +56,12 @@ def get_max_size(font: ImageFont.FreeTypeFont) -> Tuple[int, int]:
     return width, height
 
 def get_size(font: ImageFont.FreeTypeFont, c: str) -> Tuple[int, int]:
+    if c in character_map:
+        c = character_map[c]
+
+        if isinstance(c, list):
+            return len(c[0]), len(c)
+
     im = Image.new(mode="1", size=(100, 100))
     draw = ImageDraw.Draw(im)
     draw.text((0, 0), c, font=font, fill=1, stroke_width=0)
@@ -54,6 +83,19 @@ def get_size(font: ImageFont.FreeTypeFont, c: str) -> Tuple[int, int]:
 
 def get_char_data(font: ImageFont.FreeTypeFont, height: int, c: str) -> bytes:
     width, _ = get_size(font, c)
+
+    if c in character_map:
+        c = character_map[c]
+
+        if isinstance(c, list):
+            data = bytes()
+            for y in range(height):
+                b = 0
+                for x in range(width):
+                    b = b | (1 if y < len(c) and x < len(c[y]) and c[y][x] == "x" else 0) << x
+                data += b.to_bytes(1, "little")
+            return width, data
+
     im = Image.new(mode="1", size=(width, height))
     draw = ImageDraw.Draw(im)
     draw.text((0, 0), c, font=font, fill=1, stroke_width=0)
