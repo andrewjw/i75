@@ -28,3 +28,19 @@ class TestDateTime(unittest.TestCase):
         self.assertEqual(2, d.month)
         self.assertEqual(29, d.day)
         self.assertEqual(3, d.weekday())
+
+    def test_datetime_eq(self):
+        d1 = DateTime(2024, 1, 1, 0, 10, 23, 45)
+        d2 = DateTime(2024, 1, 1, 0, 10, 23, 45)
+        d3 = DateTime(2024, 1, 1, 0, 10, 23, 46)
+
+        self.assertTrue(d1 == d2)
+        self.assertFalse(d1 == d3)
+
+    def test_datetime_neq(self):
+        d1 = DateTime(2024, 1, 1, 0, 10, 23, 45)
+        d2 = DateTime(2024, 1, 1, 0, 10, 23, 45)
+        d3 = DateTime(2024, 1, 1, 0, 10, 23, 46)
+
+        self.assertFalse(d1 != d2)
+        self.assertTrue(d1 != d3)
