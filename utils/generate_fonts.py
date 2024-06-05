@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os.path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Union
 import string
 
 from PIL import Image, ImageDraw, ImageFont
@@ -24,7 +24,7 @@ from PIL import Image, ImageDraw, ImageFont
 character_set = set(string.digits + string.ascii_letters.upper() + string.punctuation + "‐£$€"
                     + "\u2018\u2019\u201c\u201d") # quote marks
 
-character_map: Dict[str, str | List[str]] = {
+character_map: Dict[str, Union[str, List[str]]] = {
     "‐": "-",
     "\u2018": "'",
     "\u2019": "'",
