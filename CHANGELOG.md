@@ -2,6 +2,23 @@
 
 
 
+## v1.8.2 (2024-06-05)
+
+### Chore
+
+* chore: Add new test for datetime comparisons. ([`3c53e2e`](https://github.com/andrewjw/i75/commit/3c53e2e1f22b82c18768286a2f2cf6d0d5405eb7))
+
+* chore(deps): update dependency python-semantic-release to v9.7.1 ([`0a8ae0e`](https://github.com/andrewjw/i75/commit/0a8ae0e4f1d8490ca00bc902162241c1eb965457))
+
+* chore(deps): update dependency python-semantic-release to v9.7.0 ([`6e8dd93`](https://github.com/andrewjw/i75/commit/6e8dd93a841eb63741522e8bbb1488bf33099510))
+
+### Fix
+
+* fix: Fix type spec for Python prior to 3.10. ([`73daa20`](https://github.com/andrewjw/i75/commit/73daa20ad0fc5bfb8063109b2e95fb4f51b70f31))
+
+* fix: Fix the new unicode characters as the font doesn&#39;t natively support them. ([`fc78e9a`](https://github.com/andrewjw/i75/commit/fc78e9afe1596e2b1a4142267288454737e05f84))
+
+
 ## v1.8.1 (2024-04-29)
 
 ### Chore
