@@ -1,7 +1,7 @@
 pycodestyle==2.12.1
 coveralls==3.3.1
 pygame==2.6.0
-python-semantic-release==9.8.6
+python-semantic-release==9.8.7
 mypy==1.11.1
 wheel==0.44.0
 micropython-rp2-pico-stubs==1.20.0.post5
