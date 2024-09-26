@@ -36,9 +36,9 @@ class Graphics:
         self._driver = picographics.PicoGraphics(display_type)
         self.rotate = rotate
 
-        width, height = self._driver.get_bounds()
-        self.hub75 = hub75.Hub75(width,
-                                 height,
+        self.width, self.height = self._driver.get_bounds()
+        self.hub75 = hub75.Hub75(self.width,
+                                 self.height,
                                  panel_type=panel_type,
                                  stb_invert=stb_invert,
                                  color_order=color_order)
@@ -113,11 +113,11 @@ class Graphics:
                 self.pixel(x, y)
 
     def pixel(self, x: int, y: int) -> None:
-        if x >= 0 and x < 64 and y >= 0 and y < 64:
+        if x >= 0 and x < self.width and y >= 0 and y < self.height:
             self._driver.pixel(x, y)
 
     def __pixel_reverse(self, x: int, y: int) -> None:
-        if x >= 0 and x < 64 and y >= 0 and y < 64:
+        if x >= 0 and x < self.width and y >= 0 and y < self.height:
             self._driver.pixel(y, x)
 
     def update(self) -> None:
