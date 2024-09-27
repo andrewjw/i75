@@ -1,6 +1,68 @@
 # CHANGELOG
 
+## v1.8.3 (2024-09-27)
 
+### Chore
+
+* chore(deps): update dependency types-requests to v2.32.0.20240914 ([`dde403a`](https://github.com/andrewjw/i75/commit/dde403ae1353637a97b6149e33c1f52ee87d15ab))
+
+* chore(deps): update dependency types-requests to v2.32.0.20240907 ([`9a7ea64`](https://github.com/andrewjw/i75/commit/9a7ea647fae120dc9424fadbdd924e1c3a878cc0))
+
+* chore(deps): update dependency types-requests to v2.32.0.20240905 ([`6d1d272`](https://github.com/andrewjw/i75/commit/6d1d2728f3656b200b4fb574e2868572cca3c206))
+
+* chore(deps): update dependency python-semantic-release to v9.8.8 ([`ccbf0fa`](https://github.com/andrewjw/i75/commit/ccbf0fad2794c22a91bc6d3f7429c1a311ebc493))
+
+* chore(deps): update dependency mypy to v1.11.2 ([`3e1e011`](https://github.com/andrewjw/i75/commit/3e1e0118cbd74bf2b60b17f24e7e28818348b3e8))
+
+* chore(deps): update dependency types_pillow to v10.2.0.20240822 ([`73402f4`](https://github.com/andrewjw/i75/commit/73402f429ae1739d4b742e546ad780eb904867a7))
+
+* chore(deps): update dependency python-semantic-release to v9.8.7 ([`65a48a1`](https://github.com/andrewjw/i75/commit/65a48a1a1a26213a9d5b2c82dcb70804b01a2333))
+
+* chore(deps): update dependency pycodestyle to v2.12.1 ([`fb179af`](https://github.com/andrewjw/i75/commit/fb179af806c06df0017f75cc28629bc380b8958f))
+
+* chore(deps): update dependency wheel to v0.44.0 ([`d6962b9`](https://github.com/andrewjw/i75/commit/d6962b91c1e6c63c8e28485a3f1c8e31ce3254ed))
+
+* chore(deps): update dependency mypy to v1.11.1 ([`9a46c48`](https://github.com/andrewjw/i75/commit/9a46c48f48ff4758932b98f4c5d92c7d5d6a9046))
+
+* chore(deps): update dependency python-semantic-release to v9.8.6 ([`2f45193`](https://github.com/andrewjw/i75/commit/2f4519313024090b0032149170be40994c521045))
+
+* chore(deps): update dependency mypy to v1.11.0 ([`75466ff`](https://github.com/andrewjw/i75/commit/75466ff36cdffb2a268a86db4ba6068ccc138660))
+
+* chore(deps): update dependency types-requests to v2.32.0.20240712 ([`04a0eab`](https://github.com/andrewjw/i75/commit/04a0eab51d9ecd5c0cd00e44f4cb8d652c9c85cb))
+
+* chore(deps): update dependency python-semantic-release to v9.8.5 ([`3b327d8`](https://github.com/andrewjw/i75/commit/3b327d89683f23e10dad05a3fde1e208da24b535))
+
+* chore(deps): update dependency python-semantic-release to v9.8.4 ([`c650314`](https://github.com/andrewjw/i75/commit/c65031437830dea358805a245451cdd3db840f59))
+
+* chore(deps): update dependency pillow to v10.4.0 ([`060fed4`](https://github.com/andrewjw/i75/commit/060fed4da74e943c0a1de8fded77407e3642368b))
+
+* chore(deps): update dependency pygame to v2.6.0 ([`4b47fec`](https://github.com/andrewjw/i75/commit/4b47fecb981b7235d3c87831a29c09b08b39710d))
+
+* chore(deps): update dependency twine to v5.1.1 ([`92797b0`](https://github.com/andrewjw/i75/commit/92797b0e860d60f1e5f524be04f6eac5c586b2ca))
+
+* chore(deps): update dependency mypy to v1.10.1 ([`8b63725`](https://github.com/andrewjw/i75/commit/8b637252c5981949ded922b0b03e91a0eaea35d8))
+
+* chore(deps): update dependency types-requests to v2.32.0.20240622 ([`950d4db`](https://github.com/andrewjw/i75/commit/950d4db766234b04a83ef9789e60c23aaafc0ad4))
+
+* chore(deps): update dependency python-semantic-release to v9.8.3 ([`2d7b722`](https://github.com/andrewjw/i75/commit/2d7b722995326984d29c1e7fb77a067f1f378898))
+
+* chore(deps): update dependency python-semantic-release to v9.8.2 ([`7d39f9f`](https://github.com/andrewjw/i75/commit/7d39f9f46e3d9a41e07207ea40ee548f432605fb))
+
+* chore(deps): update dependency pycodestyle to v2.12.0 ([`339fc9c`](https://github.com/andrewjw/i75/commit/339fc9c771929d2a6142b9609ac02b9ab8d3241b))
+
+* chore(deps): update dependency types-requests to v2.32.0.20240602 ([`96008e9`](https://github.com/andrewjw/i75/commit/96008e9ddcf90c1e45874d9ca4043095479f7b7f))
+
+* chore(deps): update dependency twine to v5.1.0 ([`ccadb45`](https://github.com/andrewjw/i75/commit/ccadb45e2f6fb4e2258188827a262919e4e1ce9e))
+
+* chore(deps): update dependency requests to v2.32.3 ([`b0aa2fb`](https://github.com/andrewjw/i75/commit/b0aa2fb0e8789b4ccae7dbc57ea6cfed8f302485))
+
+* chore(deps): update dependency python-semantic-release to v9.8.1 ([`2eee44f`](https://github.com/andrewjw/i75/commit/2eee44fcbc7a7e66a80e86412b96f07935731a67))
+
+* chore(deps): update dependency types_pillow to v10.2.0.20240520 ([`709b2fe`](https://github.com/andrewjw/i75/commit/709b2fe2591a0523f8d87dafda63ac05b8b58d63))
+
+### Fix
+
+* fix: Remove hardcoding for 64x64 screen size ([`9db61fd`](https://github.com/andrewjw/i75/commit/9db61fdd6f73bb4e508d61232eb016d70a4f37d5))
 
 ## v1.8.2 (2024-06-05)
 
@@ -18,7 +80,6 @@
 
 * fix: Fix the new unicode characters as the font doesn&#39;t natively support them. ([`fc78e9a`](https://github.com/andrewjw/i75/commit/fc78e9afe1596e2b1a4142267288454737e05f84))
 
-
 ## v1.8.1 (2024-04-29)
 
 ### Chore
@@ -28,7 +89,6 @@
 ### Fix
 
 * fix: Add currency symbols and some unicode characters to the supported set of characters. ([`3a637c0`](https://github.com/andrewjw/i75/commit/3a637c0b062a4a67f8666a123f43c9fd5bb6dcca))
-
 
 ## v1.8.0 (2024-04-26)
 
@@ -74,13 +134,11 @@
 
 * fix: Allow alpha channel to be ignored when converting three colour images. ([`1cb430e`](https://github.com/andrewjw/i75/commit/1cb430ebd6cefd2c78d185f93a7c36ff9a4e3639))
 
-
 ## v1.7.0 (2024-03-20)
 
 ### Feature
 
 * feat: Allow images to be loaded into predefined byte array. ([`a932c18`](https://github.com/andrewjw/i75/commit/a932c18d172775120f9db50058af5084c99b4c76))
-
 
 ## v1.6.1 (2024-03-19)
 
@@ -93,7 +151,6 @@
 ### Fix
 
 * fix: Fake commit to trigger to upload to PyPI after the last release failed. ([`00b79ed`](https://github.com/andrewjw/i75/commit/00b79ed8ead6eecd6ea10ad4c42ba5c8b237ad35))
-
 
 ## v1.6.0 (2024-03-13)
 
@@ -125,7 +182,6 @@
 
 * fix: Fix different between bounding box size and rendered text when using lowercase text. ([`d29ff5b`](https://github.com/andrewjw/i75/commit/d29ff5b549600a75929337f845b31c2e1be5ae33))
 
-
 ## v1.5.0 (2024-03-01)
 
 ### Feature
@@ -136,20 +192,17 @@
 
 * feat: Add threading example. ([`ce1e362`](https://github.com/andrewjw/i75/commit/ce1e362df5b65e9cf62de521e06ec4185389ec8e))
 
-
 ## v1.4.0 (2024-02-28)
 
 ### Feature
 
 * feat: Add stream parameter to request functions for compatibility with proper Python requests. ([`39f5516`](https://github.com/andrewjw/i75/commit/39f55165ce390926a5222ade9a7f50f9a24654b3))
 
-
 ## v1.3.1 (2024-02-26)
 
 ### Fix
 
 * fix: Add missing data and header parameters for urequests.get. ([`0d8cd91`](https://github.com/andrewjw/i75/commit/0d8cd9133c4dd983133e5eb3a4d7708f81a0fbf4))
-
 
 ## v1.3.0 (2024-02-26)
 
@@ -161,7 +214,6 @@
 
 * feat: Add machine reset functions. ([`8cebae1`](https://github.com/andrewjw/i75/commit/8cebae19d43e4cab0df5f824f08b0e43ec5c7c23))
 
-
 ## v1.2.1 (2024-02-25)
 
 ### Fix
@@ -169,7 +221,6 @@
 * fix: Remove Python 3.10+ syntax ([`4fe4696`](https://github.com/andrewjw/i75/commit/4fe4696e534352963b8c09a116b5de639ef9909e))
 
 * fix: Fix mypy processing of the examples. ([`cfff426`](https://github.com/andrewjw/i75/commit/cfff42660661b3b3ec3d7b85114529c3863743d7))
-
 
 ## v1.2.0 (2024-02-25)
 
@@ -189,7 +240,6 @@
 
 * fix: Add new function to machine stub file. ([`89a2116`](https://github.com/andrewjw/i75/commit/89a2116e9f69f55f652e6ea23650c43fcd0bb923))
 
-
 ## v1.1.2 (2024-02-01)
 
 ### Chore
@@ -200,7 +250,6 @@
 
 * fix: Add base method for Image.render. ([`2ce2f9c`](https://github.com/andrewjw/i75/commit/2ce2f9cad6099cecdd032e8c0bfef455d746747f))
 
-
 ## v1.1.1 (2024-01-12)
 
 ### Chore
@@ -210,7 +259,6 @@
 ### Fix
 
 * fix: Install image.py, and micropython requires byte ordering in from_bytes. ([`7e4a9af`](https://github.com/andrewjw/i75/commit/7e4a9af37b2f71fe07ede79fa0cd3c98d023a5cb))
-
 
 ## v1.1.0 (2024-01-11)
 
@@ -238,13 +286,11 @@
 
 * Fix style. ([`63fd990`](https://github.com/andrewjw/i75/commit/63fd99013e143d8f011dde6f68800198d2ec3661))
 
-
 ## v1.0.1 (2023-12-30)
 
 ### Fix
 
 * fix: Fix calculation of font height. ([`63cdaab`](https://github.com/andrewjw/i75/commit/63cdaab95ad824e525a4f36b99bb5aecb7bd7b5f))
-
 
 ## v1.0.0 (2023-12-30)
 
@@ -263,7 +309,6 @@ BREAKING CHANGE: text has been renamed to render_text. ([`dfbe937`](https://gith
 * chore(deps): update dependency mypy to v1.8.0 ([`ee9633e`](https://github.com/andrewjw/i75/commit/ee9633e622f7cbfa80bc4d452d53ac5bfd141f4b))
 
 * chore(deps): update dependency python-semantic-release to v8.5.2 ([`ca8a4ec`](https://github.com/andrewjw/i75/commit/ca8a4ec1647496cb1fc99a0d027b981a3115d862))
-
 
 ## v0.13.0 (2023-12-13)
 
@@ -291,7 +336,6 @@ BREAKING CHANGE: text has been renamed to render_text. ([`dfbe937`](https://gith
 
 * fix: Generate font data before releasing. ([`530559e`](https://github.com/andrewjw/i75/commit/530559e70663955df99f5dc784563cf6c587895f))
 
-
 ## v0.12.0 (2023-12-01)
 
 ### Feature
@@ -302,13 +346,11 @@ BREAKING CHANGE: text has been renamed to render_text. ([`dfbe937`](https://gith
 
 * fix: Include timezone module in package. ([`f947670`](https://github.com/andrewjw/i75/commit/f9476709e045864819a430ee94ac8f6a11e0eb37))
 
-
 ## v0.11.1 (2023-11-30)
 
 ### Fix
 
 * fix: Add type ignores where we&#39;re adding functions to standard modules. ([`0cd869e`](https://github.com/andrewjw/i75/commit/0cd869e1cc60dcf8be64b74daffc5354ad1016f8))
-
 
 ## v0.11.0 (2023-11-30)
 
@@ -334,20 +376,17 @@ BREAKING CHANGE: text has been renamed to render_text. ([`dfbe937`](https://gith
 
 * fix: Fix style. ([`f1c74eb`](https://github.com/andrewjw/i75/commit/f1c74ebc14f9986122cf1cfee446ebc404e2d097))
 
-
 ## v0.10.2 (2023-11-30)
 
 ### Fix
 
 * fix: Mark the library as typed for mypy. ([`c69815d`](https://github.com/andrewjw/i75/commit/c69815d71c50ddf047d069ffa6b7bf5a2e517905))
 
-
 ## v0.10.1 (2023-11-30)
 
 ### Fix
 
 * fix: Fix import. ([`4501888`](https://github.com/andrewjw/i75/commit/45018886a1849fc7d83d48150ef50704d280869c))
-
 
 ## v0.10.0 (2023-11-30)
 
@@ -358,7 +397,6 @@ BREAKING CHANGE: text has been renamed to render_text. ([`dfbe937`](https://gith
 ### Fix
 
 * fix: Fix assert method name change. ([`aee0cb4`](https://github.com/andrewjw/i75/commit/aee0cb4503840227be0cd64bd3e28f7f59ae4c3f))
-
 
 ## v0.9.1 (2023-11-30)
 
@@ -371,7 +409,6 @@ BREAKING CHANGE: text has been renamed to render_text. ([`dfbe937`](https://gith
 * fix: Fix style. ([`ae70e22`](https://github.com/andrewjw/i75/commit/ae70e22422d3c19dbe601651920eaff9cc3a55b5))
 
 * fix: Expose DateTime object and add documentation for it. ([`0b1646d`](https://github.com/andrewjw/i75/commit/0b1646dc8519923e43b4463d17fc02c46978386c))
-
 
 ## v0.9.0 (2023-11-29)
 
@@ -386,7 +423,6 @@ BREAKING CHANGE: text has been renamed to render_text. ([`dfbe937`](https://gith
 * fix: Fix style issues. ([`6723926`](https://github.com/andrewjw/i75/commit/67239265f05eefd2d5d891158a7fa3ccad314c83))
 
 * fix: Correctly add path to emulated libraries, don&#39;t rely on local directory. ([`63954f5`](https://github.com/andrewjw/i75/commit/63954f5efdd7f06249a2be473f00f57588945fff))
-
 
 ## v0.8.1 (2023-11-28)
 
@@ -413,7 +449,6 @@ BREAKING CHANGE: text has been renamed to render_text. ([`dfbe937`](https://gith
 * Merge pull request #24 from andrewjw/add_circles
 
 fix: Fix install to include emulated libraries. ([`bc0987c`](https://github.com/andrewjw/i75/commit/bc0987cece18b59b19b29d54b44ca176f16db690))
-
 
 ## v0.8.0 (2023-10-18)
 
@@ -445,7 +480,6 @@ fix: Fix install to include emulated libraries. ([`bc0987c`](https://github.com/
 
 Add circles and a bouncing ball example ([`1fb83ba`](https://github.com/andrewjw/i75/commit/1fb83bac862549f6097ac7b6ccbc4a16ddee6d5a))
 
-
 ## v0.7.1 (2023-09-29)
 
 ### Chore
@@ -462,10 +496,11 @@ Add circles and a bouncing ball example ([`1fb83ba`](https://github.com/andrewjw
 
 * fix: Fix drawing of steep lines and add some tests. ([`def6ea3`](https://github.com/andrewjw/i75/commit/def6ea33dc89cdfbc61be1fed8e5d6ea8be10b75))
 
-
 ## v0.7.0 (2023-09-25)
 
 ### Chore
+
+* chore(deps): update actions/checkout action to v4 ([`bb09e53`](https://github.com/andrewjw/i75/commit/bb09e532c2225e0741e0b06b589940865f41280a))
 
 * chore(deps): update dependency python-semantic-release to v8.1.1 ([`7a56520`](https://github.com/andrewjw/i75/commit/7a5652091a2c48e4ec359bfa41ca53505f700cc0))
 
@@ -479,19 +514,15 @@ Add circles and a bouncing ball example ([`1fb83ba`](https://github.com/andrewjw
 
 chore(deps): update actions/checkout action to v4 ([`a7a86d4`](https://github.com/andrewjw/i75/commit/a7a86d4a415114c92e5e9bfb1f2ad6cfbc7e05e5))
 
-
 ## v0.6.0 (2023-09-18)
 
 ### Chore
 
 * chore(deps): update dependency pygame to v2.5.2 ([`3e43062`](https://github.com/andrewjw/i75/commit/3e4306284aae277f12e2008b01d9805954a3769f))
 
-* chore(deps): update actions/checkout action to v4 ([`bb09e53`](https://github.com/andrewjw/i75/commit/bb09e532c2225e0741e0b06b589940865f41280a))
-
 ### Feature
 
 * feat: Move much more logic into the emulated standard libraries and less in the library. ([`9b44ec0`](https://github.com/andrewjw/i75/commit/9b44ec0b378821091fe26ef0e491ffe77a3fa175))
-
 
 ## v0.5.0 (2023-08-31)
 
@@ -509,7 +540,6 @@ chore(deps): update actions/checkout action to v4 ([`a7a86d4`](https://github.co
 
 * feat: Emulate the built-in network module more accurately. ([`528f5ee`](https://github.com/andrewjw/i75/commit/528f5ee5394cb4ce27a705c8ccfaac0dd5105a5a))
 
-
 ## v0.4.1 (2023-08-30)
 
 ### Fix
@@ -517,7 +547,6 @@ chore(deps): update actions/checkout action to v4 ([`a7a86d4`](https://github.co
 * fix: Update example for renamed module. ([`44a82b5`](https://github.com/andrewjw/i75/commit/44a82b5532c1b633f81cdc26bae063579f6324ab))
 
 * fix: Rename is_mock to is_emulated to match other renames. ([`d7ea1f2`](https://github.com/andrewjw/i75/commit/d7ea1f219be1d397a5fe999fc656bec48b3fcc11))
-
 
 ## v0.4.0 (2023-08-30)
 
@@ -528,7 +557,6 @@ chore(deps): update actions/checkout action to v4 ([`a7a86d4`](https://github.co
 ### Fix
 
 * fix: Fix import name. ([`1bbf7ca`](https://github.com/andrewjw/i75/commit/1bbf7ca2e4844025c01fd289c3ece94560e9296a))
-
 
 ## v0.3.0 (2023-08-30)
 
@@ -566,7 +594,6 @@ chore(deps): update actions/checkout action to v4 ([`a7a86d4`](https://github.co
 
 * Merge pull request #6 from andrewjw/renovate/pygame-2.x ([`b5d1d7a`](https://github.com/andrewjw/i75/commit/b5d1d7a4021a4551c823995fa3979d3da74724a0))
 
-
 ## v0.2.0 (2023-08-24)
 
 ### Chore
@@ -579,13 +606,11 @@ chore(deps): update actions/checkout action to v4 ([`a7a86d4`](https://github.co
 
 * feat: Make second hand of the clock example move more smoothly. ([`4ba213e`](https://github.com/andrewjw/i75/commit/4ba213e244536bb2c857ffcef444e3f663029620))
 
-
 ## v0.1.2 (2023-08-23)
 
 ### Fix
 
 * fix: Rename documentation file ([`7ddf96d`](https://github.com/andrewjw/i75/commit/7ddf96d5fcea1cff32d2921674a67b4fd916f093))
-
 
 ## v0.1.1 (2023-08-22)
 
@@ -596,7 +621,6 @@ chore(deps): update actions/checkout action to v4 ([`a7a86d4`](https://github.co
 ### Fix
 
 * fix: Remove docker build. ([`cc6cdc7`](https://github.com/andrewjw/i75/commit/cc6cdc72557c05141cc005d671d779c0276e13c8))
-
 
 ## v0.1.0 (2023-08-22)
 
