@@ -1,6 +1,6 @@
 pycodestyle==2.12.1
 coveralls==4.0.1
-pygame==2.6.0
+pygame==2.6.1
 python-semantic-release==9.9.0
 mypy==1.11.2
 wheel==0.44.0
