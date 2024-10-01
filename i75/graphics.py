@@ -112,6 +112,9 @@ class Graphics:
             for y in range(tl_y, br_y):
                 self.pixel(x, y)
 
+    def clear(self) -> None:
+        self._driver.clear()
+
     def pixel(self, x: int, y: int) -> None:
         if x >= 0 and x < self.width and y >= 0 and y < self.height:
             self._driver.pixel(x, y)

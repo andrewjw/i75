@@ -64,6 +64,11 @@ class PicoGraphics:
                 last_coord = (px, py)
                 self.pixel(px, py)
 
+    def clear(self) -> None:
+        for y in range(self.display_type.height):
+            for x in range(self.display_type.width):
+                self._buffer[y][x] = self.pen.as_tuple()
+
     def pixel(self, x: int, y: int) -> None:
         self._buffer[y][x] = self.pen.as_tuple()
 
