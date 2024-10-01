@@ -37,6 +37,7 @@ DISPLAY_INTERSTATE75_128X64 = DisplayType(128, 64)
 DISPLAY_INTERSTATE75_192X64 = DisplayType(192, 64)
 DISPLAY_INTERSTATE75_256X64 = DisplayType(256, 64)
 
+
 class PicoGraphics:
     def __init__(self, display_type: DisplayType):
         self.display_type = display_type
