@@ -27,8 +27,15 @@ class DisplayType:
         self.height = height
 
 
+DISPLAY_INTERSTATE75_32X32 = DisplayType(32, 32)
+DISPLAY_INTERSTATE75_64X32 = DisplayType(64, 32)
+DISPLAY_INTERSTATE75_96X32 = DisplayType(96, 32)
+DISPLAY_INTERSTATE75_96X48 = DisplayType(96, 48)
+DISPLAY_INTERSTATE75_128X32 = DisplayType(128, 32)
 DISPLAY_INTERSTATE75_64X64 = DisplayType(64, 64)
-
+DISPLAY_INTERSTATE75_128X64 = DisplayType(128, 64)
+DISPLAY_INTERSTATE75_192X64 = DisplayType(192, 64)
+DISPLAY_INTERSTATE75_256X64 = DisplayType(256, 64)
 
 class PicoGraphics:
     def __init__(self, display_type: DisplayType):
