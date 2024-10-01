@@ -34,7 +34,7 @@ class Graphics:
                  color_order: hub75.ColorOrder
                  = hub75.COLOR_ORDER_RGB) -> None:
         self._driver = picographics.PicoGraphics(display_type)
-        self.rotate = rotate #for now only accept 90,180, 270
+        self.rotate = rotate  # for now only accept 90,180, 270
 
         self.width, self.height = self._driver.get_bounds()
         self.hub75 = hub75.Hub75(self.width,
