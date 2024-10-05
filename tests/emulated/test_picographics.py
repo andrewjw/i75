@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # i75
-# Copyright (C) 2023 Andrew Wilkinson
+# Copyright (C) 2023-2024 Andrew Wilkinson
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,6 +15,24 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from .test_pen import TestPen
-from .test_picographics import TestPicoGraphics
-from .test_machine import TestMachine
+import unittest
+import unittest.mock
+
+import picographics
+
+
+class TestPicoGraphics(unittest.TestCase):
+    def test_clear(self) -> None:
+        graphics = picographics.PicoGraphics(
+            picographics.DISPLAY_INTERSTATE75_64X64
+        )
+
+        red = graphics.create_pen(255, 0, 0)
+
+        self.assertIsNone(graphics._buffer[0][0])
+
+        graphics.set_pen(red)
+
+        graphics.clear()
+
+        self.assertEqual(graphics._buffer[0][0], (255, 0, 0))
