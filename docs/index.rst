@@ -16,6 +16,11 @@ and doesn't need constant deploying to physical hardware for testing.
    i75
    emulatedi75
    emulated/network
+   
+   colour
+   datetime
+   graphics
+   text
 
    secrets
 
