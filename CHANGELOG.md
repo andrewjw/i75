@@ -1,5 +1,19 @@
 # CHANGELOG
 
+## v1.10.0 (2024-10-05)
+
+### Chore
+
+* chore: Add test for new clear function. ([`2c93792`](https://github.com/andrewjw/i75/commit/2c93792553aac7fb741430dc8524012be9375e58))
+
+* chore: Add documentation for the Graphics class. ([`baddf10`](https://github.com/andrewjw/i75/commit/baddf10b143ee7eeef571c8d188dff437461b6b6))
+
+### Feature
+
+* feat: add in the display types from pimoroni i75
+
+Co-authored-by: Dan Jenkins &lt;dan@nimblea.pe&gt; ([`7799207`](https://github.com/andrewjw/i75/commit/77992075df98eb8c786e6cb1534cd7a466ce6495))
+
 ## v1.9.0 (2024-10-05)
 
 ### Chore
