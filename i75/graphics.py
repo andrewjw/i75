@@ -26,6 +26,11 @@ import hub75
 
 
 class Graphics:
+    """
+    This class provides functionality to render simple graphics to the screen.
+
+    After drawing anything you must call :func:`update` to display it.
+    """
     def __init__(self,
                  display_type: picographics.DisplayType,
                  rotate: Optional[int] = 0,
@@ -113,9 +118,18 @@ class Graphics:
                 self.pixel(x, y)
 
     def clear(self) -> None:
+        """
+        Clear the screen to the current set pen colour.
+        """
         self._driver.clear()
 
     def pixel(self, x: int, y: int) -> None:
+        """
+        Set the pixel ``(x, y)`` to the current pen colour.
+
+        :param x: The x coordinate.
+        :param y: The y coordinate.
+        """
         if x >= 0 and x < self.width and y >= 0 and y < self.height:
             self._driver.pixel(x, y)
 
@@ -124,7 +138,15 @@ class Graphics:
             self._driver.pixel(y, x)
 
     def update(self) -> None:
+        """
+        Updates the screen with the current buffer contents.
+        """
         self.hub75.update(self._driver)
 
     def get_bounds(self) -> Tuple[int, int]:
+        """
+        Returns the size of the screen.
+
+        :returns: The screen size as ``(width, height)``
+        """
         return self._driver.get_bounds()

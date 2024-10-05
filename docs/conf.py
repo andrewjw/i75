@@ -20,7 +20,7 @@ add_function_parentheses = True
 #modindex_common_prefix = []
 
 project = u'i75'
-copyright = u'2023, Andrew Wilkinson'
+copyright = u'2023-2024, Andrew Wilkinson'
 
 version = ''
 release = ''
