@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## v1.9.0 (2024-10-05)
+
+### Chore
+
+* chore(deps): update dependency pygame to v2.6.1 ([`130befe`](https://github.com/andrewjw/i75/commit/130befe2645798e5f8344923b96027b2ba17ec92))
+
+* chore(deps): update dependency python-semantic-release to v9.9.0 ([`31a2b01`](https://github.com/andrewjw/i75/commit/31a2b01c85dbe6ccfc6adf827abca5ab557285dc))
+
+* chore(deps): update dependency coveralls to v4 ([`4be3688`](https://github.com/andrewjw/i75/commit/4be3688ffd8144d23b3231e93c3e0bd2223aca2b))
+
+* chore(deps): update dependency python-semantic-release to v9.8.9 ([`cfd95f6`](https://github.com/andrewjw/i75/commit/cfd95f6d27f5d589cb34219d625e81727bc5ad81))
+
+### Feature
+
+* feat: add clear function ([`be4c722`](https://github.com/andrewjw/i75/commit/be4c7220e46be20bc35ee2fd6cefedf6888780fa))
+
 ## v1.8.3 (2024-09-27)
 
 ### Chore
