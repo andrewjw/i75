@@ -34,7 +34,7 @@ class Graphics:
                  color_order: hub75.ColorOrder
                  = hub75.COLOR_ORDER_RGB) -> None:
         self._driver = picographics.PicoGraphics(display_type)
-        self.rotate = rotate
+        self.rotate = rotate  # for now only accept 90,180, 270
 
         self.width, self.height = self._driver.get_bounds()
         self.hub75 = hub75.Hub75(self.width,
@@ -116,12 +116,26 @@ class Graphics:
         self._driver.clear()
 
     def pixel(self, x: int, y: int) -> None:
+        if self.rotate != 0:
+            x, y = self._rotate_pixels(x, y)
+
         if x >= 0 and x < self.width and y >= 0 and y < self.height:
             self._driver.pixel(x, y)
 
     def __pixel_reverse(self, x: int, y: int) -> None:
+        if self.rotate != 0:
+            x, y = self._rotate_pixels(x, y)
+
         if x >= 0 and x < self.width and y >= 0 and y < self.height:
             self._driver.pixel(y, x)
+
+    def _rotate_pixels(self, x: int, y: int) -> Tuple[int, int]:
+        x_h = x
+        y_h = y
+        if self.rotate == 270:
+            x_h = y
+            y_h = self.height - 1 - x
+        return x_h, y_h
 
     def update(self) -> None:
         self.hub75.update(self._driver)
