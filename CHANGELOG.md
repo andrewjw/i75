@@ -1,6 +1,19 @@
 # CHANGELOG
 
 
+## v1.11.0 (2024-10-24)
+
+### Chores
+
+* chore(deps): update dependency mypy to v1.13.0 ([`2cb1c4a`](https://github.com/andrewjw/i75/commit/2cb1c4ae0067b7d72d35bc026d63506908f7b55e))
+
+* chore(deps): update dependency mypy to v1.12.1 ([`791bc40`](https://github.com/andrewjw/i75/commit/791bc409247d7c76476b5786d6199552f1c49cbf))
+
+### Features
+
+* feat: Add set_colour method to base Image class. ([`3cc4128`](https://github.com/andrewjw/i75/commit/3cc412811f03791646737cf476d7793bee39eb01))
+
+
 ## v1.10.1 (2024-10-18)
 
 ### Bug Fixes
