@@ -33,6 +33,9 @@ class Image:
     def render(self, buffer: Graphics, offset_x: int, offset_y: int) -> None:
         raise NotImplementedError()
 
+    def set_colour(self, red: int, green: int, blue: int) -> None:
+        raise NotImplementedError()
+
     @staticmethod
     def load(fp) -> "Image":
         magic = fp.read(5)
