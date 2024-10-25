@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v1.11.1 (2024-10-25)
+
+### Bug Fixes
+
+* fix: Include py.typed when installing. ([`b43783d`](https://github.com/andrewjw/i75/commit/b43783d5ad1cb59c00af26f968ff4dd9b7c2a53e))
+
+
 ## v1.11.0 (2024-10-24)
 
 ### Chores
