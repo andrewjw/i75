@@ -40,7 +40,7 @@ setuptools.setup(
     url="https://github.com/andrewjw/i75",
     scripts=["bin/i75", "bin/i75-convert-image"],
     packages=setuptools.find_packages() + ["i75.emulated", "i75.tz", "i75.fontdata"],
-    package_data={"i75": ["stubs/*.pyi"]},
+    package_data={"i75": ["py.typed", "stubs/*.pyi"]},
     classifiers=[
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
