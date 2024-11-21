@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.14.0 (2024-11-21)
+
+### Features
+
+- Add a couple of colour helper functions.
+  ([`aec186e`](https://github.com/andrewjw/i75/commit/aec186ec4ade1d0264da12d16a2caff8da511b3a))
+
+
 ## v1.13.0 (2024-11-21)
 
 ### Features
