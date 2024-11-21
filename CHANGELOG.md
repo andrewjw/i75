@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.13.0 (2024-11-21)
+
+### Features
+
+- Expose date time, and add some manipulation functions.
+  ([`d19a464`](https://github.com/andrewjw/i75/commit/d19a464d5b7474d9c10e9510627c1f60c5be9f08))
+
+
 ## v1.12.0 (2024-11-21)
 
 ### Chores
