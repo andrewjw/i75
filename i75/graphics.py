@@ -25,10 +25,9 @@ import picographics
 import hub75
 
 from .colour import Colour
-from .screens import WritableScreen
 
 
-class Graphics(WritableScreen):
+class Graphics:
     """
     This class provides functionality to render simple graphics to the screen.
 
@@ -144,14 +143,10 @@ class Graphics(WritableScreen):
         if x >= 0 and x < self.width and y >= 0 and y < self.height:
             self._driver.pixel(y, x)
 
-<<<<<<< HEAD
     def update(self) -> None:
         """
         Updates the screen with the current buffer contents.
         """
-=======
-    def flip(self) -> None:
->>>>>>> 9595984 (feat: Add scrolling screens, and a scrolling text example.)
         self.hub75.update(self._driver)
 
     def get_bounds(self) -> Tuple[int, int]:

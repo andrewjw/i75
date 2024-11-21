@@ -48,6 +48,18 @@ class SingleBitBuffer:
         byte = self._row_width * y + math.floor(x / 8.0)
         return (self._data[byte] & (1 << (x % 8))) != 0
 
+    def is_pixel_group_set(self, x: int, y: int) -> bool:
+        """Returns true if any pixel is a group of 8 is set."""
+        byte = self._row_width * y + math.floor(x / 8.0)
+        return self._data[byte] != 0
+
+    def set_pixels(self):
+        for i in range(len(self._data)):
+            if self._data[i] != 0:
+                for b in range(8):
+                    if (self._data[i] & (1 << b)) != 0:
+                        yield (i % self._row_width) * 8 + b, math.floor(i / float(self._row_width))
+
     def reset(self):
         """
         Marks all bits as unset

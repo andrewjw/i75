@@ -49,6 +49,9 @@ class Colour:
             return False
         return self._value != other._value
 
+    def __str__(self) -> str:
+        return f"<Colour {self.r} {self.g} {self.b} {self.b}>"
+
     @staticmethod
     def fromint32(value: int) -> "Colour":
         """Create a Colour object from a 32-bit integer."""

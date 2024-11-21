@@ -21,7 +21,7 @@ except ImportError:
     def cast(x, y):  # type:ignore
         return y
 
-from .screens import WritableScreen
+from .screens.writable_screen import WritableScreen
 
 
 class FontData:

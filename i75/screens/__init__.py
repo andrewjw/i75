@@ -15,16 +15,22 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+"""
 from .colour_block import ColourBlock
 from .horizontal_scrolling_screen import HorizontalScrollingScreen
+from .layers import Layers
+from .offset import Offset
+from .scale import Scale
 from .screen import Screen
 from .screen_wipe import ScreenWipe
 from .single_bit_buffer import SingleBitBuffer
 from .single_bit_screen import SingleBitScreen
 from .single_colour import SingleColour
+from .sprite_instance import SpriteInstance
 from .swipe_down import SwipeDown
 from .swipe_left import SwipeLeft
 from .swipe_right import SwipeRight
 from .swipe_up import SwipeUp
 from .vertical_scrolling_screen import VerticalScrollingScreen
 from .writable_screen import WritableScreen
+"""

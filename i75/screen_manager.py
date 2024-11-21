@@ -20,6 +20,7 @@ try:
 except ImportError:
     pass
 
+from .colour import Colour
 from .graphics import Graphics
 from .screens.screen import Screen
 from .screens.single_bit_buffer import SingleBitBuffer
@@ -48,13 +49,19 @@ class ScreenManager:
 
         self._screen.update(frame_time, self._dirty_buffer.set_pixel)
 
-        for x in range(self.width):
-            for y in range(self.height):
-                if self._dirty_buffer.is_pixel_set(x, y):
-                    c = self._screen.get_pixel(x, y)
-                    self._display.set_colour(c)
-                    self._display.pixel(x, y)
+        colour = Colour.fromrgb(0, 0, 0)
+        count = 0
+        pixels = list(self._dirty_buffer.set_pixels())
+        if len(pixels) > 0:
+            print(len(pixels))
+        for (x, y) in pixels:#self._dirty_buffer.set_pixels():
+            count += 1
+            c = self._screen.get_pixel(x, y)
+            if c != colour:
+                self._display.set_colour(c)
+                colour = c
+            self._display.pixel(x, y)
 
-        self._display.flip()
+        self._display.update()
 
         self._dirty_buffer.reset()
