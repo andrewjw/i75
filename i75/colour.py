@@ -50,3 +50,13 @@ class Colour:
     def fromint32(value: int) -> "Colour":
         """Create a Colour object from a 32-bit integer."""
         return Colour(value)
+
+    @staticmethod
+    def fromrgb(r: int, g: int, b: int) -> "Colour":
+        """Create a Colour object from three RGB values."""
+        return Colour(r << 24 | g << 16 | b << 8 | 255)
+
+    @staticmethod
+    def fromrgba(r: int, g: int, b: int, a: int) -> "Colour":
+        """Create a Colour object from four RGBA values."""
+        return Colour(r << 24 | g << 16 | b << 8 | a)
