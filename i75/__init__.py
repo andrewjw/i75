@@ -27,6 +27,6 @@ else:
 del picographics
 
 from .colour import Colour  # noqa
-from .datetime import DateTime  # noqa
+from .datetime import DateTime, Date  # noqa
 from .image import Image  # noqa
 from .text import render_text, text_boundingbox, wrap_text  # noqa
