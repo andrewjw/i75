@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.15.0 (2024-11-22)
+
+### Features
+
+- Add some date comparison operators.
+  ([`8aa0668`](https://github.com/andrewjw/i75/commit/8aa0668664b9837cb333de2185238ff0b81fa6c5))
+
+
 ## v1.14.0 (2024-11-21)
 
 ### Features
