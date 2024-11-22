@@ -44,3 +44,18 @@ class TestDateTime(unittest.TestCase):
 
         self.assertFalse(d1 != d2)
         self.assertTrue(d1 != d3)
+
+    def test_date_comparison(self):
+        d1 = Date(2024, 12, 25)
+        d2 = Date(2024, 11, 1)
+        d3 = Date(2025, 1, 1)
+        d4 = Date(2024, 12, 25)
+
+        self.assertTrue(d1 == d4)
+        self.assertTrue(d1 != d2)
+        self.assertTrue(d1 > d2)
+        self.assertTrue(d1 >= d2)
+        self.assertTrue(d1 >= d4)
+        self.assertTrue(d1 < d3)
+        self.assertTrue(d1 <= d3)
+        self.assertTrue(d1 <= d4)
