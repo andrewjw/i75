@@ -90,6 +90,36 @@ class Date:
             raise TypeError("Expected Date type.")
         return TimeDelta(self.__days_since_1970 - other.__days_since_1970)
 
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Date):
+            raise TypeError("Expected Date type.")
+        return self.__days_since_1970 == other.__days_since_1970
+
+    def __neq__(self, other: "Date") -> bool:
+        if not isinstance(other, Date):
+            raise TypeError("Expected Date type.")
+        return self.__days_since_1970 != other.__days_since_1970
+
+    def __gt__(self, other: "Date") -> bool:
+        if not isinstance(other, Date):
+            raise TypeError("Expected Date type.")
+        return self.__days_since_1970 > other.__days_since_1970
+
+    def __ge__(self, other: "Date") -> bool:
+        if not isinstance(other, Date):
+            raise TypeError("Expected Date type.")
+        return self.__days_since_1970 >= other.__days_since_1970
+
+    def __lt__(self, other: "Date") -> bool:
+        if not isinstance(other, Date):
+            raise TypeError("Expected Date type.")
+        return self.__days_since_1970 < other.__days_since_1970
+
+    def __le__(self, other: "Date") -> bool:
+        if not isinstance(other, Date):
+            raise TypeError("Expected Date type.")
+        return self.__days_since_1970 <= other.__days_since_1970
+
     @property
     def year(self) -> int:
         return self.__year_month_day()[0]
@@ -101,11 +131,6 @@ class Date:
     @property
     def day(self) -> int:
         return self.__year_month_day()[2]
-
-    def __eq__(self, other: object) -> bool:
-        if not isinstance(other, Date):
-            return False
-        return self.__days_since_1970 == other.__days_since_1970
 
 
 class DateTime:
