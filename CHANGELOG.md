@@ -1,6 +1,33 @@
 # CHANGELOG
 
 
+## v1.16.0 (2024-12-11)
+
+### Chores
+
+- **deps**: Update dependency python-semantic-release to v9.15.0
+  ([#131](https://github.com/andrewjw/i75/pull/131),
+  [`d7609ae`](https://github.com/andrewjw/i75/commit/d7609ae0e4bd1264b08023b50391b2ce6c98da1d))
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
+- **deps**: Update dependency python-semantic-release to v9.15.1
+  ([#132](https://github.com/andrewjw/i75/pull/132),
+  [`a37793f`](https://github.com/andrewjw/i75/commit/a37793f0c49f52734d3bacc99fc9e89a584cd474))
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
+- **deps**: Update dependency wheel to v0.45.1 ([#129](https://github.com/andrewjw/i75/pull/129),
+  [`19df4b4`](https://github.com/andrewjw/i75/commit/19df4b466e8ff869a46a0b2b818909bd8553c1d1))
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
+### Features
+
+- Add ability to render image straight from a file, avoiding memory allocation.
+  ([`d90752b`](https://github.com/andrewjw/i75/commit/d90752b46e8fdc29634fe8c83bd270de848b579e))
+
+
 ## v1.15.0 (2024-11-22)
 
 ### Features
@@ -29,11 +56,11 @@
 
 ### Chores
 
-- **deps**: Update dependency python-semantic-release to v9.14.0
-  ([#125](https://github.com/andrewjw/i75/pull/125),
-  [`1a66dae`](https://github.com/andrewjw/i75/commit/1a66dae34521da543599ce558c725dcaa4f57d72))
+- **deps**: Update dependency python-semantic-release to v9.12.1
+  ([`d4a4fbf`](https://github.com/andrewjw/i75/commit/d4a4fbf46050143e41f3c170265ad20693d8b5d9))
 
-Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+- **deps**: Update dependency python-semantic-release to v9.12.2
+  ([`7768f4f`](https://github.com/andrewjw/i75/commit/7768f4fac2a584aa73225a45dc0aa16d6fe4e271))
 
 - **deps**: Update dependency python-semantic-release to v9.13.0
   ([#124](https://github.com/andrewjw/i75/pull/124),
@@ -41,16 +68,16 @@ Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
 
 Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
 
+- **deps**: Update dependency python-semantic-release to v9.14.0
+  ([#125](https://github.com/andrewjw/i75/pull/125),
+  [`1a66dae`](https://github.com/andrewjw/i75/commit/1a66dae34521da543599ce558c725dcaa4f57d72))
+
+Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
+
 - **deps**: Update dependency wheel to v0.45.0 ([#123](https://github.com/andrewjw/i75/pull/123),
   [`9fec41e`](https://github.com/andrewjw/i75/commit/9fec41e3786f9ead65997ef6db0136dfef0123ee))
 
 Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
-
-- **deps**: Update dependency python-semantic-release to v9.12.2
-  ([`7768f4f`](https://github.com/andrewjw/i75/commit/7768f4fac2a584aa73225a45dc0aa16d6fe4e271))
-
-- **deps**: Update dependency python-semantic-release to v9.12.1
-  ([`d4a4fbf`](https://github.com/andrewjw/i75/commit/d4a4fbf46050143e41f3c170265ad20693d8b5d9))
 
 ### Features
 
@@ -70,11 +97,11 @@ Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
 
 ### Chores
 
-- **deps**: Update dependency mypy to v1.13.0
-  ([`2cb1c4a`](https://github.com/andrewjw/i75/commit/2cb1c4ae0067b7d72d35bc026d63506908f7b55e))
-
 - **deps**: Update dependency mypy to v1.12.1
   ([`791bc40`](https://github.com/andrewjw/i75/commit/791bc409247d7c76476b5786d6199552f1c49cbf))
+
+- **deps**: Update dependency mypy to v1.13.0
+  ([`2cb1c4a`](https://github.com/andrewjw/i75/commit/2cb1c4ae0067b7d72d35bc026d63506908f7b55e))
 
 ### Features
 
@@ -91,37 +118,37 @@ Co-authored-by: renovate[bot] <29139614+renovate[bot]@users.noreply.github.com>
 
 ### Chores
 
+- **deps**: Update dependency mypy to v1.12.0
+  ([`03077f8`](https://github.com/andrewjw/i75/commit/03077f8c7126392b16f77556d880a1dd4ee2d588))
+
+- **deps**: Update dependency python-semantic-release to v9.10.0
+  ([`e7b7e12`](https://github.com/andrewjw/i75/commit/e7b7e12bcb4e85ecb98cbee6bb8c230005e567f9))
+
+- **deps**: Update dependency python-semantic-release to v9.10.1
+  ([`48f59ff`](https://github.com/andrewjw/i75/commit/48f59ff9a969d751191d1dfb96b19825082ac943))
+
+- **deps**: Update dependency python-semantic-release to v9.11.0
+  ([`50d9775`](https://github.com/andrewjw/i75/commit/50d977504a9f8670d1a17bdf6157dae142288e15))
+
+- **deps**: Update dependency python-semantic-release to v9.11.1
+  ([`aa7790a`](https://github.com/andrewjw/i75/commit/aa7790a088a8536925de09fd623dade4949c9dfa))
+
 - **deps**: Update dependency python-semantic-release to v9.12.0
   ([`22bed2e`](https://github.com/andrewjw/i75/commit/22bed2e210e1f2c09795689f0c7cce14cc866596))
 
 - **deps**: Update dependency types-requests to v2.32.0.20241016
   ([`b96c388`](https://github.com/andrewjw/i75/commit/b96c388c7f858bbb7d54859b50bf3b8457aa8d0a))
 
-- **deps**: Update dependency python-semantic-release to v9.11.1
-  ([`aa7790a`](https://github.com/andrewjw/i75/commit/aa7790a088a8536925de09fd623dade4949c9dfa))
-
-- **deps**: Update dependency mypy to v1.12.0
-  ([`03077f8`](https://github.com/andrewjw/i75/commit/03077f8c7126392b16f77556d880a1dd4ee2d588))
-
-- **deps**: Update dependency python-semantic-release to v9.11.0
-  ([`50d9775`](https://github.com/andrewjw/i75/commit/50d977504a9f8670d1a17bdf6157dae142288e15))
-
-- **deps**: Update dependency python-semantic-release to v9.10.1
-  ([`48f59ff`](https://github.com/andrewjw/i75/commit/48f59ff9a969d751191d1dfb96b19825082ac943))
-
-- **deps**: Update dependency python-semantic-release to v9.10.0
-  ([`e7b7e12`](https://github.com/andrewjw/i75/commit/e7b7e12bcb4e85ecb98cbee6bb8c230005e567f9))
-
 
 ## v1.10.0 (2024-10-05)
 
 ### Chores
 
-- Add test for new clear function.
-  ([`2c93792`](https://github.com/andrewjw/i75/commit/2c93792553aac7fb741430dc8524012be9375e58))
-
 - Add documentation for the Graphics class.
   ([`baddf10`](https://github.com/andrewjw/i75/commit/baddf10b143ee7eeef571c8d188dff437461b6b6))
+
+- Add test for new clear function.
+  ([`2c93792`](https://github.com/andrewjw/i75/commit/2c93792553aac7fb741430dc8524012be9375e58))
 
 ### Features
 
@@ -135,17 +162,17 @@ Co-authored-by: Dan Jenkins <dan@nimblea.pe>
 
 ### Chores
 
-- **deps**: Update dependency pygame to v2.6.1
-  ([`130befe`](https://github.com/andrewjw/i75/commit/130befe2645798e5f8344923b96027b2ba17ec92))
-
-- **deps**: Update dependency python-semantic-release to v9.9.0
-  ([`31a2b01`](https://github.com/andrewjw/i75/commit/31a2b01c85dbe6ccfc6adf827abca5ab557285dc))
-
 - **deps**: Update dependency coveralls to v4
   ([`4be3688`](https://github.com/andrewjw/i75/commit/4be3688ffd8144d23b3231e93c3e0bd2223aca2b))
 
+- **deps**: Update dependency pygame to v2.6.1
+  ([`130befe`](https://github.com/andrewjw/i75/commit/130befe2645798e5f8344923b96027b2ba17ec92))
+
 - **deps**: Update dependency python-semantic-release to v9.8.9
   ([`cfd95f6`](https://github.com/andrewjw/i75/commit/cfd95f6d27f5d589cb34219d625e81727bc5ad81))
+
+- **deps**: Update dependency python-semantic-release to v9.9.0
+  ([`31a2b01`](https://github.com/andrewjw/i75/commit/31a2b01c85dbe6ccfc6adf827abca5ab557285dc))
 
 ### Features
 
@@ -162,111 +189,111 @@ Co-authored-by: Dan Jenkins <dan@nimblea.pe>
 
 ### Chores
 
-- **deps**: Update dependency types-requests to v2.32.0.20240914
-  ([`dde403a`](https://github.com/andrewjw/i75/commit/dde403ae1353637a97b6149e33c1f52ee87d15ab))
-
-- **deps**: Update dependency types-requests to v2.32.0.20240907
-  ([`9a7ea64`](https://github.com/andrewjw/i75/commit/9a7ea647fae120dc9424fadbdd924e1c3a878cc0))
-
-- **deps**: Update dependency types-requests to v2.32.0.20240905
-  ([`6d1d272`](https://github.com/andrewjw/i75/commit/6d1d2728f3656b200b4fb574e2868572cca3c206))
-
-- **deps**: Update dependency python-semantic-release to v9.8.8
-  ([`ccbf0fa`](https://github.com/andrewjw/i75/commit/ccbf0fad2794c22a91bc6d3f7429c1a311ebc493))
-
-- **deps**: Update dependency mypy to v1.11.2
-  ([`3e1e011`](https://github.com/andrewjw/i75/commit/3e1e0118cbd74bf2b60b17f24e7e28818348b3e8))
-
-- **deps**: Update dependency types_pillow to v10.2.0.20240822
-  ([`73402f4`](https://github.com/andrewjw/i75/commit/73402f429ae1739d4b742e546ad780eb904867a7))
-
-- **deps**: Update dependency python-semantic-release to v9.8.7
-  ([`65a48a1`](https://github.com/andrewjw/i75/commit/65a48a1a1a26213a9d5b2c82dcb70804b01a2333))
-
-- **deps**: Update dependency pycodestyle to v2.12.1
-  ([`fb179af`](https://github.com/andrewjw/i75/commit/fb179af806c06df0017f75cc28629bc380b8958f))
-
-- **deps**: Update dependency wheel to v0.44.0
-  ([`d6962b9`](https://github.com/andrewjw/i75/commit/d6962b91c1e6c63c8e28485a3f1c8e31ce3254ed))
-
-- **deps**: Update dependency mypy to v1.11.1
-  ([`9a46c48`](https://github.com/andrewjw/i75/commit/9a46c48f48ff4758932b98f4c5d92c7d5d6a9046))
-
-- **deps**: Update dependency python-semantic-release to v9.8.6
-  ([`2f45193`](https://github.com/andrewjw/i75/commit/2f4519313024090b0032149170be40994c521045))
+- **deps**: Update dependency mypy to v1.10.1
+  ([`8b63725`](https://github.com/andrewjw/i75/commit/8b637252c5981949ded922b0b03e91a0eaea35d8))
 
 - **deps**: Update dependency mypy to v1.11.0
   ([`75466ff`](https://github.com/andrewjw/i75/commit/75466ff36cdffb2a268a86db4ba6068ccc138660))
 
-- **deps**: Update dependency types-requests to v2.32.0.20240712
-  ([`04a0eab`](https://github.com/andrewjw/i75/commit/04a0eab51d9ecd5c0cd00e44f4cb8d652c9c85cb))
+- **deps**: Update dependency mypy to v1.11.1
+  ([`9a46c48`](https://github.com/andrewjw/i75/commit/9a46c48f48ff4758932b98f4c5d92c7d5d6a9046))
 
-- **deps**: Update dependency python-semantic-release to v9.8.5
-  ([`3b327d8`](https://github.com/andrewjw/i75/commit/3b327d89683f23e10dad05a3fde1e208da24b535))
-
-- **deps**: Update dependency python-semantic-release to v9.8.4
-  ([`c650314`](https://github.com/andrewjw/i75/commit/c65031437830dea358805a245451cdd3db840f59))
+- **deps**: Update dependency mypy to v1.11.2
+  ([`3e1e011`](https://github.com/andrewjw/i75/commit/3e1e0118cbd74bf2b60b17f24e7e28818348b3e8))
 
 - **deps**: Update dependency pillow to v10.4.0
   ([`060fed4`](https://github.com/andrewjw/i75/commit/060fed4da74e943c0a1de8fded77407e3642368b))
 
-- **deps**: Update dependency pygame to v2.6.0
-  ([`4b47fec`](https://github.com/andrewjw/i75/commit/4b47fecb981b7235d3c87831a29c09b08b39710d))
-
-- **deps**: Update dependency twine to v5.1.1
-  ([`92797b0`](https://github.com/andrewjw/i75/commit/92797b0e860d60f1e5f524be04f6eac5c586b2ca))
-
-- **deps**: Update dependency mypy to v1.10.1
-  ([`8b63725`](https://github.com/andrewjw/i75/commit/8b637252c5981949ded922b0b03e91a0eaea35d8))
-
-- **deps**: Update dependency types-requests to v2.32.0.20240622
-  ([`950d4db`](https://github.com/andrewjw/i75/commit/950d4db766234b04a83ef9789e60c23aaafc0ad4))
-
-- **deps**: Update dependency python-semantic-release to v9.8.3
-  ([`2d7b722`](https://github.com/andrewjw/i75/commit/2d7b722995326984d29c1e7fb77a067f1f378898))
-
-- **deps**: Update dependency python-semantic-release to v9.8.2
-  ([`7d39f9f`](https://github.com/andrewjw/i75/commit/7d39f9f46e3d9a41e07207ea40ee548f432605fb))
-
 - **deps**: Update dependency pycodestyle to v2.12.0
   ([`339fc9c`](https://github.com/andrewjw/i75/commit/339fc9c771929d2a6142b9609ac02b9ab8d3241b))
 
-- **deps**: Update dependency types-requests to v2.32.0.20240602
-  ([`96008e9`](https://github.com/andrewjw/i75/commit/96008e9ddcf90c1e45874d9ca4043095479f7b7f))
+- **deps**: Update dependency pycodestyle to v2.12.1
+  ([`fb179af`](https://github.com/andrewjw/i75/commit/fb179af806c06df0017f75cc28629bc380b8958f))
 
-- **deps**: Update dependency twine to v5.1.0
-  ([`ccadb45`](https://github.com/andrewjw/i75/commit/ccadb45e2f6fb4e2258188827a262919e4e1ce9e))
-
-- **deps**: Update dependency requests to v2.32.3
-  ([`b0aa2fb`](https://github.com/andrewjw/i75/commit/b0aa2fb0e8789b4ccae7dbc57ea6cfed8f302485))
+- **deps**: Update dependency pygame to v2.6.0
+  ([`4b47fec`](https://github.com/andrewjw/i75/commit/4b47fecb981b7235d3c87831a29c09b08b39710d))
 
 - **deps**: Update dependency python-semantic-release to v9.8.1
   ([`2eee44f`](https://github.com/andrewjw/i75/commit/2eee44fcbc7a7e66a80e86412b96f07935731a67))
 
+- **deps**: Update dependency python-semantic-release to v9.8.2
+  ([`7d39f9f`](https://github.com/andrewjw/i75/commit/7d39f9f46e3d9a41e07207ea40ee548f432605fb))
+
+- **deps**: Update dependency python-semantic-release to v9.8.3
+  ([`2d7b722`](https://github.com/andrewjw/i75/commit/2d7b722995326984d29c1e7fb77a067f1f378898))
+
+- **deps**: Update dependency python-semantic-release to v9.8.4
+  ([`c650314`](https://github.com/andrewjw/i75/commit/c65031437830dea358805a245451cdd3db840f59))
+
+- **deps**: Update dependency python-semantic-release to v9.8.5
+  ([`3b327d8`](https://github.com/andrewjw/i75/commit/3b327d89683f23e10dad05a3fde1e208da24b535))
+
+- **deps**: Update dependency python-semantic-release to v9.8.6
+  ([`2f45193`](https://github.com/andrewjw/i75/commit/2f4519313024090b0032149170be40994c521045))
+
+- **deps**: Update dependency python-semantic-release to v9.8.7
+  ([`65a48a1`](https://github.com/andrewjw/i75/commit/65a48a1a1a26213a9d5b2c82dcb70804b01a2333))
+
+- **deps**: Update dependency python-semantic-release to v9.8.8
+  ([`ccbf0fa`](https://github.com/andrewjw/i75/commit/ccbf0fad2794c22a91bc6d3f7429c1a311ebc493))
+
+- **deps**: Update dependency requests to v2.32.3
+  ([`b0aa2fb`](https://github.com/andrewjw/i75/commit/b0aa2fb0e8789b4ccae7dbc57ea6cfed8f302485))
+
+- **deps**: Update dependency twine to v5.1.0
+  ([`ccadb45`](https://github.com/andrewjw/i75/commit/ccadb45e2f6fb4e2258188827a262919e4e1ce9e))
+
+- **deps**: Update dependency twine to v5.1.1
+  ([`92797b0`](https://github.com/andrewjw/i75/commit/92797b0e860d60f1e5f524be04f6eac5c586b2ca))
+
+- **deps**: Update dependency types-requests to v2.32.0.20240602
+  ([`96008e9`](https://github.com/andrewjw/i75/commit/96008e9ddcf90c1e45874d9ca4043095479f7b7f))
+
+- **deps**: Update dependency types-requests to v2.32.0.20240622
+  ([`950d4db`](https://github.com/andrewjw/i75/commit/950d4db766234b04a83ef9789e60c23aaafc0ad4))
+
+- **deps**: Update dependency types-requests to v2.32.0.20240712
+  ([`04a0eab`](https://github.com/andrewjw/i75/commit/04a0eab51d9ecd5c0cd00e44f4cb8d652c9c85cb))
+
+- **deps**: Update dependency types-requests to v2.32.0.20240905
+  ([`6d1d272`](https://github.com/andrewjw/i75/commit/6d1d2728f3656b200b4fb574e2868572cca3c206))
+
+- **deps**: Update dependency types-requests to v2.32.0.20240907
+  ([`9a7ea64`](https://github.com/andrewjw/i75/commit/9a7ea647fae120dc9424fadbdd924e1c3a878cc0))
+
+- **deps**: Update dependency types-requests to v2.32.0.20240914
+  ([`dde403a`](https://github.com/andrewjw/i75/commit/dde403ae1353637a97b6149e33c1f52ee87d15ab))
+
 - **deps**: Update dependency types_pillow to v10.2.0.20240520
   ([`709b2fe`](https://github.com/andrewjw/i75/commit/709b2fe2591a0523f8d87dafda63ac05b8b58d63))
+
+- **deps**: Update dependency types_pillow to v10.2.0.20240822
+  ([`73402f4`](https://github.com/andrewjw/i75/commit/73402f429ae1739d4b742e546ad780eb904867a7))
+
+- **deps**: Update dependency wheel to v0.44.0
+  ([`d6962b9`](https://github.com/andrewjw/i75/commit/d6962b91c1e6c63c8e28485a3f1c8e31ce3254ed))
 
 
 ## v1.8.2 (2024-06-05)
 
 ### Bug Fixes
 
-- Fix type spec for Python prior to 3.10.
-  ([`73daa20`](https://github.com/andrewjw/i75/commit/73daa20ad0fc5bfb8063109b2e95fb4f51b70f31))
-
 - Fix the new unicode characters as the font doesn't natively support them.
   ([`fc78e9a`](https://github.com/andrewjw/i75/commit/fc78e9afe1596e2b1a4142267288454737e05f84))
+
+- Fix type spec for Python prior to 3.10.
+  ([`73daa20`](https://github.com/andrewjw/i75/commit/73daa20ad0fc5bfb8063109b2e95fb4f51b70f31))
 
 ### Chores
 
 - Add new test for datetime comparisons.
   ([`3c53e2e`](https://github.com/andrewjw/i75/commit/3c53e2e1f22b82c18768286a2f2cf6d0d5405eb7))
 
-- **deps**: Update dependency python-semantic-release to v9.7.1
-  ([`0a8ae0e`](https://github.com/andrewjw/i75/commit/0a8ae0e4f1d8490ca00bc902162241c1eb965457))
-
 - **deps**: Update dependency python-semantic-release to v9.7.0
   ([`6e8dd93`](https://github.com/andrewjw/i75/commit/6e8dd93a841eb63741522e8bbb1488bf33099510))
+
+- **deps**: Update dependency python-semantic-release to v9.7.1
+  ([`0a8ae0e`](https://github.com/andrewjw/i75/commit/0a8ae0e4f1d8490ca00bc902162241c1eb965457))
 
 
 ## v1.8.1 (2024-04-29)
@@ -297,47 +324,47 @@ Co-authored-by: Dan Jenkins <dan@nimblea.pe>
 - **deps**: Update dependency mypy to v1.10.0
   ([`b53d31d`](https://github.com/andrewjw/i75/commit/b53d31d65b2d9951553bb4bf7b36a092331fcffe))
 
-- **deps**: Update dependency python-semantic-release to v9.5.0
-  ([`8e0e64c`](https://github.com/andrewjw/i75/commit/8e0e64cf12ca69a59bda4f324a9aa0989df57202))
-
-- **deps**: Update dependency types_pillow to v10.2.0.20240423
-  ([`dbe1564`](https://github.com/andrewjw/i75/commit/dbe15643fa9c85df22adb2dd9b53414ba72f0b0a))
-
-- **deps**: Update dependency types_pillow to v10.2.0.20240415
-  ([`c87cc5b`](https://github.com/andrewjw/i75/commit/c87cc5b093bf25d040c3b9f2767e9e809b4b6a90))
-
-- **deps**: Update dependency python-semantic-release to v9.4.2
-  ([`e37e534`](https://github.com/andrewjw/i75/commit/e37e53499bee876986646bf2a7a6b23bb6a5e8b9))
-
-- **deps**: Update dependency types_pillow to v10.2.0.20240406
-  ([`73e0e2f`](https://github.com/andrewjw/i75/commit/73e0e2f8cd1aeeda497412394bb28269fee656fe))
-
-- **deps**: Update dependency types-requests to v2.31.0.20240406
-  ([`c964ed7`](https://github.com/andrewjw/i75/commit/c964ed71968c6531b1312b8a5f88b30e3428f51c))
-
-- **deps**: Update dependency types-requests to v2.31.0.20240403
-  ([`61cf57c`](https://github.com/andrewjw/i75/commit/61cf57cf52fda4336446dc7ea99ce83928b41a36))
-
-- **deps**: Update dependency types-requests to v2.31.0.20240402
-  ([`e88b83d`](https://github.com/andrewjw/i75/commit/e88b83d815ed9866616462ed26d630009cb79703))
-
 - **deps**: Update dependency pillow to v10.3.0
   ([`0c4a997`](https://github.com/andrewjw/i75/commit/0c4a9977d15991c8ccde4f53cad1c7d74cdf4502))
 
-- **deps**: Update dependency python-semantic-release to v9.4.0
-  ([`3e14450`](https://github.com/andrewjw/i75/commit/3e144508138d06661032cd342a40f49702080b90))
-
-- **deps**: Update dependency types_pillow to v10.2.0.20240331
-  ([`d0cce6e`](https://github.com/andrewjw/i75/commit/d0cce6eca1dc74600fc0effec95a1fd4ae2a81ee))
+- **deps**: Update dependency python-semantic-release to v9.3.0
+  ([`d40579c`](https://github.com/andrewjw/i75/commit/d40579c12fde200b9590ffcf2f22505bc9f8941f))
 
 - **deps**: Update dependency python-semantic-release to v9.3.1
   ([`4ca905e`](https://github.com/andrewjw/i75/commit/4ca905e4e193d31723e5881a8bb08bbc3308c5f4))
 
+- **deps**: Update dependency python-semantic-release to v9.4.0
+  ([`3e14450`](https://github.com/andrewjw/i75/commit/3e144508138d06661032cd342a40f49702080b90))
+
+- **deps**: Update dependency python-semantic-release to v9.4.2
+  ([`e37e534`](https://github.com/andrewjw/i75/commit/e37e53499bee876986646bf2a7a6b23bb6a5e8b9))
+
+- **deps**: Update dependency python-semantic-release to v9.5.0
+  ([`8e0e64c`](https://github.com/andrewjw/i75/commit/8e0e64cf12ca69a59bda4f324a9aa0989df57202))
+
+- **deps**: Update dependency types-requests to v2.31.0.20240402
+  ([`e88b83d`](https://github.com/andrewjw/i75/commit/e88b83d815ed9866616462ed26d630009cb79703))
+
+- **deps**: Update dependency types-requests to v2.31.0.20240403
+  ([`61cf57c`](https://github.com/andrewjw/i75/commit/61cf57cf52fda4336446dc7ea99ce83928b41a36))
+
+- **deps**: Update dependency types-requests to v2.31.0.20240406
+  ([`c964ed7`](https://github.com/andrewjw/i75/commit/c964ed71968c6531b1312b8a5f88b30e3428f51c))
+
 - **deps**: Update dependency types_pillow to v10.2.0.20240324
   ([`06a528b`](https://github.com/andrewjw/i75/commit/06a528b66f6dcdf909edec2bbcbbf61d572d54ec))
 
-- **deps**: Update dependency python-semantic-release to v9.3.0
-  ([`d40579c`](https://github.com/andrewjw/i75/commit/d40579c12fde200b9590ffcf2f22505bc9f8941f))
+- **deps**: Update dependency types_pillow to v10.2.0.20240331
+  ([`d0cce6e`](https://github.com/andrewjw/i75/commit/d0cce6eca1dc74600fc0effec95a1fd4ae2a81ee))
+
+- **deps**: Update dependency types_pillow to v10.2.0.20240406
+  ([`73e0e2f`](https://github.com/andrewjw/i75/commit/73e0e2f8cd1aeeda497412394bb28269fee656fe))
+
+- **deps**: Update dependency types_pillow to v10.2.0.20240415
+  ([`c87cc5b`](https://github.com/andrewjw/i75/commit/c87cc5b093bf25d040c3b9f2767e9e809b4b6a90))
+
+- **deps**: Update dependency types_pillow to v10.2.0.20240423
+  ([`dbe1564`](https://github.com/andrewjw/i75/commit/dbe15643fa9c85df22adb2dd9b53414ba72f0b0a))
 
 ### Features
 
@@ -362,16 +389,22 @@ Co-authored-by: Dan Jenkins <dan@nimblea.pe>
 
 ### Chores
 
-- **deps**: Update dependency python-semantic-release to v9.2.2
-  ([`3c826af`](https://github.com/andrewjw/i75/commit/3c826afac534584221f2b849a0ab0c1917e5117d))
-
 - **deps**: Update dependency python-semantic-release to v9.2.0
   ([`996f8a6`](https://github.com/andrewjw/i75/commit/996f8a6873a87166164a26abaf01e2ddb6b8ee23))
+
+- **deps**: Update dependency python-semantic-release to v9.2.2
+  ([`3c826af`](https://github.com/andrewjw/i75/commit/3c826afac534584221f2b849a0ab0c1917e5117d))
 
 
 ## v1.6.0 (2024-03-13)
 
 ### Bug Fixes
+
+- Code style.
+  ([`327316f`](https://github.com/andrewjw/i75/commit/327316f24f765ecc6f97321d38dae016a39d3d18))
+
+- Fix different between bounding box size and rendered text when using lowercase text.
+  ([`d29ff5b`](https://github.com/andrewjw/i75/commit/d29ff5b549600a75929337f845b31c2e1be5ae33))
 
 - Generate font data before tests.
   ([`09bcc25`](https://github.com/andrewjw/i75/commit/09bcc25e0848f9ed031283dddf0dae695ae75f70))
@@ -379,31 +412,25 @@ Co-authored-by: Dan Jenkins <dan@nimblea.pe>
 - Generate font data before tests.
   ([`a3d6ce6`](https://github.com/andrewjw/i75/commit/a3d6ce6ef19e62e765671901ce44408ef7fd310b))
 
-- Code style.
-  ([`327316f`](https://github.com/andrewjw/i75/commit/327316f24f765ecc6f97321d38dae016a39d3d18))
-
 - Properly mock out pygame in tests.
   ([`06437ed`](https://github.com/andrewjw/i75/commit/06437edba71c38c3627759d9c53af7fb334c6b08))
 
-- Fix different between bounding box size and rendered text when using lowercase text.
-  ([`d29ff5b`](https://github.com/andrewjw/i75/commit/d29ff5b549600a75929337f845b31c2e1be5ae33))
-
 ### Chores
 
-- **deps**: Update dependency wheel to v0.43.0
-  ([`648b8a7`](https://github.com/andrewjw/i75/commit/648b8a74e35540f29f95fb6181780cd0cdfead3e))
-
-- **deps**: Update dependency types_pillow to v10.2.0.20240311
-  ([`9855854`](https://github.com/andrewjw/i75/commit/98558540b091a05f264f605f84bcce35a87fae7b))
-
-- **deps**: Update dependency types-requests to v2.31.0.20240311
-  ([`664dc05`](https://github.com/andrewjw/i75/commit/664dc0571625460511e6ecb3f1a6c9cb79beb1eb))
+- **deps**: Update dependency mypy to v1.9.0
+  ([`cebadc9`](https://github.com/andrewjw/i75/commit/cebadc9fb0513b4c54818970d4b35e5a8b04850f))
 
 - **deps**: Update dependency types-requests to v2.31.0.20240310
   ([`c2c7ef8`](https://github.com/andrewjw/i75/commit/c2c7ef8f251563fea93e9503622ebd5c6b7959a8))
 
-- **deps**: Update dependency mypy to v1.9.0
-  ([`cebadc9`](https://github.com/andrewjw/i75/commit/cebadc9fb0513b4c54818970d4b35e5a8b04850f))
+- **deps**: Update dependency types-requests to v2.31.0.20240311
+  ([`664dc05`](https://github.com/andrewjw/i75/commit/664dc0571625460511e6ecb3f1a6c9cb79beb1eb))
+
+- **deps**: Update dependency types_pillow to v10.2.0.20240311
+  ([`9855854`](https://github.com/andrewjw/i75/commit/98558540b091a05f264f605f84bcce35a87fae7b))
+
+- **deps**: Update dependency wheel to v0.43.0
+  ([`648b8a7`](https://github.com/andrewjw/i75/commit/648b8a74e35540f29f95fb6181780cd0cdfead3e))
 
 ### Features
 
@@ -415,14 +442,14 @@ Co-authored-by: Dan Jenkins <dan@nimblea.pe>
 
 ### Features
 
-- Include stubs for gc module.
-  ([`0186466`](https://github.com/andrewjw/i75/commit/01864663e1b4bb113a74c3ccdc3db4d94f448230))
+- Add threading example.
+  ([`ce1e362`](https://github.com/andrewjw/i75/commit/ce1e362df5b65e9cf62de521e06ec4185389ec8e))
 
 - Include stub files.
   ([`c018288`](https://github.com/andrewjw/i75/commit/c01828889707f6fbc8d14ff90917b64cf2c47b57))
 
-- Add threading example.
-  ([`ce1e362`](https://github.com/andrewjw/i75/commit/ce1e362df5b65e9cf62de521e06ec4185389ec8e))
+- Include stubs for gc module.
+  ([`0186466`](https://github.com/andrewjw/i75/commit/01864663e1b4bb113a74c3ccdc3db4d94f448230))
 
 
 ## v1.4.0 (2024-02-28)
@@ -458,11 +485,11 @@ Co-authored-by: Dan Jenkins <dan@nimblea.pe>
 
 ### Bug Fixes
 
-- Remove Python 3.10+ syntax
-  ([`4fe4696`](https://github.com/andrewjw/i75/commit/4fe4696e534352963b8c09a116b5de639ef9909e))
-
 - Fix mypy processing of the examples.
   ([`cfff426`](https://github.com/andrewjw/i75/commit/cfff42660661b3b3ec3d7b85114529c3863743d7))
+
+- Remove Python 3.10+ syntax
+  ([`4fe4696`](https://github.com/andrewjw/i75/commit/4fe4696e534352963b8c09a116b5de639ef9909e))
 
 
 ## v1.2.0 (2024-02-25)
@@ -474,11 +501,11 @@ Co-authored-by: Dan Jenkins <dan@nimblea.pe>
 
 ### Chores
 
-- **deps**: Update dependency twine to v5
-  ([`fd1769c`](https://github.com/andrewjw/i75/commit/fd1769c95deedb5c03362534b1b177656ddaaad2))
-
 - **deps**: Update dependency python-semantic-release to v9
   ([`5859586`](https://github.com/andrewjw/i75/commit/5859586ac9b27bbcf988a2f77828bf77fd0f3589))
+
+- **deps**: Update dependency twine to v5
+  ([`fd1769c`](https://github.com/andrewjw/i75/commit/fd1769c95deedb5c03362534b1b177656ddaaad2))
 
 - **deps**: Update dependency types_pillow to v10.2.0.20240206
   ([`781d08f`](https://github.com/andrewjw/i75/commit/781d08f943ad6154cbc6d59618bbfb70d036b220))
@@ -519,20 +546,20 @@ Co-authored-by: Dan Jenkins <dan@nimblea.pe>
 
 ### Bug Fixes
 
-- Fix style.
-  ([`600ac9d`](https://github.com/andrewjw/i75/commit/600ac9ddf0f87ca678f7e3d5e1e5eb9738e79377))
-
-- Fix style
-  ([`17aa2ab`](https://github.com/andrewjw/i75/commit/17aa2ab4bcfa97354aae1198aa794a2b28417f2c))
+- Fix compatibility with Python before 3.11.
+  ([`7f74ad8`](https://github.com/andrewjw/i75/commit/7f74ad815cd9d3f699fb92fbab182c0938cee60a))
 
 - Fix Python support before 3.11.
   ([`9586af5`](https://github.com/andrewjw/i75/commit/9586af517778ac8c61ab84279bfd8214ddb62c44))
 
+- Fix style
+  ([`17aa2ab`](https://github.com/andrewjw/i75/commit/17aa2ab4bcfa97354aae1198aa794a2b28417f2c))
+
+- Fix style.
+  ([`600ac9d`](https://github.com/andrewjw/i75/commit/600ac9ddf0f87ca678f7e3d5e1e5eb9738e79377))
+
 - Fix support for Python before 3.11.
   ([`d29d3a9`](https://github.com/andrewjw/i75/commit/d29d3a912b1366bf4eb1d64b79d14266877911ad))
-
-- Fix compatibility with Python before 3.11.
-  ([`7f74ad8`](https://github.com/andrewjw/i75/commit/7f74ad815cd9d3f699fb92fbab182c0938cee60a))
 
 ### Chores
 
@@ -560,14 +587,14 @@ Co-authored-by: Dan Jenkins <dan@nimblea.pe>
 - **deps**: Update dependency micropython-rp2-pico-stubs to v1.20.0.post5
   ([`6a6d487`](https://github.com/andrewjw/i75/commit/6a6d487facc36ff36bee30db87aca11a9d73f671))
 
-- **deps**: Update dependency python-semantic-release to v8.7.0
-  ([`c6407b7`](https://github.com/andrewjw/i75/commit/c6407b70146fa75f3a6f9b3a6ef0b5fa013fc526))
-
 - **deps**: Update dependency mypy to v1.8.0
   ([`ee9633e`](https://github.com/andrewjw/i75/commit/ee9633e622f7cbfa80bc4d452d53ac5bfd141f4b))
 
 - **deps**: Update dependency python-semantic-release to v8.5.2
   ([`ca8a4ec`](https://github.com/andrewjw/i75/commit/ca8a4ec1647496cb1fc99a0d027b981a3115d862))
+
+- **deps**: Update dependency python-semantic-release to v8.7.0
+  ([`c6407b7`](https://github.com/andrewjw/i75/commit/c6407b70146fa75f3a6f9b3a6ef0b5fa013fc526))
 
 ### Features
 
@@ -575,6 +602,10 @@ Co-authored-by: Dan Jenkins <dan@nimblea.pe>
   ([`dfbe937`](https://github.com/andrewjw/i75/commit/dfbe9379efc8832ef2ac0c50f8dceaa101daa342))
 
 BREAKING CHANGE: text has been renamed to render_text.
+
+### BREAKING CHANGES
+
+- Text has been renamed to render_text.
 
 
 ## v0.13.0 (2023-12-13)
@@ -592,11 +623,8 @@ BREAKING CHANGE: text has been renamed to render_text.
 
 ### Chores
 
-- **deps**: Update dependency python-semantic-release to v8.5.1
-  ([`6afeafc`](https://github.com/andrewjw/i75/commit/6afeafc3c455a6e3c93ba6cbba3cb2d17264ad3b))
-
-- **deps**: Update dependency sphinx_rtd_theme to v2
-  ([`a4868d0`](https://github.com/andrewjw/i75/commit/a4868d0918ee0226248c6e0279b8b1574be070a2))
+- Add new timezone module to install script.
+  ([`c7e87ba`](https://github.com/andrewjw/i75/commit/c7e87baad231d5873b9a7238798cafcdd3dcdb7d))
 
 - **deps**: Update actions/setup-python action to v5
   ([`b9e960d`](https://github.com/andrewjw/i75/commit/b9e960db167874b0a2e91b693fb85e273878fc10))
@@ -604,8 +632,11 @@ BREAKING CHANGE: text has been renamed to render_text.
 - **deps**: Update dependency python-semantic-release to v8.5.0
   ([`002fa5a`](https://github.com/andrewjw/i75/commit/002fa5ac4d44a0fd620c78c25dcd5895ccadc7fa))
 
-- Add new timezone module to install script.
-  ([`c7e87ba`](https://github.com/andrewjw/i75/commit/c7e87baad231d5873b9a7238798cafcdd3dcdb7d))
+- **deps**: Update dependency python-semantic-release to v8.5.1
+  ([`6afeafc`](https://github.com/andrewjw/i75/commit/6afeafc3c455a6e3c93ba6cbba3cb2d17264ad3b))
+
+- **deps**: Update dependency sphinx_rtd_theme to v2
+  ([`a4868d0`](https://github.com/andrewjw/i75/commit/a4868d0918ee0226248c6e0279b8b1574be070a2))
 
 ### Features
 
@@ -641,16 +672,22 @@ BREAKING CHANGE: text has been renamed to render_text.
 - Fix style error.
   ([`8b0010b`](https://github.com/andrewjw/i75/commit/8b0010bf82f1146fa3fba9ce571c4fbe4e72bec3))
 
+- Fix style.
+  ([`f1c74eb`](https://github.com/andrewjw/i75/commit/f1c74ebc14f9986122cf1cfee446ebc404e2d097))
+
 - Handle PyGame messages to make sure it doesn't think we've hung.
   ([`ea15beb`](https://github.com/andrewjw/i75/commit/ea15bebed1b000f7d1efaaca9d53cc32a42aaf59))
 
 - Install the Colour class.
   ([`af41239`](https://github.com/andrewjw/i75/commit/af4123943c1980c71dc746b3fc44a446b4ff6dc8))
 
-- Fix style.
-  ([`f1c74eb`](https://github.com/andrewjw/i75/commit/f1c74ebc14f9986122cf1cfee446ebc404e2d097))
-
 ### Features
+
+- Add emulated sleep_ms function.
+  ([`2b23191`](https://github.com/andrewjw/i75/commit/2b23191b4aa0023f4f5b67ce8c673eed46839dd9))
+
+- Add emulated urequests.post function.
+  ([`aceb8b0`](https://github.com/andrewjw/i75/commit/aceb8b0fbb98e1ff6ac81fc49e497e0ddcea7016))
 
 - Add new emulated mem_free function.
   ([`6d63335`](https://github.com/andrewjw/i75/commit/6d633353965fb7faaa18e0ffc87508be0378adc7))
@@ -660,12 +697,6 @@ BREAKING CHANGE: text has been renamed to render_text.
 
 - Emulate the sys.print_exception function.
   ([`c45c5bb`](https://github.com/andrewjw/i75/commit/c45c5bb676ba118d316819905181df29575a3afc))
-
-- Add emulated urequests.post function.
-  ([`aceb8b0`](https://github.com/andrewjw/i75/commit/aceb8b0fbb98e1ff6ac81fc49e497e0ddcea7016))
-
-- Add emulated sleep_ms function.
-  ([`2b23191`](https://github.com/andrewjw/i75/commit/2b23191b4aa0023f4f5b67ce8c673eed46839dd9))
 
 
 ## v0.10.2 (2023-11-30)
@@ -701,11 +732,11 @@ BREAKING CHANGE: text has been renamed to render_text.
 
 ### Bug Fixes
 
-- Fix style.
-  ([`ae70e22`](https://github.com/andrewjw/i75/commit/ae70e22422d3c19dbe601651920eaff9cc3a55b5))
-
 - Expose DateTime object and add documentation for it.
   ([`0b1646d`](https://github.com/andrewjw/i75/commit/0b1646dc8519923e43b4463d17fc02c46978386c))
+
+- Fix style.
+  ([`ae70e22`](https://github.com/andrewjw/i75/commit/ae70e22422d3c19dbe601651920eaff9cc3a55b5))
 
 ### Documentation
 
@@ -717,11 +748,11 @@ BREAKING CHANGE: text has been renamed to render_text.
 
 ### Bug Fixes
 
-- Fix style issues.
-  ([`6723926`](https://github.com/andrewjw/i75/commit/67239265f05eefd2d5d891158a7fa3ccad314c83))
-
 - Correctly add path to emulated libraries, don't rely on local directory.
   ([`63954f5`](https://github.com/andrewjw/i75/commit/63954f5efdd7f06249a2be473f00f57588945fff))
+
+- Fix style issues.
+  ([`6723926`](https://github.com/andrewjw/i75/commit/67239265f05eefd2d5d891158a7fa3ccad314c83))
 
 ### Features
 
@@ -741,23 +772,23 @@ BREAKING CHANGE: text has been renamed to render_text.
 
 ### Chores
 
-- **deps**: Update dependency wheel to v0.42.0
-  ([`c45d787`](https://github.com/andrewjw/i75/commit/c45d7878b09c2626885790a4942f8c6660dd00f7))
-
-- **deps**: Update dependency mypy to v1.7.1
-  ([`4c2ad26`](https://github.com/andrewjw/i75/commit/4c2ad26ad3def13b07503649cbfb16844d961747))
-
 - **deps**: Update dependency micropython-rp2-pico-stubs to v1.20.0.post4
   ([`0039a13`](https://github.com/andrewjw/i75/commit/0039a13e2cd63af525e67c3b839cc043ea4864cf))
 
 - **deps**: Update dependency mypy to v1.7.0
   ([`b745446`](https://github.com/andrewjw/i75/commit/b7454468fca45027537d2ecd7e0ce2c6868c4374))
 
-- **deps**: Update dependency wheel to v0.41.3
-  ([`478f086`](https://github.com/andrewjw/i75/commit/478f086e6b676de976d6a4f677fddb04431558c2))
+- **deps**: Update dependency mypy to v1.7.1
+  ([`4c2ad26`](https://github.com/andrewjw/i75/commit/4c2ad26ad3def13b07503649cbfb16844d961747))
 
 - **deps**: Update dependency python-semantic-release to v8.3.0
   ([`d96a884`](https://github.com/andrewjw/i75/commit/d96a884f9d3df1f2c6d09711688389588816844a))
+
+- **deps**: Update dependency wheel to v0.41.3
+  ([`478f086`](https://github.com/andrewjw/i75/commit/478f086e6b676de976d6a4f677fddb04431558c2))
+
+- **deps**: Update dependency wheel to v0.42.0
+  ([`c45d787`](https://github.com/andrewjw/i75/commit/c45d7878b09c2626885790a4942f8c6660dd00f7))
 
 
 ## v0.8.0 (2023-10-18)
@@ -769,20 +800,20 @@ BREAKING CHANGE: text has been renamed to render_text.
 
 ### Chores
 
-- **deps**: Update dependency mypy to v1.6.1
-  ([`a07c27c`](https://github.com/andrewjw/i75/commit/a07c27cdd6d82c6a2c3339a953f6727221b4abdd))
-
-- **deps**: Update dependency python-semantic-release to v8.1.2
-  ([`72763cf`](https://github.com/andrewjw/i75/commit/72763cfd336ee6ac96f6c6e30c9c7d51b9c6bbc7))
-
-- **deps**: Update dependency pycodestyle to v2.11.1
-  ([`ea01de2`](https://github.com/andrewjw/i75/commit/ea01de221e1f69271e5189c21ed8334be255f8af))
+- **deps**: Update dependency micropython-rp2-pico-stubs to v1.20.0.post3
+  ([`27271aa`](https://github.com/andrewjw/i75/commit/27271aa191559f0c469afda1f6ca517557ae4fe4))
 
 - **deps**: Update dependency mypy to v1.6.0
   ([`df2dba5`](https://github.com/andrewjw/i75/commit/df2dba58fb73c50998b2eaf41ddcdab5e56fcee6))
 
-- **deps**: Update dependency micropython-rp2-pico-stubs to v1.20.0.post3
-  ([`27271aa`](https://github.com/andrewjw/i75/commit/27271aa191559f0c469afda1f6ca517557ae4fe4))
+- **deps**: Update dependency mypy to v1.6.1
+  ([`a07c27c`](https://github.com/andrewjw/i75/commit/a07c27cdd6d82c6a2c3339a953f6727221b4abdd))
+
+- **deps**: Update dependency pycodestyle to v2.11.1
+  ([`ea01de2`](https://github.com/andrewjw/i75/commit/ea01de221e1f69271e5189c21ed8334be255f8af))
+
+- **deps**: Update dependency python-semantic-release to v8.1.2
+  ([`72763cf`](https://github.com/andrewjw/i75/commit/72763cfd336ee6ac96f6c6e30c9c7d51b9c6bbc7))
 
 ### Features
 
@@ -797,22 +828,22 @@ BREAKING CHANGE: text has been renamed to render_text.
 
 ### Bug Fixes
 
-- Improve the analogue clock example.
-  ([`83e076b`](https://github.com/andrewjw/i75/commit/83e076b8d1a9660ca3a1b65c9028c2248575ab6c))
-
 - Fix drawing of steep lines and add some tests.
   ([`def6ea3`](https://github.com/andrewjw/i75/commit/def6ea33dc89cdfbc61be1fed8e5d6ea8be10b75))
 
+- Improve the analogue clock example.
+  ([`83e076b`](https://github.com/andrewjw/i75/commit/83e076b8d1a9660ca3a1b65c9028c2248575ab6c))
+
 ### Chores
+
+- Edit README.md
+  ([`09fc6e7`](https://github.com/andrewjw/i75/commit/09fc6e729364e324ef6c4ac28363b7e1fb3096a5))
 
 - Fix code style.
   ([`a582b4e`](https://github.com/andrewjw/i75/commit/a582b4eff77202da1da898ef2aa4afb517dbde58))
 
 - Fix headers in README.md
   ([`11c32d7`](https://github.com/andrewjw/i75/commit/11c32d75fce9609be487b270e42b80a3b6868cd9))
-
-- Edit README.md
-  ([`09fc6e7`](https://github.com/andrewjw/i75/commit/09fc6e729364e324ef6c4ac28363b7e1fb3096a5))
 
 
 ## v0.7.0 (2023-09-25)
@@ -851,14 +882,14 @@ BREAKING CHANGE: text has been renamed to render_text.
 - Fix setup.py import error.
   ([`0520839`](https://github.com/andrewjw/i75/commit/05208398074d29373337b92a518d1c8eb450acb0))
 
-- Turn on dependency caching in the build action.
-  ([`65eb011`](https://github.com/andrewjw/i75/commit/65eb0113b37f2db2de85a0bfa671cac67765609c))
-
 - Fix style.
   ([`672db95`](https://github.com/andrewjw/i75/commit/672db95ae78973597e272eaafb7ecd893592d257))
 
 - Improve readme and documentation, and add a contributions guide.
   ([`f45c1f1`](https://github.com/andrewjw/i75/commit/f45c1f125339eff1cafbce4d196e9c38703f0fb3))
+
+- Turn on dependency caching in the build action.
+  ([`65eb011`](https://github.com/andrewjw/i75/commit/65eb0113b37f2db2de85a0bfa671cac67765609c))
 
 ### Features
 
@@ -870,11 +901,11 @@ BREAKING CHANGE: text has been renamed to render_text.
 
 ### Bug Fixes
 
-- Update example for renamed module.
-  ([`44a82b5`](https://github.com/andrewjw/i75/commit/44a82b5532c1b633f81cdc26bae063579f6324ab))
-
 - Rename is_mock to is_emulated to match other renames.
   ([`d7ea1f2`](https://github.com/andrewjw/i75/commit/d7ea1f219be1d397a5fe999fc656bec48b3fcc11))
+
+- Update example for renamed module.
+  ([`44a82b5`](https://github.com/andrewjw/i75/commit/44a82b5532c1b633f81cdc26bae063579f6324ab))
 
 
 ## v0.4.0 (2023-08-30)
@@ -894,35 +925,35 @@ BREAKING CHANGE: text has been renamed to render_text.
 
 ### Chores
 
-- Add some badges to the readme.
-  ([`56ad3eb`](https://github.com/andrewjw/i75/commit/56ad3eb177c16b059f06909ae0e9edfc6fb67012))
-
-- Upgrade to semantic-release v8.
-  ([`e99ae80`](https://github.com/andrewjw/i75/commit/e99ae802416de63e29821fcbd4b030398befe4ab))
-
 - Add basic test of mock wrapper.
   ([`bde800d`](https://github.com/andrewjw/i75/commit/bde800dca93f8294509a34bf8157267abfa495e5))
-
-- **deps**: Update dependency mypy to v1.5.1
-  ([`0b804dd`](https://github.com/andrewjw/i75/commit/0b804ddcf854bf3baf5b5557d1dc59d8ef569409))
-
-- **deps**: Update dependency wheel to v0.41.2
-  ([`043e4b4`](https://github.com/andrewjw/i75/commit/043e4b485cca77cc71625979f4a1713be3803376))
-
-- **deps**: Update dependency sphinx_rtd_theme to v1.3.0
-  ([`acd93c5`](https://github.com/andrewjw/i75/commit/acd93c5cdbc0ed68372a2abf5ea49d460de32bcd))
-
-- **deps**: Update dependency pygame to v2.5.1
-  ([`b200627`](https://github.com/andrewjw/i75/commit/b2006273e4b5f76574237bd618f12c9d75f77558))
-
-- Fix style.
-  ([`0dace0e`](https://github.com/andrewjw/i75/commit/0dace0edc62d2750883e1c7051187a734772c67d))
 
 - Add simple first test.
   ([`39dd239`](https://github.com/andrewjw/i75/commit/39dd239c7dd43d9efae9ac6c5c315c03227539eb))
 
+- Add some badges to the readme.
+  ([`56ad3eb`](https://github.com/andrewjw/i75/commit/56ad3eb177c16b059f06909ae0e9edfc6fb67012))
+
 - Fix documentation build.
   ([`20fc4b6`](https://github.com/andrewjw/i75/commit/20fc4b6af47a181409135d5094dba0fb26810ed0))
+
+- Fix style.
+  ([`0dace0e`](https://github.com/andrewjw/i75/commit/0dace0edc62d2750883e1c7051187a734772c67d))
+
+- Upgrade to semantic-release v8.
+  ([`e99ae80`](https://github.com/andrewjw/i75/commit/e99ae802416de63e29821fcbd4b030398befe4ab))
+
+- **deps**: Update dependency mypy to v1.5.1
+  ([`0b804dd`](https://github.com/andrewjw/i75/commit/0b804ddcf854bf3baf5b5557d1dc59d8ef569409))
+
+- **deps**: Update dependency pygame to v2.5.1
+  ([`b200627`](https://github.com/andrewjw/i75/commit/b2006273e4b5f76574237bd618f12c9d75f77558))
+
+- **deps**: Update dependency sphinx_rtd_theme to v1.3.0
+  ([`acd93c5`](https://github.com/andrewjw/i75/commit/acd93c5cdbc0ed68372a2abf5ea49d460de32bcd))
+
+- **deps**: Update dependency wheel to v0.41.2
+  ([`043e4b4`](https://github.com/andrewjw/i75/commit/043e4b485cca77cc71625979f4a1713be3803376))
 
 ### Features
 
@@ -934,11 +965,11 @@ BREAKING CHANGE: text has been renamed to render_text.
 
 ### Chores
 
-- Try to fix module import for docs build.
-  ([`02636d3`](https://github.com/andrewjw/i75/commit/02636d3245258614824f4fc8f6b8e7e6a483a99f))
-
 - Start filling out documentation.
   ([`01b8b07`](https://github.com/andrewjw/i75/commit/01b8b0793758324559249f1968019a45d0e2fd70))
+
+- Try to fix module import for docs build.
+  ([`02636d3`](https://github.com/andrewjw/i75/commit/02636d3245258614824f4fc8f6b8e7e6a483a99f))
 
 ### Features
 
@@ -971,6 +1002,12 @@ BREAKING CHANGE: text has been renamed to render_text.
 
 ### Bug Fixes
 
+- Add stub run tests scripts for now.
+  ([`1c2dba3`](https://github.com/andrewjw/i75/commit/1c2dba30e28b7ca7d506f1b4ab0417c43ece750a))
+
+- Add stub run tests scripts for now.
+  ([`f617548`](https://github.com/andrewjw/i75/commit/f6175485a9de6909e8bd42a2b39d98d5ea4cebb9))
+
 - Configure semantic release.
   ([`d6a577c`](https://github.com/andrewjw/i75/commit/d6a577ccb28ed02f3c1f1ed74792fefab6a88475))
 
@@ -980,25 +1017,28 @@ BREAKING CHANGE: text has been renamed to render_text.
 - Configure semantic release.
   ([`aac047f`](https://github.com/andrewjw/i75/commit/aac047f2b7052625901e0567d61a24ff25f9a29a))
 
-- Skip submitting coverage as we have no tests yet...
-  ([`9b3a7e5`](https://github.com/andrewjw/i75/commit/9b3a7e596ae0f01b371ee205a98e4b9394c7df15))
-
 - Fix typing and code style.
   ([`fe02edb`](https://github.com/andrewjw/i75/commit/fe02edbb79ba9ad046c46076b79de8000d28ac47))
 
-- Add stub run tests scripts for now.
-  ([`1c2dba3`](https://github.com/andrewjw/i75/commit/1c2dba30e28b7ca7d506f1b4ab0417c43ece750a))
-
-- Add stub run tests scripts for now.
-  ([`f617548`](https://github.com/andrewjw/i75/commit/f6175485a9de6909e8bd42a2b39d98d5ea4cebb9))
+- Skip submitting coverage as we have no tests yet...
+  ([`9b3a7e5`](https://github.com/andrewjw/i75/commit/9b3a7e596ae0f01b371ee205a98e4b9394c7df15))
 
 ### Chores
 
+- Add Read The Docs badge.
+  ([`4ed4aa7`](https://github.com/andrewjw/i75/commit/4ed4aa76cfec48f421546474d520777f8cfd31df))
+
+- Add Sphinx configuration.
+  ([`4294b09`](https://github.com/andrewjw/i75/commit/4294b0934f7afb9632214d42685af34fcbd241cf))
+
+- Create documentation index page.
+  ([`248391c`](https://github.com/andrewjw/i75/commit/248391caf9fa03a39a7f06adf8ba132ee9f9786b))
+
+- Initial import.
+  ([`fb25405`](https://github.com/andrewjw/i75/commit/fb25405eacb4a69172b28f4c42ab8827c6044457))
+
 - Install read the docs theme.
   ([`2a7a694`](https://github.com/andrewjw/i75/commit/2a7a694da4c9824cc9a98e3c83d1ab179b1ade78))
-
-- Use official RTD theme for docs
-  ([`a2375af`](https://github.com/andrewjw/i75/commit/a2375af808aa4dcd01885f9765f412986e9e7ba5))
 
 - Remove unneeded documentation extensions.
   ([`63ce947`](https://github.com/andrewjw/i75/commit/63ce947cf5753d9f390eda6603386bc4ae5f797a))
@@ -1006,25 +1046,16 @@ BREAKING CHANGE: text has been renamed to render_text.
 - Remove unneeded pngmath documentation extension.
   ([`f7d4c1d`](https://github.com/andrewjw/i75/commit/f7d4c1d8447f9179309e129ee52589d089a33e31))
 
-- Create documentation index page.
-  ([`248391c`](https://github.com/andrewjw/i75/commit/248391caf9fa03a39a7f06adf8ba132ee9f9786b))
-
-- Add Sphinx configuration.
-  ([`4294b09`](https://github.com/andrewjw/i75/commit/4294b0934f7afb9632214d42685af34fcbd241cf))
-
-- Add Read The Docs badge.
-  ([`4ed4aa7`](https://github.com/andrewjw/i75/commit/4ed4aa76cfec48f421546474d520777f8cfd31df))
-
 - Start configuring read the docs
   ([`f8e32bc`](https://github.com/andrewjw/i75/commit/f8e32bc8b7e73c657dacd55d1ca5f24fb68483ad))
 
-- Initial import.
-  ([`fb25405`](https://github.com/andrewjw/i75/commit/fb25405eacb4a69172b28f4c42ab8827c6044457))
+- Use official RTD theme for docs
+  ([`a2375af`](https://github.com/andrewjw/i75/commit/a2375af808aa4dcd01885f9765f412986e9e7ba5))
 
 ### Features
 
-- Add initial version of an analogue clock example.
-  ([`927dc4d`](https://github.com/andrewjw/i75/commit/927dc4db2a56648bcf2add3fb653e473d50e2634))
-
 - Add basic features for drawing to the console.
   ([`5a6b551`](https://github.com/andrewjw/i75/commit/5a6b551afaeb8d4ed6d49e5ec260106c097e98d5))
+
+- Add initial version of an analogue clock example.
+  ([`927dc4d`](https://github.com/andrewjw/i75/commit/927dc4db2a56648bcf2add3fb653e473d50e2634))
