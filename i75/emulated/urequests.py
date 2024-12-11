@@ -25,12 +25,22 @@ except ImportError:
 def get(url: str,
         headers: Optional[Dict[str, str]] = None,
         data: Optional[str] = None,
-        stream: bool = False) -> requests.Response:
-    return requests.get(url, headers=headers, data=data, stream=stream)
+        stream: bool = False,
+        timeout: Optional[float] = None) -> requests.Response:
+    return requests.get(url,
+                        headers=headers,
+                        data=data,
+                        stream=stream,
+                        timeout=timeout)
 
 
 def post(url: str,
          headers: Optional[Dict[str, str]] = None,
          data: Optional[str] = None,
-         stream: bool = False) -> requests.Response:
-    return requests.post(url, headers=headers, data=data, stream=stream)
+         stream: bool = False,
+         timeout: Optional[float] = None) -> requests.Response:
+    return requests.post(url,
+                         headers=headers,
+                         data=data,
+                         stream=stream,
+                         timeout=timeout)
