@@ -70,6 +70,18 @@ class Image:
             return ThreeColourImage(width, height, fp, data)
         raise ValueError("Image has an unsupported number of colours.")
 
+    @staticmethod
+    def render_from_file(fp, buffer: Graphics, offset_x: int, offset_y: int):
+        magic = fp.read(5)
+        if magic != b"I75v1":
+            raise ValueError(
+                "Image has the wrong initial bytes. Wrong format?")
+        width = int.from_bytes(fp.read(1), "big")
+        height = int.from_bytes(fp.read(1), "big")
+        colours = int.from_bytes(fp.read(1), "big")
+
+        return (width, height, colours)
+
 
 class SingleColourImage(Image):
     def __init__(self,
@@ -101,6 +113,29 @@ class SingleColourImage(Image):
         byte = self.data[y * row_width + math.floor(x / 8)]
         return (byte >> (7 - x % 8)) & 1 == 1
 
+    @staticmethod
+    def render_from_file(fp,
+                         buffer: Graphics,
+                         offset_x: int,
+                         offset_y: int):
+        width, height, colours = Image.render_from_file(fp,
+                                                        buffer,
+                                                        offset_x,
+                                                        offset_y)
+        if colours != 1:
+            raise ValueError("Image has an unsupported number of colours.")
+        buffer.set_pen(buffer.create_pen(255, 255, 255))
+        current_offset = 0
+        current = fp.read(1)
+        row_width = math.ceil(width / 8.0)
+        for y in range(height):
+            for x in range(width):
+                if current_offset < (y * row_width + math.floor(x / 8)):
+                    current = ord(fp.read(1))
+                    current_offset = (y * row_width + math.floor(x / 8))
+                if (current >> (7 - x % 8)) & 1 == 1:
+                    buffer.pixel(offset_x + x, offset_y + y)
+
 
 class ThreeColourImage(Image):
     def __init__(self,
@@ -124,4 +159,19 @@ class ThreeColourImage(Image):
                     self.data[3 * (y * self.width + x) + 1],
                     self.data[3 * (y * self.width + x) + 2],
                 ))
+                buffer.pixel(offset_x + x, offset_y + y)
+
+    @staticmethod
+    def render_from_file(fp, buffer: Graphics, offset_x: int, offset_y: int):
+        width, height, colours = Image.render_from_file(fp,
+                                                        buffer,
+                                                        offset_x,
+                                                        offset_y)
+        if colours != 3:
+            raise ValueError("Image has an unsupported number of colours.")
+        for y in range(height):
+            for x in range(width):
+                buffer.set_pen(buffer.create_pen(ord(fp.read(1)),
+                                                 ord(fp.read(1)),
+                                                 ord(fp.read(1))))
                 buffer.pixel(offset_x + x, offset_y + y)
