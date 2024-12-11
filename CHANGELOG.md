@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.17.0 (2024-12-11)
+
+### Features
+
+- Add timeout parameter to urequests methods.
+  ([`d058862`](https://github.com/andrewjw/i75/commit/d0588621839939b3087aa7498ea229e21df0b3f1))
+
+
 ## v1.16.0 (2024-12-11)
 
 ### Chores
