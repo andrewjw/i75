@@ -27,6 +27,7 @@ class DisplayType:
         self.height = height
 
 
+DISPLAY_PRESTO = DisplayType(480, 480)
 DISPLAY_INTERSTATE75_32X32 = DisplayType(32, 32)
 DISPLAY_INTERSTATE75_64X32 = DisplayType(64, 32)
 DISPLAY_INTERSTATE75_96X32 = DisplayType(96, 32)

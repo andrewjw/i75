@@ -8,7 +8,10 @@ ampy ${@:1} put i75/basei75.py i75/basei75.py
 ampy ${@:1} put i75/colour.py i75/colour.py
 ampy ${@:1} put i75/datetime.py i75/datetime.py
 ampy ${@:1} put i75/graphics.py i75/graphics.py
+ampy ${@:1} put i75/hub75graphics.py i75/hub75graphics.py
+ampy ${@:1} put i75/prestographics.py i75/prestographics.py
 ampy ${@:1} put i75/nativei75.py i75/nativei75.py
+ampy ${@:1} put i75/prestoi75.py i75/prestoi75.py
 ampy ${@:1} put i75/text.py i75/text.py
 ampy ${@:1} put i75/image.py i75/image.py
 ampy ${@:1} put i75/tz/__init__.py i75/tz/__init__.py

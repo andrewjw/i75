@@ -20,9 +20,9 @@ try:
 except ImportError:  # pragma: no cover
     pass
 
-import hub75
+#import hub75
 import picographics
-from pimoroni import RGBLED, Button
+#from pimoroni import RGBLED, Button
 from pimoroni_i2c import PimoroniI2C
 import network
 import ntptime
@@ -30,9 +30,15 @@ import machine
 import time
 import sys
 
+try:
+    from presto import Presto
+    PRESTO = True
+    from .prestographics import PrestoGraphics as Graphics
+except ImportError:
+    PRESTO = False
+    from .hub75graphics import HUB75Graphics as Graphics
 
 from .datetime import DateTime
-from .graphics import Graphics
 
 
 # Index Constants

@@ -25,6 +25,8 @@ import sys
 parser = argparse.ArgumentParser(
     description='Runs a script in an emulated i75 environment')
 parser.add_argument('scriptname', help='the script to run')
+parser.add_argument('--presto', action="store_true",
+                    help="Emulate the Pimoroni Presto")
 
 def main():
     args = parser.parse_args(sys.argv[1:])
@@ -33,6 +35,7 @@ def main():
 
     os.environ["PYTHONPATH"] = os.path.join(os.path.dirname(i75path), "emulated") + \
         ":" + os.environ.get("PYTHONPATH", "")
+    os.environ["I75_DISPLAY_TYPE"] = "presto" if args.presto else "hub75"
 
     subprocess.call([sys.executable, args.scriptname])
 

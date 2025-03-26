@@ -17,14 +17,20 @@
 
 __version__ = "1.16.0"
 
-import picographics
-if hasattr(picographics, "DisplayType"):
-    from .emulatedi75 import EmulatedI75
-    I75 = EmulatedI75  # type: ignore
-else:
-    from .nativei75 import NativeI75
-    I75 = NativeI75  # type: ignore
-del picographics
+try:
+    import presto
+    from .prestoi75 import PrestoI75
+    I75 = PrestoI75
+except ImportError as e:
+    print(e)
+    import picographics
+    if hasattr(picographics, "DisplayType"):
+        from .emulatedi75 import EmulatedI75
+        I75 = EmulatedI75  # type: ignore
+    else:
+        from .nativei75 import NativeI75
+        I75 = NativeI75  # type: ignore
+    del picographics
 
 from .colour import Colour  # noqa
 from .datetime import DateTime, Date  # noqa

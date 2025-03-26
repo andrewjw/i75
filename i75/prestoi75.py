@@ -25,39 +25,33 @@ except ImportError:
     pass
 
 import ntptime   # type: ignore
+from presto import Presto
 import machine
-
-try:
-    from secrets import WIFI_SSID, WIFI_PASSWORD   # type: ignore
-    WIFI_AVAILABLE: bool = True
-except ImportError:
-    print("Create secrets.py with your WiFi credentials to get time from NTP")
-    WIFI_AVAILABLE = False
-    WIFI_SSID = None
-    WIFI_PASSWORD = None
 
 from .basei75 import BaseI75
 from .datetime import DateTime
+from .prestographics import PrestoGraphics
 
 
-class NativeI75(BaseI75):
+class PrestoI75(BaseI75):
     """
-    This class is used when running on real Interstate75 hardware.
+    This class is used when running on real Presto hardware.
     See :ref baseinterstate75: for a description of the
     available methods.
     """
-    def __init__(self,
-                 display_type: picographics.DisplayType,
-                 stb_invert=False,
-                 rotate: int = 0) -> None:
-        super().__init__(display_type,
-                         rotate=rotate,
-                         wifi_ssid=WIFI_SSID,
-                         wifi_password=WIFI_PASSWORD)
+    def __init__(self) -> None:
+        self.presto = Presto(full_res=False)
+
+        self.display = PrestoGraphics(self.presto)
 
     @staticmethod
     def is_emulated() -> bool:
         return False
+
+    def enable_wifi(self,
+                    callback: Optional[Callable[[int], None]] = None
+                    ) -> bool:
+        self.presto.connect()
 
     def set_time(self) -> bool:
         try:
