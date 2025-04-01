@@ -18,7 +18,7 @@
 import unittest
 
 from i75 import Colour
-from i75.screens import ColourBlock
+from i75.screens.colour_block import ColourBlock
 
 
 class TestColourBlock(unittest.TestCase):

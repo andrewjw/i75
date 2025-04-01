@@ -17,7 +17,7 @@
 
 import unittest
 
-from i75.screens import SingleBitBuffer
+from i75.screens.single_bit_buffer import SingleBitBuffer
 
 
 class TestSingleBitBuffer(unittest.TestCase):
