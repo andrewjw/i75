@@ -18,8 +18,12 @@
 import picographics
 
 from i75 import Colour, I75, ScreenManager
-from i75.screens import ColourBlock, ScreenWipe, SwipeDown, \
-                        SwipeLeft, SwipeRight, SwipeUp
+from i75.screens.colour_block import ColourBlock
+from i75.screens.screen_wipe import ScreenWipe
+from i75.screens.swipe_down import SwipeDown
+from i75.screens.swipe_left import SwipeLeft
+from i75.screens.swipe_right import SwipeRight
+from i75.screens.swipe_up import SwipeUp
 
 DURATION = 2000
 
