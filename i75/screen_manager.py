@@ -51,10 +51,7 @@ class ScreenManager:
 
         colour = Colour.fromrgb(0, 0, 0)
         count = 0
-        pixels = list(self._dirty_buffer.set_pixels())
-        if len(pixels) > 0:
-            print(len(pixels))
-        for (x, y) in pixels:#self._dirty_buffer.set_pixels():
+        for (x, y) in self._dirty_buffer.set_pixels():
             count += 1
             c = self._screen.get_pixel(x, y)
             if c != colour:
