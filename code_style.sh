@@ -6,6 +6,8 @@ MYPYPATH=./i75/stubs:./i75/emulated:$MYPYPATH mypy bin/i75
 
 MYPYPATH=./i75/stubs:./i75/emulated:$MYPYPATH mypy bin/i75-convert-image
 
+MYPYPATH=./i75/stubs:./i75/emulated:$MYPYPATH mypy bin/i75-encode-font
+
 MYPYPATH=./i75/stubs:./i75/emulated:$MYPYPATH mypy -m i75
 
 MYPYPATH=./i75/stubs:./i75/emulated:$MYPYPATH mypy -p examples

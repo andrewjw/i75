@@ -28,6 +28,6 @@ del picographics
 
 from .colour import Colour  # noqa
 from .datetime import Date, DateTime  # noqa
-from .image import Image, SingleColourImage  # noqa
+from .image import Image, SingleColourImage, ThreeColourImage  # noqa
 from .screen_manager import ScreenManager  # noqa
 from .text import render_text, text_boundingbox, wrap_text  # noqa
