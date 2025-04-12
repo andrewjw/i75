@@ -1,0 +1,346 @@
+#! /usr/bin/env python3
+# Adapted from https://github.com/lowfatcode/alright-fonts/tree/main
+# MIT License
+#
+# Copyright (c) 2022 lowfatcode
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+# At the time of writing Alright Fonts is not available on PyPi, so we include
+# the code here and in the font directory.
+#
+
+import argparse
+import builtins
+import importlib.util
+import os
+import struct
+import sys
+from typing import Dict, List, Optional, Tuple
+
+import freetype  # type: ignore
+from simplification.cutil import simplify_coords_vwp  # type: ignore
+
+i75path: str = importlib.util.find_spec("i75", None).origin  # type: ignore
+
+sys.path.insert(0, os.path.join(os.path.dirname(i75path), "emulated"))
+
+from i75.font import Glyph, Point
+
+# contour encoding
+# ===========================================================================
+
+def pack_glyph_contours(glyph: Glyph) -> bytes:
+  result = bytes()
+  for contour in glyph.contours:      
+    result += struct.pack(">H", len(contour))
+    for point in contour:
+      result += struct.pack(">bb", point.x, point.y)
+  # end of contours marker
+  result += struct.pack(">H", 0)
+  return result      
+
+class Segment():
+  def __init__(self, start: Point) -> None:
+    self.start = start
+    self.control: List[Point] = []
+    self.end: Optional[Point] = None
+
+  def add_control(self, point: Point) -> None:
+    self.control.append(point)
+
+  def set_end(self, end: Point) -> None:
+    self.end = end
+
+  @staticmethod
+  def bezier_point(t: float, points: List[Point]) -> Point:
+    if len(points) == 1:
+      return points[0]
+    a = Segment.bezier_point(t, points[:-1])
+    b = Segment.bezier_point(t, points[1:])
+    return Point((1 - t) * a.x + t * b.x, (1 - t) * a.y + t * b.y)
+    
+  def point_at(self, t: float) -> Point:
+    assert self.end is not None
+    return Segment.bezier_point(t, [self.start] + self.control + [self.end])
+    
+  # returns the list of points that make up a line segment or a 
+  # bezier curve, does not return the last point as that will be
+  # the start point of the next segment and we don't want duplicate 
+  # points
+  def decompose(self, quality=1) -> List[Point]:
+    points: List[Point] = []
+
+    print(len(self.control))
+    if len(self.control) > 0:
+
+      # create an array of interpolated coordinates
+      coords = []
+      # number of control points on the bezier is a fair proxy for 
+      # its complexity, we'll use that to determine how many 
+      # straight line segments to generate initially
+      count = len(self.control) * 3
+      for i in range(0, count):
+        point = self.point_at(i / count)
+        coords.append([point.x, point.y])
+
+      # use simplification library to reduce the number of coordinates    
+      simplified = simplify_coords_vwp(coords, quality)
+
+      points = []
+      for coord in simplified[:-1]:
+        points.append(Point(int(coord[0]), int(coord[1])))   
+    else:
+      # straight line segment
+      points.append(self.start)
+
+    return points
+  
+
+def load_glyph(face, codepoint, scale_factor, quality=1) -> Optional[Glyph]:
+  # glyph doesn't exist in face
+  if face.get_char_index(codepoint) == 0:
+    return None
+
+  # glyph isn't printable
+  if not chr(codepoint).isprintable():
+    return None
+
+  # load the glyph
+  face.load_char(codepoint)
+
+  glyph = Glyph() 
+  glyph.codepoint = codepoint # utf-8 codepoint or ascii character code
+  glyph.advance = round(face.glyph.metrics.horiAdvance * scale_factor)    
+
+  # bounding box
+  bbox = face.glyph.outline.get_bbox()
+  glyph.bbox_x = round( bbox.xMin * scale_factor)
+  glyph.bbox_y = round( bbox.yMin * scale_factor)
+  glyph.bbox_w = round((bbox.xMax - bbox.xMin) * scale_factor)
+  glyph.bbox_h = round((bbox.yMax - bbox.yMin) * scale_factor)
+  
+  # extract glyph contours
+  outline = face.glyph.outline
+  glyph.contours = []
+  start = 0
+
+  for end in outline.contours:
+    # extract the points for this contour
+    points = [Point(p) for p in outline.points[start:end + 1]]
+    tags = outline.tags[start:end + 1]
+
+    # attach start point to end to close the loop
+    points.append(points[0])
+    tags.append(tags[0])
+
+    # invert the y axis, scale, and round the values in the contour
+    points = [p.scale(scale_factor, -scale_factor).round() for p in points]
+
+    # create list of segments for this contour
+    contour = []
+    
+    while len(points) > 1:
+      # create a new segment with start point
+      segment = Segment(points.pop(0))
+      tags.pop(0)
+
+      # add any control points that exist
+      if (tags[0]):
+        while tags[0] & 0b1 == 0:
+          segment.add_control(points.pop(0))
+          tags.pop(0)
+
+      # set end point of segment (do not remove the point
+      # from our list as it will be the start point for the
+      # next segment)
+      segment.set_end(points[0])
+
+      # decompose the segment into points and add to the contour
+      # we're building
+      contour += segment.decompose(quality)
+
+    # store the contour
+    glyph.contours.append(contour)
+
+    # the start of the next contour is the end of this one
+    start = end + 1
+  
+  return glyph
+    
+class Encoder():
+  def __init__(self, font: str, quality = 1) -> None:
+    self.face = freetype.Face(font)
+    self.bbox_l: float = self.face.bbox.xMin
+    self.bbox_t: float = self.face.bbox.yMin
+    self.bbox_r: float = self.face.bbox.xMax
+    self.bbox_b: float = self.face.bbox.yMax
+    self.glyphs: Dict[int, Glyph] = {}
+    self.packed_glyph_contours: Dict[int, bytes] = {}
+
+    self.quality = quality
+
+    normalising_scale_factor = max(
+      abs(self.bbox_l), abs(self.bbox_t), 
+      abs(self.bbox_r), abs(self.bbox_b))
+
+    self.scale_factor = 127 / normalising_scale_factor    
+
+    self.bbox_l *= self.scale_factor
+    self.bbox_t *= self.scale_factor
+    self.bbox_r *= self.scale_factor
+    self.bbox_b *= self.scale_factor
+
+  def get_glyph(self, codepoint: int) -> Optional[Glyph]:
+    if codepoint not in self.glyphs:
+      glyph = load_glyph(self.face, codepoint, self.scale_factor, self.quality)
+      if not glyph:
+        return None
+      self.glyphs[codepoint] = glyph
+    return self.glyphs[codepoint]
+
+  def get_packed_glyph(self, glyph: Glyph) -> bytes:
+    assert glyph.codepoint is not None
+    self.packed_glyph_contours[glyph.codepoint] = pack_glyph_contours(glyph)
+    pack_format = ">HbbBBBH"
+    return struct.pack(pack_format, glyph.codepoint, 
+      glyph.bbox_x, glyph.bbox_y, glyph.bbox_w, glyph.bbox_h, glyph.advance, 
+      len(self.packed_glyph_contours[glyph.codepoint]))
+
+  def get_packed_glyph_contours(self, glyph: Glyph) -> bytes:
+    assert glyph.codepoint is not None
+    return self.packed_glyph_contours[glyph.codepoint]
+
+# parse command line arguments
+# ===========================================================================
+
+parser = argparse.ArgumentParser(description="Create an Alright Font (.af) file containing the specified set of glyphs.")
+parser.add_argument("--font", type=argparse.FileType("rb"), required=True, help="the font (.ttf or .otf) that you want to extract glyphs from")
+parser.add_argument("--quality", type=str, choices=["low", "medium", "high"], default="medium", help="the quality of decomposed bezier curves - affects font file size. (default: \"medium\")")
+parser.add_argument("--characters", type=str, help="the list of characters that you want to extract. (default: ASCII character set)")
+parser.add_argument("--corpus", type=argparse.FileType("r"), help="corpus to select characters from")
+parser.add_argument("--quiet", action="store_true", help="suppress all progress and debug messages")
+parser.add_argument("out", type=str, help="the output filename")
+args = parser.parse_args()
+
+# override print() to allow quiet mode to suppress output
+def print(*a, **kw) -> None:
+  if not args.quiet:
+    builtins.print(*a, **kw)
+
+
+# load the requested font file
+# ===========================================================================
+
+print("> loading font", args.font.name)
+quality_map = {
+  "low": 25,
+  "medium": 5,
+  "high": 1
+}
+
+try:
+  encoder = Encoder(args.font, quality=quality_map[args.quality])
+except:
+  print("Failed to load font - stopping.")
+  sys.exit(1)
+
+# determine glyph metric and coordinate scaling
+# ===========================================================================
+
+# the bounding box defines the largest bounding box of all glyphs
+print("  - bounding box {}, {} -> {}, {}".format(
+  encoder.bbox_l, encoder.bbox_t, encoder.bbox_r, encoder.bbox_b))
+
+# then upscale from the normalised scale to our preferred scale
+print("  - scale factor {}".format(round(encoder.scale_factor, 3)))
+
+
+# get the list of character code points or ascii character codes
+# ===========================================================================
+
+# default to the standard ascii character set
+if not args.characters and not args.corpus:
+  character_codepoints = [i for i in range(0, 128)] + [ord("£")]
+
+# user supplied list of characters as command line argument
+if args.characters:
+  character_codepoints = sorted([ord(c) for c in set(args.characters)])
+
+# user supplied corpus file to extract characters from
+if args.corpus:
+  while True:
+    line = args.corpus.readline()
+    if not line:
+      break
+    character_codepoints = sorted(set(character_codepoints + [ord(c) for c in line]))
+
+
+# extract the glyph metrics and contours for all printable glyphs
+# ===========================================================================
+
+print("> extracting {} glyphs".format(len(character_codepoints)))
+
+#glyphs = {}
+#contours = {}
+printable_count = 0
+for codepoint in character_codepoints:
+  glyph = encoder.get_glyph(codepoint)
+
+  if glyph:
+    print("  \\u{:04} {} : {:>2} contours / {:>3} points".format(
+      codepoint, 
+      "'" + chr(codepoint) + "'", 
+      len(glyph.contours), 
+      sum([len(c) for c in glyph.contours])
+    ))
+    printable_count += 1
+  else:
+    print("  \\u{:04} missing or not printable, skipping".format(codepoint))
+
+# write glyph dictionary to file
+print("> write output file in {} format".format(format))
+
+if len(encoder.glyphs) == 0:
+  print("No printable glyphs - stopping.")
+  sys.exit(1)
+
+# write header to file
+print("  - header")
+result = bytes()
+result += b"af!?"
+result += struct.pack(">H", len(encoder.glyphs))
+result += struct.pack(">H", 0) # no flags to set
+
+print("  - glyph dictionary")
+for codepoint, glyph in encoder.glyphs.items():
+  result += encoder.get_packed_glyph(glyph)
+
+print("  - glyph contours")
+for codepoint, glyph in encoder.glyphs.items():
+  result += encoder.get_packed_glyph_contours(glyph)
+
+
+# write out the resulting paf font file in requested format
+# ===========================================================================
+
+with open(args.out, "wb") as outfile:
+    outfile.write(result)
+
+print("> output file size {} bytes and contains {} characters (avg. {} bytes per character)".format(len(result), printable_count, int(len(result) / printable_count)))

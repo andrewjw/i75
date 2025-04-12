@@ -17,11 +17,13 @@
 
 import picographics
 
-from i75 import Colour, I75, ScreenManager
+from i75 import Colour, Face, Font, I75, ScreenManager
 from i75.text import text_boundingbox, render_text, \
                      render_text_multiline, wrap_text
-from i75.screens import SingleColour, HorizontalScrollingScreen, \
-                        SingleBitScreen, VerticalScrollingScreen
+from i75.screens.single_colour import SingleColour
+from i75.screens.horizontal_scrolling_screen import HorizontalScrollingScreen
+from i75.screens.single_bit_screen import SingleBitScreen
+from i75.screens.vertical_scrolling_screen import VerticalScrollingScreen
 
 DURATION = 2000
 
@@ -39,13 +41,16 @@ Really, this far down?
 5.
 A list? How dull!"""
 
-FONT = "cg_pixel_3x5_5"
+FONT = "tiny5.af"
 
 
 def main() -> None:
     i75 = I75(
         display_type=picographics.DISPLAY_INTERSTATE75_64X64,
         rotate=0 if I75.is_emulated() else 90)
+
+    face = Face.load_face(FONT)
+    font = Font(face, 7)
 
     white = Colour.fromrgb(255, 255, 255)
     black = Colour.fromrgb(0, 0, 0)
@@ -54,9 +59,9 @@ def main() -> None:
 
     bg = SingleColour(black)
 
-    bbox_width, bbox_height = text_boundingbox(FONT, HTEXT)
+    bbox_width, bbox_height = text_boundingbox(font, HTEXT)
     hscreen = SingleBitScreen(0, 0, bbox_width, bbox_height, white, bg)
-    render_text(hscreen, FONT, 0, 0, HTEXT)
+    render_text(hscreen, font, 0, 0, HTEXT)
     hscroller = HorizontalScrollingScreen(0,
                                           0,
                                           64,
@@ -66,10 +71,10 @@ def main() -> None:
                                           bg,
                                           scroll_duration=10000)
 
-    vtext = wrap_text(FONT, VTEXT, 64)
-    bbox_width, bbox_height = text_boundingbox(FONT, vtext)
+    vtext = wrap_text(font, VTEXT, 64)
+    bbox_width, bbox_height = text_boundingbox(font, vtext)
     vscreen = SingleBitScreen(0, 0, bbox_width, bbox_height, white, bg)
-    render_text_multiline(vscreen, FONT, 0, 0, vtext)
+    render_text_multiline(vscreen, font, 0, 0, vtext)
     vscroller = VerticalScrollingScreen(0,
                                         20,
                                         bbox_width,

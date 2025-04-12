@@ -17,11 +17,14 @@
 
 import picographics
 
-from i75 import I75, render_text, wrap_text, text_boundingbox
+from i75 import Colour, I75, Face, Font, ScreenManager, \
+                render_text, wrap_text, text_boundingbox
+from i75.screens.single_colour import SingleColour
+from i75.screens.single_bit_screen import SingleBitScreen
 
-PANGRAM = "The Quick Brown Fox Jumps Over The Lazy Dog."
+PANGRAM = "The Quick Brown Fox Jumps Over The Lazy Dog.".upper()
 
-FONT = "cg_pixel_3x5_5"
+FONT = "tiny5.af"
 
 
 def main() -> None:
@@ -29,16 +32,28 @@ def main() -> None:
         display_type=picographics.DISPLAY_INTERSTATE75_64X64,
         rotate=0 if I75.is_emulated() else 90)
 
-    white = i75.display.create_pen(255, 255, 255)
-    i75.display.set_pen(white)
+    face = Face.load_face(FONT)
+    font = Font(face, 7)
 
-    _, height = text_boundingbox(FONT, PANGRAM)
-    render_text(i75.display, FONT, 0, 0, PANGRAM)
+    black = Colour.fromrgb(0, 0, 0)
+    white = Colour.fromrgb(255, 255, 255)
 
-    pangram_wrapped = wrap_text(FONT, PANGRAM, 64)
-    render_text(i75.display, FONT, 0, height, pangram_wrapped)
+    manager = ScreenManager(64, 64, i75.display)
 
-    i75.display.update()
+    bg = SingleColour(black)
+    screen = SingleBitScreen(0, 0, 64, 64, white, bg)
+    manager.set_screen(screen)
+
+    _, height = text_boundingbox(font, PANGRAM)
+    render_text(screen, font, 0, 0, PANGRAM)
+
+    pangram_wrapped = wrap_text(font, PANGRAM, 64)
+    _, height2 = text_boundingbox(font, pangram_wrapped)
+    render_text(screen, font, 0, height + 1, pangram_wrapped)
+
+    render_text(screen, font, 0, height + height2 + 2, "£")
+
+    manager.update(0)
 
     i75.sleep_ms(10000)
 

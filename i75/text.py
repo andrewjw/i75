@@ -16,43 +16,20 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 try:
-    from typing import Any, Callable, Dict, Tuple, cast
+    from typing import Tuple
 except ImportError:
-    def cast(x, y):  # type:ignore
-        return y
+    pass
 
+from .font import Font
+from .graphic_primitives import filled_polygon
 from .screens.writable_screen import WritableScreen
 
 
-class FontData:
-    HEIGHT: int
-    SPACE_WIDTH: int
-    DATA: Dict[str, Tuple[int, bytes]]
-
-
-def __get_font(font: str) -> FontData:
-    globals: Dict[str, Any] = {}
-    locals: Dict[str, Any] = {}
-    exec(f"import i75.fontdata.{font}", globals, locals)
-    return cast(FontData, getattr(locals["i75"].fontdata, font))
-
-
-def __scale_pixel(scale: int,
-                  pixel: Callable[[int, int], None]) \
-        -> Callable[[int, int, int, int], None]:
-    def r(x: int, y: int, cx: int, cy: int) -> None:
-        for sx in range(scale):
-            for sy in range(scale):
-                pixel(x + cx * scale + sx, y + cy * scale + sy)
-    return r
-
-
 def render_text(buffer: WritableScreen,
-                font: str,
+                font: Font,
                 x: int,
                 y: int,
-                text: str,
-                scale: int = 1) -> None:
+                text: str) -> None:
     """
     Render the given text, at location (x,y) using font onto the scren buffer.
     """
@@ -60,79 +37,64 @@ def render_text(buffer: WritableScreen,
         render_text_multiline(buffer, font, x, y, text)
         return
 
-    font_data = __get_font(font)
-
-    if scale == 1:
-        pixel: Callable[[int, int, int, int], None] = \
-            lambda x, y, cx, cy: buffer.pixel(x + cx, y + cy)
-    else:
-        pixel = __scale_pixel(scale, buffer.pixel)
-
-    for c in text.upper():
+    for c in text:
         if c == " ":
-            x += font_data.SPACE_WIDTH * scale
+            x += font.space_width
             continue
-        if c in font_data.DATA:
-            width, data = font_data.DATA[c]
-        else:
-            width, data = font_data.DATA["#"]
+        glyph = font.get_glyph(ord(c))
+        if glyph is None:
+            glyph = font.get_glyph(ord("#"))
 
-        for cy in range(font_data.HEIGHT):
-            row = data[cy]
-            if row == b'\0':
-                continue
-            for cx in range(width):
-                if row & 1 == 1:
-                    pixel(x, y, cx, cy)
-                row = row >> 1
-        x += (width + 1) * scale
+        assert glyph is not None
+        filled_polygon(buffer,
+                       [[(x + p.x, y + p.y + font.height)
+                         for p in contour]
+                        for contour in glyph.contours])
+
+        x += int(round(glyph.advance))
 
 
 def render_text_multiline(buffer: WritableScreen,
-                          font: str,
+                          font: Font,
                           x: int,
                           y: int,
-                          textdata: str,
-                          scale: int = 1) -> None:
-    font_data = __get_font(font)
-
+                          textdata: str) -> None:
     for line in textdata.split("\n"):
-        render_text(buffer, font, x, y, line, scale)
+        render_text(buffer, font, x, y, line)
 
-        y += font_data.HEIGHT
+        y += int(round(font.get_height())) + 1
 
 
-def text_boundingbox(font: str, text: str, scale: int = 1) -> Tuple[int, int]:
+def text_boundingbox(font: Font, text: str) -> Tuple[int, int]:
     """
     Return the width and height of the given text using the given font.
     """
-    font_data = __get_font(font)
-
     width, height = 0, 0
     for line in text.split("\n"):
         line_width = 0
-        for c in line.upper():
+        for c in line:
             if c == " ":
-                line_width += font_data.SPACE_WIDTH
+                line_width += font.space_width
                 continue
-            if c in font_data.DATA:
-                cwidth, _ = font_data.DATA[c]
+            glyph = font.get_glyph(ord(c))
+            if glyph is not None:
+                cwidth = glyph.advance
             else:
-                cwidth, _ = font_data.DATA["#"]
-            line_width += cwidth + 1
+                cwidth, _ = font.get_glyph(ord("#")).advance + 1  # type:ignore
+            line_width += int(cwidth)
         if line_width > width:
             width = line_width
-        height += font_data.HEIGHT
+        height += int(round(font.get_height())) + 1
 
-    return width * scale, height * scale
+    return width, height
 
 
-def wrap_text(font: str, text: str, max_width: int, scale: int = 1) -> str:
+def wrap_text(font: Font, text: str, max_width: int) -> str:
     lines = [text]
     while True:
         split_line = False
         for i in range(len(lines)):
-            width = text_boundingbox(font, lines[i], scale)[0]
+            width = text_boundingbox(font, lines[i])[0]
             if width > max_width and " " in lines[i]:
                 split_line = True
                 last_word = lines[i].split(" ")[-1]
