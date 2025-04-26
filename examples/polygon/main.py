@@ -17,9 +17,9 @@
 
 import picographics
 
-from i75 import I75, render_text, wrap_text, text_boundingbox
-
-FONT = "cg_pixel_3x5_5"
+from i75 import Colour, I75, ScreenManager, filled_polygon
+from i75.screens.single_colour import SingleColour
+from i75.screens.single_bit_screen import SingleBitScreen
 
 
 def main() -> None:
@@ -27,16 +27,23 @@ def main() -> None:
         display_type=picographics.DISPLAY_INTERSTATE75_64X64,
         rotate=0 if I75.is_emulated() else 90)
 
-    white = i75.display.create_pen(255, 255, 255)
-    i75.display.set_pen(white)
+    black = Colour.fromrgb(0, 0, 0)
+    white = Colour.fromrgb(255, 255, 255)
 
-    y = 0
-    for scale in range(1, 4):
-        _, height = text_boundingbox(FONT, f"Scale x{scale}", scale=scale)
-        render_text(i75.display, FONT, 0, y, f"Scale x{scale}", scale=scale)
-        y += height
+    manager = ScreenManager(64, 64, i75.display)
 
-    i75.display.update()
+    bg = SingleColour(black)
+    screen = SingleBitScreen(0, 0, 64, 64, white, bg)
+    manager.set_screen(screen)
+
+    filled_polygon(screen, [[(2, 2), (6, 2), (6, 6), (2, 6)]])
+
+    filled_polygon(screen, [[(6, 12), (10, 16), (6, 20), (2, 16)]])
+
+    filled_polygon(screen, [[(2, 24), (16, 24), (16, 34), (2, 34)],
+                            [(6, 28), (12, 28), (12, 30), (6, 30)]])
+
+    manager.update(0)
 
     i75.sleep_ms(10000)
 

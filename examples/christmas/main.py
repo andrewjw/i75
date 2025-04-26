@@ -16,25 +16,40 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 try:
-    from typing import Callable, List, Tuple
+    from typing import Callable, List, Tuple, cast
 except ImportError:  # pragma: no cover
-    pass
+    def cast(t, x):  # type: ignore
+        return x
 
 import random
 
 import picographics
 
-from i75 import Date, Colour, I75, Image, SingleColourImage, ScreenManager, render_text, text_boundingbox
-from i75.screens import Layers, Offset, Screen, SpriteInstance, Scale, SingleBitScreen, SingleColour
+from i75 import Date, Colour, Face, Font, I75, Image, SingleColourImage, \
+                ScreenManager, render_text, text_boundingbox
+from i75.screens.layers import Layers
+from i75.screens.offset import Offset
+from i75.screens.screen import Screen
+from i75.screens.sprite_instance import SpriteInstance
+from i75.screens.scale import Scale
+from i75.screens.single_bit_screen import SingleBitScreen
+from i75.screens.single_colour import SingleColour
 
-FONT = "cg_pixel_3x5_5"
+FONT = "tiny5.af"
 
 NUMBER_SCALE = 4
 
 
 class Snowflake(SpriteInstance):
-    def __init__(self, colour: Colour, image: SingleColourImage, child: Screen) -> None:
-        super().__init__(random.randint(10, 55), random.randint(0, 60), colour, image, child)
+    def __init__(self,
+                 colour: Colour,
+                 image: SingleColourImage,
+                 child: Screen) -> None:
+        super().__init__(random.randint(10, 55),
+                         random.randint(0, 60),
+                         colour,
+                         image,
+                         child)
 
         self._dir = 1 if random.randint(0, 1) == 1 else -1
         self._bounce = random.randint(3, 10)
@@ -64,9 +79,12 @@ def main() -> None:
     i75 = I75(
         display_type=picographics.DISPLAY_INTERSTATE75_64X64,
         rotate=0 if I75.is_emulated() else 90)
-    
+
     i75.enable_wifi()
     i75.set_time()
+
+    face = Face.load_face(FONT)
+    font = Font(face, 7)
 
     clear = Colour.fromrgba(0, 0, 0, 0)
     black = Colour.fromrgb(0, 0, 0)
@@ -76,30 +94,34 @@ def main() -> None:
     manager = ScreenManager(64, 64, i75.display)
 
     today = i75.now().date()
-    christmas = Date(2024, 12, 25)
+    christmas = Date(today.year, 12, 25)
 
     days_to_go = (christmas - today).days
 
-    width, height = text_boundingbox(FONT, str(days_to_go))
+    width, height = text_boundingbox(font, str(days_to_go))
     number_offset_x = 32 - int(NUMBER_SCALE * (width / 2))
     days = SingleBitScreen(0, 0, width, height, red, SingleColour(clear))
-    render_text(days, FONT, 0, 0, str(days_to_go))
+    render_text(days, font, 0, 0, str(days_to_go))
 
-    width, height = text_boundingbox(FONT, "sleeps to go")
+    width, height = text_boundingbox(font, "sleeps to go")
     sleeps_offset_x = 32 - int(width / 2)
     sleeps = SingleBitScreen(0, 0, width, height, red, SingleColour(clear))
-    render_text(sleeps, FONT, 0, 0, "sleeps to go")
+    render_text(sleeps, font, 0, 0, "sleeps to go")
 
-    snowflake_image = Image.load(open("snowflake.i75", "rb"))
+    snowflake_image = cast(SingleColourImage,
+                           Image.load(open("snowflake.i75", "rb")))
 
     snowflakes = []
     for _ in range(1):
-        snowflakes.append(Snowflake(white, snowflake_image, SingleColour(clear)))
+        snowflakes.append(Snowflake(white,
+                                    snowflake_image,
+                                    SingleColour(clear)))
 
-    screen = Layers(black,
-                    [Offset(sleeps_offset_x, 40, sleeps),
-                     Offset(number_offset_x, 15, Scale(4, days))]
-                    + snowflakes)
+    sprites: List[Screen] = []
+    sprites.append(Offset(sleeps_offset_x, 40, sleeps))
+    sprites.append(Offset(number_offset_x, 15, Scale(4, days)))
+    sprites.extend(snowflakes)
+    screen = Layers(black, sprites)
 
     manager.set_screen(screen)
 

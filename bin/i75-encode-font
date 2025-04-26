@@ -87,6 +87,7 @@ class Segment():
   def decompose(self, quality=1) -> List[Point]:
     points: List[Point] = []
 
+    print(len(self.control))
     if len(self.control) > 0:
 
       # create an array of interpolated coordinates
@@ -206,13 +207,6 @@ class Encoder():
     self.bbox_r *= self.scale_factor
     self.bbox_b *= self.scale_factor
 
-#  def __del__(self) -> None:
-#    # consume rogue error when destroying the face object
-#    try:
-#      del self.face
-#    except:
-#      pass 
-
   def get_glyph(self, codepoint: int) -> Optional[Glyph]:
     if codepoint not in self.glyphs:
       glyph = load_glyph(self.face, codepoint, self.scale_factor, self.quality)
@@ -283,7 +277,7 @@ print("  - scale factor {}".format(round(encoder.scale_factor, 3)))
 
 # default to the standard ascii character set
 if not args.characters and not args.corpus:
-  character_codepoints = [i for i in range(0, 128)]
+  character_codepoints = [i for i in range(0, 128)] + [ord("£")]
 
 # user supplied list of characters as command line argument
 if args.characters:
