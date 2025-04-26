@@ -68,7 +68,7 @@ class SingleBitScreen(WritableScreen):
             mark_dirty(dx, dy)
         self._dirty.clear()
 
-    def pixel(self, x: int, y: int) -> None:
+    def set_pixel(self, x: int, y: int) -> None:
         if x < 0 or x > self._width or y < 0 or y > self._height:
             return
         self._data.set_pixel(x, y)

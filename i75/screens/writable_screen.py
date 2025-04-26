@@ -19,5 +19,5 @@ from .screen import Screen
 
 
 class WritableScreen(Screen):
-    def pixel(self, x: int, y: int) -> None:
+    def set_pixel(self, x: int, y: int) -> None:
         raise NotImplementedError()

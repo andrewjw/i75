@@ -34,6 +34,8 @@ class SingleBitBuffer:
 
     def set_pixel(self, x: int, y: int) -> None:
         """Set the given pixel."""
+        if x < 0 or y < 0 or x >= self.width or y >= self.height:
+            return
         self._is_dirty = True
         byte = self._row_width * y + math.floor(x / 8.0)
         self._data[byte] = self._data[byte] | (1 << (x % 8))
@@ -58,7 +60,8 @@ class SingleBitBuffer:
             if self._data[i] != 0:
                 for b in range(8):
                     if (self._data[i] & (1 << b)) != 0:
-                        yield (i % self._row_width) * 8 + b, math.floor(i / float(self._row_width))
+                        yield (i % self._row_width) * 8 + b, \
+                              math.floor(i / float(self._row_width))
 
     def reset(self):
         """

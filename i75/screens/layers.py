@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 try:
-    from typing import Callable, List
+    from typing import Callable, Sequence
 except ImportError:
     pass
 
@@ -27,7 +27,7 @@ from .screen import Screen
 class Layers(Screen):
     def __init__(self,
                  bgcolour: Colour,
-                 layers: List[Screen]) -> None:
+                 layers: Sequence[Screen]) -> None:
         self.bgcolour = bgcolour
         self.layers = layers
 
