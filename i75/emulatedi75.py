@@ -40,7 +40,7 @@ class EmulatedI75(BaseI75):
                          rotate=rotate,
                          wifi_ssid="native",
                          wifi_password="native")
-        
+
         self.__time_set = False
 
     @staticmethod
