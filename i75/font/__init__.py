@@ -33,7 +33,7 @@ class Point():
                                    float,
                                    Tuple[int, int],
                                    Tuple[float, float]]] = None,
-                 y: Optional[Union[int,float]] = None) -> None:
+                 y: Optional[Union[int, float]] = None) -> None:
         if x is not None:
             if isinstance(x, tuple):
                 self.x = x[0]
