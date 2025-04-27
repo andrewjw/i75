@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 try:
-    from typing import Optional, Tuple
+    from typing import Dict, Optional, Tuple
 except ImportError:
     pass
 import math
@@ -25,6 +25,7 @@ import picographics
 import hub75
 
 from .colour import Colour
+from .profile import profile
 
 
 class Graphics:
@@ -51,6 +52,8 @@ class Graphics:
                                  color_order=color_order)
         self.hub75.start()
 
+        self._pen_cache: Dict[int, picographics.Pen] = {}
+
     def create_pen(self, r: int, g: int, b: int) -> picographics.Pen:
         return self._driver.create_pen(r, g, b)
 
@@ -59,7 +62,11 @@ class Graphics:
 
     def set_colour(self, colour: Colour):
         """Set the current colour used by i75 to this colour."""
-        self.set_pen(self.create_pen(colour.r, colour.g, colour.b))
+        if colour._value not in self._pen_cache:
+            self._pen_cache[colour._value] = self.create_pen(colour.r,
+                                                             colour.g,
+                                                             colour.b)
+        self.set_pen(self._pen_cache[colour._value])
 
     def fill(self, tl_x: int, tl_y: int, br_x: int, br_y: int) -> None:
         for x in range(tl_x, br_x):

@@ -25,7 +25,6 @@ from .graphics import Graphics
 from .screens.screen import Screen
 from .screens.single_bit_buffer import SingleBitBuffer
 
-
 class ScreenManager:
     def __init__(self, width: int, height: int, display: Graphics) -> None:
         self.width = width
@@ -50,10 +49,12 @@ class ScreenManager:
         self._screen.update(frame_time, self._dirty_buffer.set_pixel)
 
         colour = Colour.fromrgb(0, 0, 0)
-        count = 0
+        self._display.set_colour(colour)
         for (x, y) in self._dirty_buffer.set_pixels():
-            count += 1
             c = self._screen.get_pixel(x, y)
+            if c.is_transparent:
+                # TODO: Handle partial transparency
+                c = Colour.fromrgb(0, 0, 0)
             if c != colour:
                 self._display.set_colour(c)
                 colour = c

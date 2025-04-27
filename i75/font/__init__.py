@@ -22,18 +22,21 @@
 # SOFTWARE.
 
 import math
-from typing import Dict, List, Optional, Tuple, Union
+try:
+    from typing import Dict, List, Optional, Tuple, Union
+except ImportError:
+    pass
 import struct
 import sys
 
 
 class Point():
     def __init__(self,
-                 x: Optional[int
-                             | float
-                             | Tuple[int, int]
-                             | Tuple[float, float]] = None,
-                 y: Optional[int | float] = None) -> None:
+                 x: Optional[Union[int,
+                                   float,
+                                   Tuple[int, int],
+                                   Tuple[float, float]]] = None,
+                 y: Optional[Union[int, float]] = None) -> None:
         if x is not None:
             if isinstance(x, tuple):
                 self.x = x[0]
@@ -111,7 +114,7 @@ class Face():
         return int(space_glyph.advance)
 
     @staticmethod
-    def load_face(file_or_name_or_bytes: str | bytes) -> "Face":
+    def load_face(file_or_name_or_bytes: Union[str, bytes]) -> "Face":
         face = Face()
 
         data: Union[bytes, bytearray]

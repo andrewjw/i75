@@ -21,7 +21,6 @@ from .screen import Screen
 
 class SingleColour(Screen):
     def __init__(self, colour: Colour) -> None:
-        super().__init__(None)
         self.colour = colour
 
     def get_pixel(self, x: int, y: int) -> Colour:

@@ -43,13 +43,11 @@ NUMBER_SCALE = 4
 class Snowflake(SpriteInstance):
     def __init__(self,
                  colour: Colour,
-                 image: SingleColourImage,
-                 child: Screen) -> None:
+                 image: SingleColourImage) -> None:
         super().__init__(random.randint(10, 55),
                          random.randint(0, 60),
                          colour,
-                         image,
-                         child)
+                         image)
 
         self._dir = 1 if random.randint(0, 1) == 1 else -1
         self._bounce = random.randint(3, 10)
@@ -86,7 +84,6 @@ def main() -> None:
     face = Face.load_face(FONT)
     font = Font(face, 7)
 
-    clear = Colour.fromrgba(0, 0, 0, 0)
     black = Colour.fromrgb(0, 0, 0)
     red = Colour.fromrgb(255, 50, 50)
     white = Colour.fromrgb(255, 255, 255)
@@ -99,27 +96,27 @@ def main() -> None:
     days_to_go = (christmas - today).days
 
     width, height = text_boundingbox(font, str(days_to_go))
-    number_offset_x = 32 - int(NUMBER_SCALE * (width / 2))
-    days = SingleBitScreen(0, 0, width, height, red, SingleColour(clear))
+    scale = 4 if len(str(days_to_go)) <= 2 else 3
+    number_offset_x = 32 - int(scale * (width / 2))
+    days = SingleBitScreen(width, height, red)
     render_text(days, font, 0, 0, str(days_to_go))
 
     width, height = text_boundingbox(font, "sleeps to go")
     sleeps_offset_x = 32 - int(width / 2)
-    sleeps = SingleBitScreen(0, 0, width, height, red, SingleColour(clear))
+    sleeps = SingleBitScreen(width, height, red)
     render_text(sleeps, font, 0, 0, "sleeps to go")
 
     snowflake_image = cast(SingleColourImage,
                            Image.load(open("snowflake.i75", "rb")))
 
     snowflakes = []
-    for _ in range(1):
+    for _ in range(10):
         snowflakes.append(Snowflake(white,
-                                    snowflake_image,
-                                    SingleColour(clear)))
+                                    snowflake_image))
 
     sprites: List[Screen] = []
     sprites.append(Offset(sleeps_offset_x, 40, sleeps))
-    sprites.append(Offset(number_offset_x, 15, Scale(4, days)))
+    sprites.append(Offset(number_offset_x, 10, Scale(scale, days)))
     sprites.extend(snowflakes)
     screen = Layers(black, sprites)
 

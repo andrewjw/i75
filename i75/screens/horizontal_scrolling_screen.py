@@ -16,29 +16,23 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 try:
-    from typing import Callable, List, Tuple
+    from typing import Callable
 except ImportError:  # pragma: no cover
     pass
 
-from ..colour import Colour
+from ..colour import Colour, TRANSPARENT
 from .screen import Screen
 
 
 class HorizontalScrollingScreen(Screen):
     def __init__(self,
-                 offset_x: int,
-                 offset_y: int,
                  viewport_width: int,
                  viewport_height: int,
                  screen: Screen,
                  screen_width: int,
-                 child: Screen,
                  initial_pause: int = 2500,
                  scroll_duration: int = 5000,
                  final_pause: int = 2500) -> None:
-        super().__init__(child)
-        self._offset_x = offset_x
-        self._offset_y = offset_y
         self.viewport_width = viewport_width
         self.viewport_height = viewport_height
         self._scroll_x = 0
@@ -51,20 +45,15 @@ class HorizontalScrollingScreen(Screen):
         self.__reset = False
 
     def get_pixel(self, x: int, y: int) -> Colour:
-        if x < self._offset_x or x >= self._offset_x + self.viewport_width \
-           or y < self._offset_y or y >= self._offset_y + self.viewport_height:
-            assert self._child is not None
-            return self._child.get_pixel(x, y)
+        if x < 0 or x >= self.viewport_width \
+           or y < 0 or y >= self.viewport_height:
+            return TRANSPARENT
 
-        return self.screen.get_pixel(x - self._offset_x + self._scroll_x,
-                                     y - self._offset_y)
+        return self.screen.get_pixel(x + self._scroll_x, y)
 
     def update(self,
                frame_time: int,
                mark_dirty: Callable[[int, int], None]) -> None:
-        if self._child is not None:
-            self._child.update(frame_time, mark_dirty)
-
         old_scroll = self._scroll_x
         if not self.__reset:
             self.total_time = min(self.total_time + frame_time,
@@ -88,7 +77,7 @@ class HorizontalScrollingScreen(Screen):
                 c1 = self.screen.get_pixel(x + old_scroll, y)
                 c2 = self.screen.get_pixel(x + self._scroll_x, y)
                 if c1 != c2:
-                    mark_dirty(x + self._offset_x, y + self._offset_y)
+                    mark_dirty(x, y)
 
     def is_complete(self):
         return self.total_time >= self.total_duration

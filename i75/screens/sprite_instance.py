@@ -20,7 +20,7 @@ try:
 except ImportError:  # pragma: no cover
     pass
 
-from ..colour import Colour
+from ..colour import Colour, TRANSPARENT
 from ..image import SingleColourImage
 from .screen import Screen
 
@@ -30,9 +30,7 @@ class SpriteInstance(Screen):
                  offset_x: int,
                  offset_y: int,
                  colour: Colour,
-                 image: SingleColourImage,
-                 child: Screen) -> None:
-        super().__init__(child)
+                 image: SingleColourImage) -> None:
         self._offset_x = offset_x
         self._offset_y = offset_y
         self._colour = colour
@@ -42,16 +40,15 @@ class SpriteInstance(Screen):
         self._first_dirty: Optional[Tuple[int, int]] = None
 
     def get_pixel(self, x: int, y: int) -> Colour:
-        assert self._child is not None
         if x < self._offset_x \
            or y < self._offset_y \
            or x >= (self._offset_x + self._image.width) \
            or y >= (self._offset_y + self._image.height):
-            return self._child.get_pixel(x, y)
+            return TRANSPARENT
 
         return self._colour \
             if self._image._is_pixel(x - self._offset_x, y - self._offset_y) \
-            else self._child.get_pixel(x, y)
+            else TRANSPARENT
 
     def update(self,
                frame_time: int,
@@ -95,9 +92,6 @@ class SpriteInstance(Screen):
 
             self._offset_x, self._offset_y = self._move_to
             self._move_to = None
-
-        if self._child is not None:
-            self._child.update(frame_time, mark_dirty)
 
     def move_to(self, x: int, y: int) -> None:
         self._move_to = (x, y)

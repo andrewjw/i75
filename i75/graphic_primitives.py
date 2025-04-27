@@ -16,19 +16,29 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import math
-from typing import List, Set, Tuple
+import micropython
+try:
+    from typing import Any, List, Tuple
+except ImportError:
+    pass
 
 from .screens.writable_screen import WritableScreen
 
 
-def line(screen: WritableScreen, x1: int, y1: int, x2: int, y2: int) -> None:
+@micropython.native
+def line(screen: WritableScreen,
+         x1: int,
+         y1: int,
+         x2: int,
+         y2: int,
+         *colour: Any) -> None:
     if x1 == x2:
         for y in range(y1 if y1 < y2 else y2, (y2 if y1 < y2 else y1)+1):
-            screen.set_pixel(x1, y)
+            screen.set_pixel(x1, y, *colour)
         return
     if y1 == y2:
         for x in range(x1 if x1 < x2 else x2, (x2 if x1 < x2 else x1)+1):
-            screen.set_pixel(x, y1)
+            screen.set_pixel(x, y1, *colour)
         return
 
     # This is Bresenham's Algorithm
@@ -41,11 +51,11 @@ def line(screen: WritableScreen, x1: int, y1: int, x2: int, y2: int) -> None:
         dx, dy = dy, dx
         x, y = y, x
         x1, y1, x2, y2 = y1, x1, y2, x2
-        def pixel(x, y): return screen.set_pixel(y, x)
+        def pixel(x, y, *colour): return screen.set_pixel(y, x, *colour)
 
     p = 2*dy - dx
 
-    pixel(x, y)
+    pixel(x, y, *colour)
 
     for _ in range(2, dx + 2):
         if p > 0:
@@ -56,18 +66,23 @@ def line(screen: WritableScreen, x1: int, y1: int, x2: int, y2: int) -> None:
 
         x = x + 1 if x < x2 else x - 1
 
-        pixel(x, y)
+        pixel(x, y, *colour)
 
 
-def circle(screen: WritableScreen, cx: int, cy: int, radius: int) -> None:
+@micropython.native
+def circle(screen: WritableScreen,
+           cx: int,
+           cy: int,
+           radius: int,
+           *colour: Any) -> None:
     d = 3 - 2 * radius
     y = radius
     i = 0
     while i <= y:
-        line(screen, cx + i, cy + y, cx + i, cy - y)
-        line(screen, cx - i, cy + y, cx - i, cy - y)
-        line(screen, cx + y, cy + i, cx + y, cy - i)
-        line(screen, cx - y, cy - i, cx - y, cy + i)
+        line(screen, cx + i, cy + y, cx + i, cy - y, *colour)
+        line(screen, cx - i, cy + y, cx - i, cy - y, *colour)
+        line(screen, cx + y, cy + i, cx + y, cy - i, *colour)
+        line(screen, cx - y, cy - i, cx - y, cy + i, *colour)
 
         if d < 0:
             d = d + 4 * i + 6
@@ -78,7 +93,8 @@ def circle(screen: WritableScreen, cx: int, cy: int, radius: int) -> None:
 
 
 def filled_polygon(screen: WritableScreen,
-                   points: List[List[Tuple[float, float]]]) -> None:
+                   points: List[List[Tuple[float, float]]],
+                   *colour: Any) -> None:
     miny, maxy = math.floor(points[0][0][1]), math.ceil(points[0][0][1])
     for contour in points:
         for point in contour:
@@ -102,10 +118,10 @@ def filled_polygon(screen: WritableScreen,
 
         intersections = sorted(intersections)
         if len(intersections) == 1:
-            screen.set_pixel(intersections[0], y)
+            screen.set_pixel(intersections[0], y, *colour)
         else:
             for i in range(0, len(intersections), 2):
                 x1 = intersections[i]
                 x2 = intersections[i + 1]
                 for x in range(x1, x2):
-                    screen.set_pixel(x, y)
+                    screen.set_pixel(x, y, *colour)

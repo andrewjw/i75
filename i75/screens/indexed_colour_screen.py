@@ -1,6 +1,6 @@
 #!/usr/bin/env micropython
 # i75
-# Copyright (C) 2023 Andrew Wilkinson
+# Copyright (C) 2025 Andrew Wilkinson
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,50 +16,58 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 try:
-    from typing import Any, Callable, List, Tuple
+    from typing import Callable, Dict, List, Tuple
 except ImportError:  # pragma: no cover
     pass
 
 from ..colour import Colour, TRANSPARENT
-from .single_bit_buffer import SingleBitBuffer
+from .screen import Screen
 from .writable_screen import WritableScreen
 
 
-class SingleBitScreen(WritableScreen):
+class IndexedColourScreen(WritableScreen):
     def __init__(self,
                  width: int,
                  height: int,
-                 colour: Colour) -> None:
+                 colourmap: Dict[int, Colour]) -> None:
         self._width = width
         self._height = height
-        self._colour = colour
-        self._data = SingleBitBuffer(width, height)
+        self._colourmap = colourmap
+        self._data = bytearray(width*height)
         self._dirty: List[Tuple[int, int]] = []
 
     def get_pixel(self, x: int, y: int) -> Colour:
-        if x < 0 or y < 0 or x >= self._width or y >= self._height:
+        assert self._child is not None
+        if x < 0 \
+           or y < 0 \
+           or x >= self._width \
+           or y >= self._height:
             return TRANSPARENT
 
-        return self._colour if \
-            self._data.is_pixel_set(x, y) \
-            else TRANSPARENT
+        c = self._data[self.__get_index(x, y)]
+        if c == 0:
+            return TRANSPARENT
+        else:
+            return self._colourmap[c]
 
     def update(self,
                frame_time: int,
                mark_dirty: Callable[[int, int], None]) -> None:
+        def hidden_mark_dirty(x: int, y: int) -> None:
+            c = self._data[self.__get_index(x, y)]
+            if c == 0:
+                mark_dirty(x, y)
+        super().update(frame_time, hidden_mark_dirty)
+
         for (dx, dy) in self._dirty:
             mark_dirty(dx, dy)
         self._dirty.clear()
 
-    def set_pixel(self, x: int, y: int, *colour: bool) -> None:
+    def set_pixel(self, x: int, y: int, colour: int) -> None:
         if x < 0 or x > self._width or y < 0 or y > self._height:
             return
-        if len(colour) == 0:
-            colour = (True, )
-        if self._data.is_pixel_set(x, y) == colour[0]:
-            return
-        if colour[0]:
-            self._data.set_pixel(x, y)
-        else:
-            self._data.clear_pixel(x, y)
+        self._data[self.__get_index(x, y)] = colour
         self._dirty.append((x, y))
+
+    def __get_index(self, x: int, y: int) -> int:
+        return self.width * (y - self._offset_y) + (x - self._offset_x)

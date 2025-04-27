@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import math
 try:
     from typing import Tuple
 except ImportError:
@@ -81,7 +82,7 @@ def text_boundingbox(font: Font, text: str) -> Tuple[int, int]:
                 cwidth = glyph.advance
             else:
                 cwidth, _ = font.get_glyph(ord("#")).advance + 1  # type:ignore
-            line_width += int(cwidth)
+            line_width += int(round(cwidth))
         if line_width > width:
             width = line_width
         height += int(round(font.get_height())) + 1

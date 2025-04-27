@@ -21,73 +21,71 @@ import unittest.mock
 
 import picographics
 
-from i75.graphics import Graphics
+from i75.graphic_primitives import line
 
 
 @unittest.mock.patch("hub75.pygame")
 @unittest.mock.patch("i75.graphics.picographics")
 class TestLineDrawing(unittest.TestCase):
     def create(self, mockgraphics: unittest.mock.Mock) \
-            -> Tuple[unittest.mock.Mock, Graphics]:
+            -> Tuple[unittest.mock.Mock, ]:
         mock = unittest.mock.Mock()
 
         mock.get_bounds.return_value = (64, 64)
         mockgraphics.PicoGraphics.return_value = mock
 
-        graphics = Graphics(picographics.DISPLAY_INTERSTATE75_64X64)
-
-        return (mock, graphics)
+        return (mock, )
 
     def test_diag_down(self, mockgraphics: unittest.mock.Mock, _) -> None:
-        mock, graphics = self.create(mockgraphics)
+        mock, = self.create(mockgraphics)
 
-        graphics.line(5, 5, 0, 0)
+        line(mock, 5, 5, 0, 0)
 
-        mock.pixel.assert_called()
-        for call, expected in zip(mock.pixel.mock_calls,
+        mock.set_pixel.assert_called()
+        for call, expected in zip(mock.set_pixel.mock_calls,
                                   [(5, 5), (4, 4), (3, 3),
                                    (2, 2), (1, 1), (0, 0)]):
             self.assertEqual(call[1], expected)
 
     def test_diag_up(self, mockgraphics: unittest.mock.Mock, _) -> None:
-        mock, graphics = self.create(mockgraphics)
+        mock, = self.create(mockgraphics)
 
-        graphics.line(0, 5, 5, 0)
+        line(mock, 0, 5, 5, 0)
 
-        mock.pixel.assert_called()
-        for call, expected in zip(mock.pixel.mock_calls,
+        mock.set_pixel.assert_called()
+        for call, expected in zip(mock.set_pixel.mock_calls,
                                   [(0, 5), (1, 4), (2, 3),
                                    (3, 2), (4, 1), (5, 0)]):
             self.assertEqual(call[1], expected)
 
     def test_steep_up(self, mockgraphics: unittest.mock.Mock, _) -> None:
-        mock, graphics = self.create(mockgraphics)
+        mock, = self.create(mockgraphics)
 
-        graphics.line(0, 5, 2, 0)
+        line(mock, 0, 5, 2, 0)
 
-        mock.pixel.assert_called()
-        for call, expected in zip(mock.pixel.mock_calls,
+        mock.set_pixel.assert_called()
+        for call, expected in zip(mock.set_pixel.mock_calls,
                                   [(0, 5), (0, 4), (1, 3),
                                    (1, 2), (2, 1), (2, 0)]):
             self.assertEqual(call[1], expected)
 
     def test_horizontal(self, mockgraphics: unittest.mock.Mock, _) -> None:
-        mock, graphics = self.create(mockgraphics)
+        mock, = self.create(mockgraphics)
 
-        graphics.line(0, 0, 0, 5)
+        line(mock, 0, 0, 0, 5)
 
-        mock.pixel.assert_called()
-        for call, expected in zip(mock.pixel.mock_calls,
+        mock.set_pixel.assert_called()
+        for call, expected in zip(mock.set_pixel.mock_calls,
                                   [(0, 0), (0, 1), (0, 2),
                                    (0, 3), (0, 4), (0, 5)]):
             self.assertEqual(call[1], expected)
 
     def test_vertical(self, mockgraphics: unittest.mock.Mock, _) -> None:
-        mock, graphics = self.create(mockgraphics)
+        mock, = self.create(mockgraphics)
 
-        graphics.line(0, 0, 5, 0)
+        line(mock, 0, 0, 5, 0)
 
-        mock.pixel.assert_called()
+        mock.set_pixel.assert_called()
         for call, expected in zip(mock.pixel.mock_calls,
                                   [(0, 0), (1, 0), (2, 0),
                                    (3, 0), (4, 0), (5, 0)]):

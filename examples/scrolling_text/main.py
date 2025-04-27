@@ -20,6 +20,8 @@ import picographics
 from i75 import Colour, Face, Font, I75, ScreenManager
 from i75.text import text_boundingbox, render_text, \
                      render_text_multiline, wrap_text
+from i75.screens.layers import Layers
+from i75.screens.offset import Offset
 from i75.screens.single_colour import SingleColour
 from i75.screens.horizontal_scrolling_screen import HorizontalScrollingScreen
 from i75.screens.single_bit_screen import SingleBitScreen
@@ -60,31 +62,26 @@ def main() -> None:
     bg = SingleColour(black)
 
     bbox_width, bbox_height = text_boundingbox(font, HTEXT)
-    hscreen = SingleBitScreen(0, 0, bbox_width, bbox_height, white, bg)
+    hscreen = SingleBitScreen(bbox_width, bbox_height, white)
     render_text(hscreen, font, 0, 0, HTEXT)
-    hscroller = HorizontalScrollingScreen(0,
-                                          0,
-                                          64,
+    hscroller = HorizontalScrollingScreen(64,
                                           bbox_height,
                                           hscreen,
                                           bbox_width,
-                                          bg,
                                           scroll_duration=10000)
 
     vtext = wrap_text(font, VTEXT, 64)
     bbox_width, bbox_height = text_boundingbox(font, vtext)
-    vscreen = SingleBitScreen(0, 0, bbox_width, bbox_height, white, bg)
+    vscreen = SingleBitScreen(bbox_width, bbox_height, white)
     render_text_multiline(vscreen, font, 0, 0, vtext)
-    vscroller = VerticalScrollingScreen(0,
-                                        20,
-                                        bbox_width,
+    vscroller = VerticalScrollingScreen(bbox_width,
                                         12,
                                         vscreen,
                                         bbox_height,
-                                        hscroller,
                                         scroll_duration=10000)
+    vscroller_offset = Offset(0, 20, vscroller)
 
-    manager.set_screen(vscroller)
+    manager.set_screen(Layers(black, [hscroller, vscroller_offset]))
 
     base_ticks = i75.ticks_ms()
     while True:

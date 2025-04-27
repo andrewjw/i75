@@ -24,14 +24,12 @@ from i75.screens.colour_block import ColourBlock
 class TestColourBlock(unittest.TestCase):
     def test_get_colour(self):
         colour = Colour.fromrgb(255, 0, 0)
-        cb = ColourBlock(10, 10, 20, 20, colour)
+        cb = ColourBlock(20, 20, colour)
         self.assertEqual(cb.get_pixel(10, 10), colour)
 
     def test_outside(self):
-        colour1 = Colour.fromrgb(255, 0, 0)
-        colour2 = Colour.fromrgb(255, 0, 0)
-        cb2 = ColourBlock(0, 0, 30, 30, colour2)
-        cb1 = ColourBlock(10, 10, 20, 20, colour1, cb2)
-        self.assertEqual(cb1.get_pixel(10, 10), colour1)
-        self.assertEqual(cb1.get_pixel(5, 5), colour1)
-        self.assertEqual(cb1.get_pixel(25, 25), colour2)
+        colour = Colour.fromrgb(255, 0, 0)
+        cb1 = ColourBlock(20, 20, colour)
+        self.assertEqual(cb1.get_pixel(-5, -5).a, 0)
+        self.assertEqual(cb1.get_pixel(5, 5), colour)
+        self.assertEqual(cb1.get_pixel(25, 25).a, 0)

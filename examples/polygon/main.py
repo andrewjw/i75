@@ -27,13 +27,11 @@ def main() -> None:
         display_type=picographics.DISPLAY_INTERSTATE75_64X64,
         rotate=0 if I75.is_emulated() else 90)
 
-    black = Colour.fromrgb(0, 0, 0)
     white = Colour.fromrgb(255, 255, 255)
 
     manager = ScreenManager(64, 64, i75.display)
 
-    bg = SingleColour(black)
-    screen = SingleBitScreen(0, 0, 64, 64, white, bg)
+    screen = SingleBitScreen(64, 64, white)
     manager.set_screen(screen)
 
     filled_polygon(screen, [[(2, 2), (6, 2), (6, 6), (2, 6)]])

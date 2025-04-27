@@ -20,31 +20,21 @@ try:
 except ImportError:  # pragma: no cover
     pass
 
-from ..colour import Colour
+from ..colour import Colour, TRANSPARENT
 from .screen import Screen
 
 
 class ColourBlock(Screen):
     def __init__(self,
-                 offset_x: int,
-                 offset_y: int,
                  width: int,
                  height: int,
-                 colour: Colour,
-                 child: Optional[Screen] = None) -> None:
-        super().__init__(child)
-        self.offset_x = offset_x
-        self.offset_y = offset_y
+                 colour: Colour) -> None:
         self.width = width
         self.height = height
         self.colour = colour
 
     def get_pixel(self, x: int, y: int) -> Colour:
-        if x < self.offset_x \
-           or y < self.offset_y \
-           or x >= (self.offset_x + self.width) \
-           or y >= (self.offset_y + self.height):
-            assert self._child is not None
-            return self._child.get_pixel(x, y)
+        if x < 0 or y < 0 or x >= self.width or y >= self.height:
+            return TRANSPARENT
 
         return self.colour

@@ -24,7 +24,11 @@ import sys
 
 import picographics
 
-from i75 import DateTime, I75
+from i75 import Colour, DateTime, I75, line
+from i75.screens.layers import Layers
+from i75.screens.single_bit_screen import SingleBitScreen
+from i75.screens.single_colour import SingleColour
+from i75.screen_manager import ScreenManager
 from i75.tz import EuropeLondon
 
 HOUR_LENGTH = 25
@@ -44,7 +48,7 @@ def get_center_point(angle) -> Tuple[int, int]:
 
 # This currently has issues due to the i75 working in single precision
 # floats, and Python3 using doubles.
-def render_clock_face(i75: I75) -> None:
+def render_clock_face(screen: SingleBitScreen) -> None:
     for tick in range(12):
         tick_len = 3 if tick in (0, 3, 6, 9) else 3
         angle = 2 * math.pi * tick / 12.0
@@ -54,48 +58,70 @@ def render_clock_face(i75: I75) -> None:
         x2 = math.floor(31 * math.cos(angle) + cx)
         y2 = math.floor(31 * math.sin(angle) + cy)
 
-        i75.display.line(x1, y1, x2, y2)
+        line(screen, x1, y1, x2, y2, 2, True)
 
-    i75.display.line(32, 3, 32, 0)
-    i75.display.line(31, 60, 31, 63)
-    i75.display.line(0, 31, 3, 31)
-    i75.display.line(60, 32, 63, 32)
+    line(screen, 32, 3, 32, 0, True)
+    line(screen, 31, 60, 31, 63, True)
+    line(screen, 0, 31, 3, 31, True)
+    line(screen, 60, 32, 63, 32, True)
 
 
-def render_hand(i75: I75, length: int, percent: float) -> None:
+SECOND_HAND = (0, 0, 0, 0)
+MINUTE_HAND = (0, 0, 0, 0)
+HOUR_HAND = (0, 0, 0, 0)
+
+
+def calculate_hand(length: int, percent: float) -> Tuple[int, int, int, int]:
     angle = 2 * math.pi * percent
     cx, cy = get_center_point(angle)
-    i75.display.line(cx,
-                     cy,
-                     math.floor(length * math.sin(angle) + cx),
-                     math.floor(length * -math.cos(angle) + cy))
+    x = math.floor(length * math.sin(angle) + cx)
+    y = math.floor(length * -math.cos(angle) + cy)
+    return (cx, cy, x, y)
 
 
-def render_clock(i75: I75,
-                 white: picographics.Pen,
-                 red: picographics.Pen,
+def render_hand(screen: SingleBitScreen,
+                hand: Tuple[int, int, int, int],
+                set_pixel: bool) -> None:
+    line(screen,
+         hand[0],
+         hand[1],
+         hand[2],
+         hand[3],
+         set_pixel)
+
+
+def render_clock(hour_screen: SingleBitScreen,
+                 minute_screen: SingleBitScreen,
+                 second_screen: SingleBitScreen,
                  now: DateTime,
-                 subsecond: int,
-                 display_ticks: bool = True) -> None:
-    if display_ticks:
-        i75.display.set_pen(white)
-        render_clock_face(i75)
-
-    i75.display.set_pen(red)
+                 subsecond: int) -> None:
+    global HOUR_HAND, MINUTE_HAND, SECOND_HAND
 
     part_second = subsecond / 1000.0
-    render_hand(i75, SECOND_LENGTH, (now.second + part_second) / 60.0)
-
-    i75.display.set_pen(white)
+    second_hand = calculate_hand(SECOND_LENGTH,
+                                 (now.second + part_second) / 60.0)
+    if SECOND_HAND != second_hand:
+        render_hand(second_screen, SECOND_HAND, False)
+        render_hand(second_screen, second_hand, True)
+        SECOND_HAND = second_hand
 
     minute_percent = (now.minute * 60
                       + now.second
                       + part_second) / (60.0 * 60)
+    minute_hand = calculate_hand(MINUTE_LENGTH, minute_percent)
+    if MINUTE_HAND != minute_hand:
+        render_hand(minute_screen, MINUTE_HAND, False)
+        render_hand(minute_screen, minute_hand, True)
+        MINUTE_HAND = minute_hand
+
     hour_percent = ((now.hour % 12) * (60 * 60)
                     + now.minute * 60
                     + now.second + part_second) / (60.0 * 60 * 12)
-    render_hand(i75, MINUTE_LENGTH, minute_percent)
-    render_hand(i75, HOUR_LENGTH, hour_percent)
+    hour_hand = calculate_hand(HOUR_LENGTH, hour_percent)
+    if HOUR_HAND != hour_hand:
+        render_hand(hour_screen, HOUR_HAND, False)
+        render_hand(hour_screen, hour_hand, True)
+        HOUR_HAND = hour_hand
 
 
 def main() -> None:
@@ -108,15 +134,29 @@ def main() -> None:
     next_ntp = i75.now().hour + 23
     base_ticks = i75.ticks_ms()
 
-    white = i75.display.create_pen(255, 255, 255)
-    red = i75.display.create_pen(255, 0, 0)
-    black = i75.display.create_pen(0, 0, 0)
+    white = Colour.fromrgb(255, 255, 255)
+    red = Colour.fromrgb(255, 0, 0)
+    black = Colour.fromrgb(0, 0, 0)
+
+    clockface = SingleBitScreen(64, 64, white)
+    hour_hand = SingleBitScreen(64, 64, white)
+    minute_hand = SingleBitScreen(64, 64, white)
+    second_hand = SingleBitScreen(64, 64, red)
+
+    manager = ScreenManager(64, 64, i75.display)
+    manager.set_screen(Layers(black,
+                              [clockface,
+                               hour_hand,
+                               minute_hand,
+                               second_hand]))
+
+    render_clock_face(clockface)
 
     old_time = i75.now()
     old_subsecond = 0
 
     while True:
-        now = i75.now()
+        now = EuropeLondon.to_localtime(i75.now())
         subsecond = i75.ticks_diff(i75.ticks_ms(), base_ticks) % 1000
 
         if now.hour == next_ntp:
@@ -130,22 +170,15 @@ def main() -> None:
             base_ticks += 25
             subsecond = 999
 
-        now = EuropeLondon.to_localtime(now)
-        render_clock(i75,
-                     black,
-                     black,
-                     old_time,
-                     old_subsecond,
-                     False)
-        render_clock(i75,
-                     white,
-                     red,
+        render_clock(hour_hand,
+                     minute_hand,
+                     second_hand,
                      now,
                      subsecond)
         old_time = now
         old_subsecond = subsecond
 
-        i75.display.update()
+        manager.update(100)
 
         i75.sleep_ms(100)
 

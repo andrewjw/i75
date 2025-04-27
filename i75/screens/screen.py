@@ -24,14 +24,10 @@ from ..colour import Colour
 
 
 class Screen:
-    def __init__(self, child: Optional["Screen"] = None) -> None:
-        self._child: Optional["Screen"] = child
-
     def get_pixel(self, x: int, y: int) -> Colour:
         raise NotImplementedError()
 
     def update(self,
                frame_time: int,
                mark_dirty: Callable[[int, int], None]) -> None:
-        if self._child is not None:
-            self._child.update(frame_time, mark_dirty)
+        pass

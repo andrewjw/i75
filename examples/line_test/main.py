@@ -19,7 +19,10 @@ import math
 
 import picographics
 
-from i75 import I75
+from i75 import Colour, I75, line
+from i75.screens.single_colour import SingleColour
+from i75.screens.full_colour_screen import FullColourScreen
+from i75.screen_manager import ScreenManager
 
 
 def main() -> None:
@@ -27,39 +30,39 @@ def main() -> None:
         display_type=picographics.DISPLAY_INTERSTATE75_64X64,
         rotate=0 if I75.is_emulated() else 90)
 
-    white = i75.display.create_pen(255, 255, 255)
-    red = i75.display.create_pen(255, 0, 0)
-    green = i75.display.create_pen(0, 255, 0)
-    blue = i75.display.create_pen(0, 0, 255)
-    purple = i75.display.create_pen(255, 0, 255)
+    manager = ScreenManager(64, 64, i75.display)
 
-    i75.display.set_pen(red)
-    i75.display.line(63, 0, 0, 0)
-    i75.display.line(0, 63, 63, 63)
+    white = Colour.fromrgb(255, 255, 255)
+    red = Colour.fromrgb(255, 0, 0)
+    green = Colour.fromrgb(0, 255, 0)
+    blue = Colour.fromrgb(0, 0, 255)
+    purple = Colour.fromrgb(255, 0, 255)
 
-    i75.display.set_pen(green)
-    i75.display.line(1, 1, 1, 62)
+    screen = FullColourScreen(64, 64)
+    manager.set_screen(screen)
 
-    i75.display.set_pen(blue)
-    i75.display.line(62, 62, 62, 1)
+    line(screen, 63, 0, 0, 0, red)
+    line(screen, 0, 63, 63, 63, red)
 
-    i75.display.set_pen(purple)
-    i75.display.line(25, 45, 45, 25)
-    i75.display.line(25, 25, 45, 45)
+    line(screen, 1, 1, 1, 62, green)
 
-    i75.display.set_pen(white)
-    i75.display.line(25, 10, 35, 15)
-    i75.display.line(20, 10, 30, 25)
-    i75.display.line(15, 10, 25, 35)
-    i75.display.line(10, 10, 20, 45)
+    line(screen, 62, 62, 62, 1, blue)
 
-    i75.display.line(36, 10, 36, 12)
-    i75.display.line(35, 10, 35, 11)
-    i75.display.line(37, 10, 37, 13)
-    i75.display.line(38, 10, 38, 14)
-    i75.display.line(39, 10, 39, 15)
+    line(screen, 25, 45, 45, 25, purple)
+    line(screen, 25, 25, 45, 45, purple)
 
-    i75.display.update()
+    line(screen, 25, 10, 35, 15, white)
+    line(screen, 20, 10, 30, 25, white)
+    line(screen, 15, 10, 25, 35, white)
+    line(screen, 10, 10, 20, 45, white)
+
+    line(screen, 36, 10, 36, 12, white)
+    line(screen, 35, 10, 35, 11, white)
+    line(screen, 37, 10, 37, 13, white)
+    line(screen, 38, 10, 38, 14, white)
+    line(screen, 39, 10, 39, 15, white)
+
+    manager.update(0)
 
     while True:
         i75.sleep_ms(10000)

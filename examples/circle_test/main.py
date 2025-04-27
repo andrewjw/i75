@@ -19,7 +19,8 @@ import math
 
 import picographics
 
-from i75 import I75
+from i75 import Colour, I75, ScreenManager, graphic_primitives
+from i75.screens.full_colour_screen import FullColourScreen
 
 
 def main() -> None:
@@ -27,20 +28,21 @@ def main() -> None:
         display_type=picographics.DISPLAY_INTERSTATE75_64X64,
         rotate=0 if I75.is_emulated() else 90)
 
-    red = i75.display.create_pen(255, 0, 0)
-    green = i75.display.create_pen(0, 255, 0)
-    blue = i75.display.create_pen(0, 0, 255)
+    red = Colour.fromrgb(255, 0, 0)
+    green = Colour.fromrgb(0, 255, 0)
+    blue = Colour.fromrgb(0, 0, 255)
 
-    i75.display.set_pen(red)
-    i75.display.circle(10, 10, 5)
+    screen = FullColourScreen(64, 64)
+    manager = ScreenManager(64, 64, i75.display)
+    manager.set_screen(screen)
 
-    i75.display.set_pen(green)
-    i75.display.circle(25, 25, 10)
+    graphic_primitives.circle(screen, 10, 10, 5, red)
 
-    i75.display.set_pen(blue)
-    i75.display.circle(50, 50, 13)
+    graphic_primitives.circle(screen, 25, 25, 10, green)
 
-    i75.display.update()
+    graphic_primitives.circle(screen, 50, 50, 13, blue)
+
+    manager.update(0)
 
     while True:
         i75.sleep_ms(10000)

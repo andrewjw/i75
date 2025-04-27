@@ -18,19 +18,24 @@
 import unittest
 import unittest.mock
 
+from i75.font import Face, Font
 from i75.text import render_text, text_boundingbox
 
-FONT = "cg_pixel_3x5_5"
+FONT = "tiny5.af"
 
 
 class TestText(unittest.TestCase):
     def test_bounding_box_width_matches_render(self) -> None:
+        face = Face.load_face(FONT)
+        font = Font(face, 7)
         text = "This Is A Test String."
-        width, _ = text_boundingbox(FONT, text)
+        width, _ = text_boundingbox(font, text)
 
         mock_buffer = unittest.mock.Mock()
-        render_text(mock_buffer, FONT, 0, 0, text)
+        render_text(mock_buffer, font, 0, 0, text)
 
-        max_x = max([x for ((x, _), _) in mock_buffer.pixel.call_args_list])
+        max_x = max([x for ((x, _), _)
+                     in mock_buffer.set_pixel.call_args_list])
 
+        # +2 because of the bounding box for a full stop.
         self.assertEqual(width, max_x + 2)

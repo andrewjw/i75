@@ -22,3 +22,11 @@ CONST = TypeVar("CONST")
 
 def const(v: CONST) -> CONST:
     return v
+
+
+def native(func):
+    return func
+
+
+def viper(func):
+    return func

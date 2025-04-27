@@ -17,6 +17,9 @@
 
 import math
 
+import micropython
+
+from ..profile import profile
 
 class SingleBitBuffer:
     """
@@ -32,37 +35,43 @@ class SingleBitBuffer:
         self._is_dirty = False
         self._data: bytearray = bytearray(self._row_width * self.height)
 
+    @micropython.native
     def set_pixel(self, x: int, y: int) -> None:
         """Set the given pixel."""
         if x < 0 or y < 0 or x >= self.width or y >= self.height:
             return
         self._is_dirty = True
-        byte = self._row_width * y + math.floor(x / 8.0)
+        byte = self._row_width * y + (x >> 3)
         self._data[byte] = self._data[byte] | (1 << (x % 8))
 
+    @micropython.native
     def clear_pixel(self, x: int, y: int) -> None:
         """Clear the given pixel."""
-        byte = self._row_width * y + math.floor(x / 8.0)
+        byte = self._row_width * y + (x >> 3)
         self._data[byte] = self._data[byte] & ~(1 << (x % 8))
 
+    @micropython.native
     def is_pixel_set(self, x: int, y: int) -> bool:
         """Returns true if the given pixel is set."""
-        byte = self._row_width * y + math.floor(x / 8.0)
+        byte = self._row_width * y + (x >> 3)
         return (self._data[byte] & (1 << (x % 8))) != 0
 
+    @micropython.native
     def is_pixel_group_set(self, x: int, y: int) -> bool:
         """Returns true if any pixel is a group of 8 is set."""
-        byte = self._row_width * y + math.floor(x / 8.0)
+        byte = self._row_width * y + (x >> 3)
         return self._data[byte] != 0
 
+    @micropython.native
     def set_pixels(self):
         for i in range(len(self._data)):
             if self._data[i] != 0:
                 for b in range(8):
                     if (self._data[i] & (1 << b)) != 0:
                         yield (i % self._row_width) * 8 + b, \
-                              math.floor(i / float(self._row_width))
+                              i // self._row_width
 
+    @micropython.native
     def reset(self):
         """
         Marks all bits as unset

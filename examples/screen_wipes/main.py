@@ -40,10 +40,10 @@ def main() -> None:
 
     manager = ScreenManager(64, 64, i75.display)
 
-    blue_block = ColourBlock(0, 0, 64, 64, blue)
-    red_block = ColourBlock(0, 0, 64, 64, red)
-    yellow_block = ColourBlock(0, 0, 64, 64, yellow)
-    green_block = ColourBlock(0, 0, 64, 64, green)
+    blue_block = ColourBlock(64, 64, blue)
+    red_block = ColourBlock(64, 64, red)
+    yellow_block = ColourBlock(64, 64, yellow)
+    green_block = ColourBlock(64, 64, green)
 
     swipe: ScreenWipe = SwipeRight(64, 64, DURATION, blue_block, red_block)
 
