@@ -10,7 +10,7 @@ MYPYPATH=./i75/stubs:./i75/emulated:$MYPYPATH mypy bin/i75-encode-font
 
 MYPYPATH=./i75/stubs:./i75/emulated:$MYPYPATH mypy -m i75
 
-MYPYPATH=./i75/stubs:./i75/emulated:$MYPYPATH mypy -p examples
+MYPYPATH=./i75/stubs:./i75/emulated:$MYPYPATH mypy examples/*/*.py
 
 MYPYPATH=./i75/stubs:./i75/emulated:$MYPYPATH mypy -m tests
 
