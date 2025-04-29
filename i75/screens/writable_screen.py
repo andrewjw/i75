@@ -15,9 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from typing import Any
+
 from .screen import Screen
 
 
 class WritableScreen(Screen):
-    def set_pixel(self, x: int, y: int) -> None:
+    def set_pixel(self, x: int, y: int, *colour: Any) -> None:
         raise NotImplementedError()
