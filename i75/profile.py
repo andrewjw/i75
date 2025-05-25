@@ -21,6 +21,7 @@ import time
 if not hasattr(time, "ticks_ms"):
     def ticks_ms():
         return math.floor(time.time_ns() / 1000000)
+
     def ticks_diff(t1, t2):
         return t1 - t2
 else:
@@ -35,9 +36,5 @@ def profile(func):
         end = ticks_ms()
 
         print(f"Function {func.__name__} took {ticks_diff(end, start)} ms")
-        #if id(func) not in _PROFILE_CACHE:
-        #    _PROFILE_CACHE[id(func)] = []
-
-        #_PROFILE_CACHE[id(func)].append(time.ticks_diff(end, start))
         return result
     return wrapper

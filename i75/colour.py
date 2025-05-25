@@ -93,7 +93,10 @@ class Colour:
     @micropython.native
     def frombytearray(bytes: bytearray) -> "Colour":
         """Create a Colour object from three RGB values."""
-        return _CACHE.get(bytes[0] << 24 | bytes[1] << 16 | bytes[2] << 8 | (255 if len(bytes) == 3 else bytes[3]))
+        return _CACHE.get(bytes[0] << 24
+                          | bytes[1] << 16
+                          | bytes[2] << 8
+                          | (255 if len(bytes) == 3 else bytes[3]))
 
 
 class ColourCache:

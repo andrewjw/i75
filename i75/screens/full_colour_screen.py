@@ -26,6 +26,7 @@ from .single_bit_buffer import SingleBitBuffer
 from .writable_screen import WritableScreen
 from ..profile import profile
 
+
 class FullColourScreen(WritableScreen):
     def __init__(self,
                  width: int,
@@ -53,19 +54,13 @@ class FullColourScreen(WritableScreen):
         super().update(frame_time, hidden_mark_dirty)
 
         for (dx, dy) in self._dirty.set_pixels():
-            #idx = (self._width * dy + dx) * 3
-            #yield (dx, dy, Colour.frombytearray(self._dataview[idx + 0:idx + 3]))
             mark_dirty(dx, dy)
         self._dirty.reset()
 
     @micropython.native
     def set_pixel(self, x: int, y: int, *colour: Colour) -> None:
-        #assert len(colour) == 1 and isinstance(colour[0], Colour)
-        #if x < 0 or x >= self._width or y < 0 or y >= self._height:
-        #    return
         idx = (self._width * y + x) * 3
         self._data[idx + 0] = colour[0]._rgb[0]
         self._data[idx + 1] = colour[0]._rgb[1]
         self._data[idx + 2] = colour[0]._rgb[2]
-        #self._dataview[idx + 0:idx + 3] = colour[0]._rgb
         self._dirty.set_pixel(x, y)

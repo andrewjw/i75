@@ -25,6 +25,7 @@ from .graphics import Graphics
 from .screens.screen import Screen
 from .screens.single_bit_buffer import SingleBitBuffer
 
+
 class ScreenManager:
     def __init__(self, width: int, height: int, display: Graphics) -> None:
         self.width = width

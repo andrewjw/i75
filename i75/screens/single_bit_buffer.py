@@ -21,6 +21,7 @@ import micropython
 
 from ..profile import profile
 
+
 class SingleBitBuffer:
     """
     Holds a buffer capable of telling if a single pixel is set of not.
