@@ -1,4 +1,4 @@
-pycodestyle==2.12.1
+pycodestyle==2.14.0
 coveralls==4.0.1
 pygame==2.6.1
 python-semantic-release==9.21.1
