@@ -52,8 +52,6 @@ class Graphics:
                                  color_order=color_order)
         self.hub75.start()
 
-        self._pen_cache: Dict[int, picographics.Pen] = {}
-
     def create_pen(self, r: int, g: int, b: int) -> picographics.Pen:
         return self._driver.create_pen(r, g, b)
 
@@ -62,11 +60,7 @@ class Graphics:
 
     def set_colour(self, colour: Colour):
         """Set the current colour used by i75 to this colour."""
-        if colour._value not in self._pen_cache:
-            self._pen_cache[colour._value] = self.create_pen(colour.r,
-                                                             colour.g,
-                                                             colour.b)
-        self.set_pen(self._pen_cache[colour._value])
+        self.set_pen(self.create_pen(colour.r, colour.g, colour.b))
 
     def fill(self, tl_x: int, tl_y: int, br_x: int, br_y: int) -> None:
         for x in range(tl_x, br_x):

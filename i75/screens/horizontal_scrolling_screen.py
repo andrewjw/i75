@@ -44,6 +44,9 @@ class HorizontalScrollingScreen(Screen):
         self.screen_width = screen_width
         self.__reset = False
 
+    def release(self):
+        self.screen.release()
+
     def get_pixel(self, x: int, y: int) -> Colour:
         if x < 0 or x >= self.viewport_width \
            or y < 0 or y >= self.viewport_height:
@@ -55,6 +58,9 @@ class HorizontalScrollingScreen(Screen):
                frame_time: int,
                mark_dirty: Callable[[int, int], None]) -> None:
         old_scroll = self._scroll_x
+        if self.total_time == 0:
+            self.screen.update(frame_time, mark_dirty)
+
         if not self.__reset:
             self.total_time = min(self.total_time + frame_time,
                                   self.total_duration)

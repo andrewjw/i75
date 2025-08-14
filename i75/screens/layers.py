@@ -16,11 +16,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 try:
-    from typing import Callable, Sequence
+    from typing import Callable, List, Sequence
 except ImportError:
     pass
 
-from ..colour import Colour
+from ..colour import Colour, TRANSPARENT
 from .screen import Screen
 
 
@@ -29,17 +29,40 @@ class Layers(Screen):
                  bgcolour: Colour,
                  layers: Sequence[Screen]) -> None:
         self.bgcolour = bgcolour
-        self.layers = layers
+        self.layers = list(layers)
+
+    def release(self):
+        for layer in self.layers:
+            layer.release()
 
     def get_pixel(self, x: int, y: int) -> Colour:
-        for layer in self.layers[::-1]:
-            pixel = layer.get_pixel(x, y)
-            if pixel.a == 255:  # TODO: Handle partial transparency
-                return pixel
-        return self.bgcolour
+        i = len(self.layers) - 1
+        colours: List[Colour] = []
+        while i >= 0:
+            c = self.layers[i].get_pixel(x, y)
+            if c.a == 255:
+                colours.insert(0, c)
+                break
+            elif c.a == 0:
+                pass
+            else:
+                colours.insert(0, c)
+
+            i -= 1
+
+        if i == -1:
+            colours.insert(0, self.bgcolour)
+
+        c = colours[0]
+        for px in colours[1:]:
+            c = c.mix(px)
+        return c
 
     def update(self,
                frame_time: int,
                mark_dirty: Callable[[int, int], None]) -> None:
         for layer in self.layers:
             layer.update(frame_time, mark_dirty)
+
+    def add_layer(self, screen: Screen) -> None:
+        self.layers.append(screen)

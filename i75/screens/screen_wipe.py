@@ -32,5 +32,9 @@ class ScreenWipe(Screen):
         self.first = first
         self.second = second
 
+    def release(self):
+        self.first.release()
+        self.second.release()
+
     def is_complete(self):
         return self.total_time >= self.duration

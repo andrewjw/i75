@@ -14,7 +14,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import array
 import micropython
 
 CACHE_SIZE = 256
@@ -26,6 +25,18 @@ class Colour:
         self._value = value
         self._rgb = bytearray([self.r, self.g, self.b])
         self.is_transparent = value & 255 != 255
+
+    def mix(self, other: "Colour") -> "Colour":
+        """Mix this colour with another colour."""
+        assert self.a == 255, "Base colour must be opaque"
+        if other.a == 255:
+            return other
+        oratio = other.a / 255.0
+        sratio = 1.0 - oratio
+        r = round(self.r * sratio + other.r * oratio)
+        g = round(self.g * sratio + other.g * oratio)
+        b = round(self.b * sratio + other.b * oratio)
+        return Colour.fromrgb(r, g, b)
 
     @property
     @micropython.native
@@ -73,13 +84,13 @@ class Colour:
     @micropython.native
     def fromint32(value: int) -> "Colour":
         """Create a Colour object from a 32-bit integer."""
-        return _CACHE.get(value)
+        return Colour(value)
 
     @staticmethod
     @micropython.native
     def fromrgb(r: int, g: int, b: int) -> "Colour":
         """Create a Colour object from three RGB values."""
-        return _CACHE.get(r << 24 | g << 16 | b << 8 | 255)
+        return Colour(r << 24 | g << 16 | b << 8 | 255)
 
     @staticmethod
     @micropython.native
@@ -87,41 +98,16 @@ class Colour:
         """Create a Colour object from four RGBA values."""
         if a == 0:
             return TRANSPARENT
-        return _CACHE.get(r << 24 | g << 16 | b << 8 | a)
+        return Colour(r << 24 | g << 16 | b << 8 | a)
 
     @staticmethod
     @micropython.native
     def frombytearray(bytes: bytearray) -> "Colour":
         """Create a Colour object from three RGB values."""
-        return _CACHE.get(bytes[0] << 24
-                          | bytes[1] << 16
-                          | bytes[2] << 8
-                          | (255 if len(bytes) == 3 else bytes[3]))
+        return Colour(bytes[0] << 24
+                      | bytes[1] << 16
+                      | bytes[2] << 8
+                      | (255 if len(bytes) == 3 else bytes[3]))
 
-
-class ColourCache:
-    """Cache for colours to avoid creating new Colour objects."""
-    def __init__(self) -> None:
-        self._cache: dict[int, Colour] = {}
-        self._lru: array.array = array.array("I", [0] * CACHE_SIZE)
-        self._lrupos: int = 0
-
-    @micropython.native
-    def get(self, value: int) -> Colour:
-        if value not in self._cache:
-            self._cache[value] = Colour(value)
-        self._lru[self._lrupos] = value
-
-        if len(self._cache) > CACHE_SIZE:
-            seen = set(self._lru)
-            for c in self._cache.keys():
-                if c not in seen:
-                    del self._cache[c]
-                    break
-
-        return self._cache[value]
-
-
-_CACHE = ColourCache()
 
 TRANSPARENT = Colour.fromint32(0)

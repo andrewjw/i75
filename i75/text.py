@@ -17,7 +17,7 @@
 
 import math
 try:
-    from typing import Tuple
+    from typing import Any, Tuple
 except ImportError:
     pass
 
@@ -30,12 +30,13 @@ def render_text(buffer: WritableScreen,
                 font: Font,
                 x: int,
                 y: int,
-                text: str) -> None:
+                text: str,
+                *colour: Any) -> None:
     """
     Render the given text, at location (x,y) using font onto the scren buffer.
     """
     if "\n" in text:
-        render_text_multiline(buffer, font, x, y, text)
+        render_text_multiline(buffer, font, x, y, text, *colour)
         return
 
     for c in text:
@@ -50,7 +51,8 @@ def render_text(buffer: WritableScreen,
         filled_polygon(buffer,
                        [[(x + p.x, y + p.y + font.height)
                          for p in contour]
-                        for contour in glyph.contours])
+                        for contour in glyph.contours],
+                       *colour)
 
         x += int(round(glyph.advance))
 
@@ -59,11 +61,12 @@ def render_text_multiline(buffer: WritableScreen,
                           font: Font,
                           x: int,
                           y: int,
-                          textdata: str) -> None:
+                          textdata: str,
+                          *colour: Any) -> None:
     for line in textdata.split("\n"):
-        render_text(buffer, font, x, y, line)
+        render_text(buffer, font, x, y, line, *colour)
 
-        y += int(round(font.get_height())) + 1
+        y += int(round(font.get_height()))
 
 
 def text_boundingbox(font: Font, text: str) -> Tuple[int, int]:

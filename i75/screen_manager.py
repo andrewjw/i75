@@ -30,18 +30,24 @@ class ScreenManager:
     def __init__(self, width: int, height: int, display: Graphics) -> None:
         self.width = width
         self.height = height
-        self._dirty_buffer = SingleBitBuffer(width, height)
+        self._dirty_buffer = SingleBitBuffer.get(width, height)
         self._display = display
         self._screen: Optional[Screen] = None
+        self._colour = Colour.fromrgb(0, 0, 0)
+        self._display.set_colour(self._colour)
 
     def set_screen(self, screen: Screen, mark_dirty: bool = True) -> None:
+        if self._screen is not None:
+            self._screen.release()
         self._screen = screen
 
         if not mark_dirty:
             return
+        self._colour = Colour.fromrgb(0, 0, 0)
+        self._display.set_colour(self._colour)
         for x in range(self.width):
             for y in range(self.height):
-                self._dirty_buffer.set_pixel(x, y)
+                self._display.pixel(x, y)
 
     def update(self, frame_time: int) -> None:
         if self._screen is None:
@@ -49,18 +55,18 @@ class ScreenManager:
 
         self._screen.update(frame_time, self._dirty_buffer.set_pixel)
 
-        colour = Colour.fromrgb(0, 0, 0)
-        self._display.set_colour(colour)
-        for (x, y) in self._dirty_buffer.set_pixels():
-            c = self._screen.get_pixel(x, y)
-            if c.is_transparent:
-                # TODO: Handle partial transparency
-                c = Colour.fromrgb(0, 0, 0)
-            if c != colour:
-                self._display.set_colour(c)
-                colour = c
-            self._display.pixel(x, y)
+        self._dirty_buffer.set_pixels_call(self._update_pixel)
 
         self._display.update()
 
         self._dirty_buffer.reset()
+
+    def _update_pixel(self, x, y):
+        c = self._screen.get_pixel(x, y)
+        if c.is_transparent:
+            # TODO: Handle partial transparency
+            c = Colour.fromrgb(0, 0, 0)
+        if c != self._colour:
+            self._display.set_colour(c)
+            self._colour = c
+        self._display.pixel(x, y)

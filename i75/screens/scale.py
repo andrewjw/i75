@@ -32,6 +32,9 @@ class Scale(Screen):
         self.scale = scale
         self.base = base
 
+    def release(self):
+        self.base.release()
+
     def get_pixel(self, x: int, y: int) -> Colour:
         return self.base.get_pixel(math.floor(x / self.scale),
                                    math.floor(y / self.scale))

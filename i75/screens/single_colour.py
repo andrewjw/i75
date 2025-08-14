@@ -23,5 +23,8 @@ class SingleColour(Screen):
     def __init__(self, colour: Colour) -> None:
         self.colour = colour
 
+    def release(self):
+        pass
+
     def get_pixel(self, x: int, y: int) -> Colour:
         return self.colour

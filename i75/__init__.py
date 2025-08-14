@@ -26,7 +26,7 @@ else:
     I75 = NativeI75  # type: ignore
 del picographics
 
-from .colour import Colour  # noqa
+from .colour import Colour, TRANSPARENT  # noqa
 from .datetime import Date, DateTime  # noqa
 from .font import Face, Font  # noqa
 from .graphic_primitives import line, circle, filled_polygon  # noqa

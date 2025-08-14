@@ -38,7 +38,8 @@ def main() -> None:
     blue = Colour.fromrgb(0, 0, 255)
     purple = Colour.fromrgb(255, 0, 255)
 
-    screen = FullColourScreen(64, 64)
+    screen = FullColourScreen.get(64, 64)
+    screen.fill(Colour.fromrgb(0, 0, 0))
     manager.set_screen(screen)
 
     line(screen, 63, 0, 0, 0, red)

@@ -16,14 +16,18 @@
 
 import math
 try:
-    from typing import Tuple, Optional
+    from typing import Callable, Tuple, Optional
 except ImportError:
     pass
 
+from .colour import Colour
 from .graphics import Graphics
+from .screens.screen import Screen
+from .screens.full_colour_screen import FullColourScreen
+from .screens.single_bit_screen import SingleBitScreen
 
 
-class Image:
+class Image(Screen):
     data: bytearray
 
     def __init__(self, width: int, height: int) -> None:
@@ -33,7 +37,7 @@ class Image:
     def render(self, buffer: Graphics, offset_x: int, offset_y: int) -> None:
         raise NotImplementedError()
 
-    def set_colour(self, red: int, green: int, blue: int) -> None:
+    def set_colour(self, colour: Colour) -> None:
         raise NotImplementedError()
 
     @staticmethod
@@ -53,88 +57,71 @@ class Image:
         raise ValueError("Image has an unsupported number of colours.")
 
     @staticmethod
-    def load_into_buffer(fp, data: bytearray) -> "Image":
+    def _read_metadata(fp) -> Tuple[int, int, int]:
         magic = fp.read(5)
         if magic != b"I75v1":
             raise ValueError(
                 "Image has the wrong initial bytes. Wrong format?")
-        width = int.from_bytes(fp.read(1), "big")
-        height = int.from_bytes(fp.read(1), "big")
-        colours = int.from_bytes(fp.read(1), "big")
+        width = int.from_bytes(fp.read(1))
+        height = int.from_bytes(fp.read(1))
+        colours = int.from_bytes(fp.read(1))
 
-        if colours == 1:
-            assert len(data) >= width * math.ceil(width / 8.0)
-            return SingleColourImage(width, height, fp, data)
-        if colours == 3:
-            assert len(data) >= width * height * 3
-            return ThreeColourImage(width, height, fp, data)
-        raise ValueError("Image has an unsupported number of colours.")
-
-    @staticmethod
-    def render_from_file(fp, buffer: Graphics, offset_x: int, offset_y: int):
-        magic = fp.read(5)
-        if magic != b"I75v1":
-            raise ValueError(
-                "Image has the wrong initial bytes. Wrong format?")
-        width = int.from_bytes(fp.read(1), "big")
-        height = int.from_bytes(fp.read(1), "big")
-        colours = int.from_bytes(fp.read(1), "big")
-
-        return (width, height, colours)
+        return width, height, colours
 
 
 class SingleColourImage(Image):
     def __init__(self,
                  width: int,
                  height: int,
-                 fp,
-                 data: Optional[bytearray] = None) -> None:
+                 fp) -> None:
         super().__init__(width, height)
-        if data is None:
-            self.data: bytearray = fp.read(height * math.ceil(width / 8.0))
-        else:
-            self.data = data
-            for i in range(0, height * math.ceil(width / 8.0)):
-                self.data[i] = ord(fp.read(1))
-        self.colour: Tuple[int, int, int] = (255, 255, 255)
+        self._screen = SingleBitScreen(width, height)
+        SingleColourImage.load_into_screen(width, height, fp, self._screen)
 
-    def set_colour(self, red: int, green: int, blue: int) -> None:
-        self.colour = (red, green, blue)
+    def release(self):
+        self._screen.release()
 
-    def render(self, buffer: Graphics, offset_x: int, offset_y: int) -> None:
-        buffer.set_pen(buffer.create_pen(*self.colour))
-        for y in range(self.height):
-            for x in range(self.width):
-                if self._is_pixel(x, y):
-                    buffer.pixel(offset_x + x, offset_y + y)
+    def set_colour(self, colour: Colour) -> None:
+        self._screen.set_colour(colour)
 
-    def _is_pixel(self, x: int, y: int) -> bool:
-        row_width = math.ceil(self.width / 8.0)
-        byte = self.data[y * row_width + math.floor(x / 8)]
-        return (byte >> (7 - x % 8)) & 1 == 1
+    def get_pixel(self, x: int, y: int) -> Colour:
+        return self._screen.get_pixel(x, y)
+
+    def update(self,
+               frame_time: int,
+               mark_dirty: Callable[[int, int], None]) -> None:
+        self._screen.update(frame_time, mark_dirty)
+
+    def set_pixel(self, x: int, y: int, *colour: bool) -> None:
+        self._screen.set_pixel(x, y, *colour)
+
+    def is_pixel_set(self, x: int, y: int) -> bool:
+        return self._screen.is_pixel_set(x, y)
 
     @staticmethod
-    def render_from_file(fp,
-                         buffer: Graphics,
-                         offset_x: int,
-                         offset_y: int):
-        width, height, colours = Image.render_from_file(fp,
-                                                        buffer,
-                                                        offset_x,
-                                                        offset_y)
+    def load(fp) -> "SingleColourImage":
+        width, height, colours = Image._read_metadata(fp)
         if colours != 1:
             raise ValueError("Image has an unsupported number of colours.")
-        buffer.set_pen(buffer.create_pen(255, 255, 255))
-        current_offset = 0
-        current = fp.read(1)
-        row_width = math.ceil(width / 8.0)
+        fp.seek(0)  # Reset file pointer to the start
+        return SingleColourImage(width, height, fp)
+
+    @staticmethod
+    def load_into_screen(width: int,
+                         height: int,
+                         fp,
+                         screen: SingleBitScreen) -> None:
+        width, height, colours = Image._read_metadata(fp)
+        if colours != 1:
+            raise ValueError("Image has an unsupported number of colours.")
+        current: int = 0
         for y in range(height):
+            count: int = 0
             for x in range(width):
-                if current_offset < (y * row_width + math.floor(x / 8)):
+                if count % 8 == 0:
                     current = ord(fp.read(1))
-                    current_offset = (y * row_width + math.floor(x / 8))
-                if (current >> (7 - x % 8)) & 1 == 1:
-                    buffer.pixel(offset_x + x, offset_y + y)
+                screen.set_pixel(x, y, (current >> (7 - count % 8)) & 1 == 1)
+                count += 1
 
 
 class ThreeColourImage(Image):
@@ -142,36 +129,51 @@ class ThreeColourImage(Image):
                  width: int,
                  height: int,
                  fp,
-                 data: Optional[bytearray] = None) -> None:
+                 skip_metadata: bool = False) -> None:
         super().__init__(width, height)
-        if data is None:
-            self.data: bytearray = fp.read(3 * width * height)
-        else:
-            self.data = data
-            for i in range(0, 3 * width * height):
-                self.data[i] = ord(fp.read(1))
+        self._screen = FullColourScreen.get(width, height)
+        ThreeColourImage.load_into_screen(width,
+                                          height,
+                                          fp,
+                                          self._screen,
+                                          skip_metadata)
 
-    def render(self, buffer: Graphics, offset_x: int, offset_y: int) -> None:
-        for y in range(self.height):
-            for x in range(self.width):
-                buffer.set_pen(buffer.create_pen(
-                    self.data[3 * (y * self.width + x)],
-                    self.data[3 * (y * self.width + x) + 1],
-                    self.data[3 * (y * self.width + x) + 2],
-                ))
-                buffer.pixel(offset_x + x, offset_y + y)
+    def release(self):
+        self._screen.release()
+
+    def get_pixel(self, x: int, y: int) -> Colour:
+        return self._screen.get_pixel(x, y)
+
+    def update(self,
+               frame_time: int,
+               mark_dirty: Callable[[int, int], None]) -> None:
+        self._screen.update(frame_time, mark_dirty)
+
+    def set_pixel(self, x: int, y: int, *colour: Colour) -> None:
+        self._screen.set_pixel(x, y, *colour)
 
     @staticmethod
-    def render_from_file(fp, buffer: Graphics, offset_x: int, offset_y: int):
-        width, height, colours = Image.render_from_file(fp,
-                                                        buffer,
-                                                        offset_x,
-                                                        offset_y)
+    def load(fp) -> "ThreeColourImage":
+        width, height, colours = Image._read_metadata(fp)
         if colours != 3:
             raise ValueError("Image has an unsupported number of colours.")
+        return ThreeColourImage(width, height, fp, True)
+
+    @staticmethod
+    def load_into_screen(width: int,
+                         height: int,
+                         fp,
+                         screen: FullColourScreen,
+                         skip_metadata: bool = False) -> None:
+        if not skip_metadata:
+            width, height, colours = Image._read_metadata(fp)
+            if colours != 3:
+                raise ValueError("Image has an unsupported number of colours.")
+
         for y in range(height):
             for x in range(width):
-                buffer.set_pen(buffer.create_pen(ord(fp.read(1)),
-                                                 ord(fp.read(1)),
-                                                 ord(fp.read(1))))
-                buffer.pixel(offset_x + x, offset_y + y)
+                screen.set_raw_pixel(x,
+                                     y,
+                                     ord(fp.read(1)),
+                                     ord(fp.read(1)),
+                                     ord(fp.read(1)))

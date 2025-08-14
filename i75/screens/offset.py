@@ -33,6 +33,9 @@ class Offset(Screen):
         self.dy = dy
         self.base = base
 
+    def release(self):
+        self.base.release()
+
     def get_pixel(self, x: int, y: int) -> Colour:
         return self.base.get_pixel(x - self.dx, y - self.dy)
 

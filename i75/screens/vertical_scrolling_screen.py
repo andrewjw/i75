@@ -44,6 +44,9 @@ class VerticalScrollingScreen(Screen):
         self.screen_height = screen_height
         self.__reset = False
 
+    def release(self):
+        self.screen.release()
+
     def get_pixel(self, x: int, y: int) -> Colour:
         if x < 0 or x >= self.viewport_width \
            or y < 0 or y >= self.viewport_height:

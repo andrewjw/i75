@@ -39,6 +39,9 @@ class SpriteInstance(Screen):
 
         self._first_dirty: Optional[Tuple[int, int]] = None
 
+    def release(self):
+        self._image.release()
+
     def get_pixel(self, x: int, y: int) -> Colour:
         if x < self._offset_x \
            or y < self._offset_y \
@@ -47,7 +50,7 @@ class SpriteInstance(Screen):
             return TRANSPARENT
 
         return self._colour \
-            if self._image._is_pixel(x - self._offset_x, y - self._offset_y) \
+            if self._image.get_pixel(x - self._offset_x, y - self._offset_y) \
             else TRANSPARENT
 
     def update(self,
@@ -72,14 +75,14 @@ class SpriteInstance(Screen):
                             and x2 < self._image.width \
                             and y2 < self._image.height
                         if valid1 and valid2:
-                            c1 = self._image._is_pixel(x1, y1)
-                            c2 = self._image._is_pixel(x2, y2)
+                            c1 = self._image.is_pixel_set(x1, y1)
+                            c2 = self._image.is_pixel_set(x2, y2)
                             if c1 != c2:
                                 mark_dirty(dx, dy)
                         elif valid1:
                             # if old position was set,
                             # mark as dirty to clear it
-                            if self._image._is_pixel(x1, y1):
+                            if self._image.is_pixel_set(x1, y1):
                                 if first:
                                     first = False
                                     self._first_dirty = (dx, dy)
@@ -87,7 +90,7 @@ class SpriteInstance(Screen):
                         elif valid2:
                             # if new position is set,
                             # mark as dirty to draw it
-                            if self._image._is_pixel(x2, y2):
+                            if self._image.is_pixel_set(x2, y2):
                                 mark_dirty(dx, dy)
 
             self._offset_x, self._offset_y = self._move_to

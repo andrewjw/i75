@@ -133,8 +133,8 @@ class Face():
                   + "no matching magic marker in header!")
             sys.exit()
 
-        glyph_count = int.from_bytes(data[4:6], byteorder="big")
-        flags = int.from_bytes(data[6:8], byteorder="big")
+        glyph_count = int.from_bytes(data[4:6], "big")
+        flags = int.from_bytes(data[6:8], "big")
 
         glyph_entry_length = 9
 

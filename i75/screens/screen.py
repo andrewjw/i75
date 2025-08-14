@@ -24,6 +24,9 @@ from ..colour import Colour
 
 
 class Screen:
+    def release(self):
+        raise NotImplementedError()
+
     def get_pixel(self, x: int, y: int) -> Colour:
         raise NotImplementedError()
 

@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 try:
-    from typing import Optional
+    from typing import Callable
 except ImportError:  # pragma: no cover
     pass
 
@@ -32,9 +32,23 @@ class ColourBlock(Screen):
         self.width = width
         self.height = height
         self.colour = colour
+        self._is_dirty = True
+
+    def release(self):
+        pass
 
     def get_pixel(self, x: int, y: int) -> Colour:
         if x < 0 or y < 0 or x >= self.width or y >= self.height:
             return TRANSPARENT
 
         return self.colour
+
+    def update(self,
+               frame_time: int,
+               mark_dirty: Callable[[int, int], None]) -> None:
+        if not self._is_dirty:
+            return
+        for y in range(self.height):
+            for x in range(self.width):
+                mark_dirty(x, y)
+        self._is_dirty = False
